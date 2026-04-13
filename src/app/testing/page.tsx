@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck, Clock, Award, ArrowRight } from "lucide-react";
-import LocationCard from "@/components/LocationCard";
+import { ShieldCheck, Clock, Award, ArrowRight, MapPin, Search } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { LOCATIONS } from "@/lib/locations";
 
@@ -36,28 +35,27 @@ export default function TestingPage() {
             <ShieldCheck className="h-3.5 w-3.5" />
             Proctored Testing Hub
           </span>
-          <h1 className="mt-5 font-serif text-5xl md:text-6xl leading-[1.05]">
+          <h1 className="mt-5 font-serif text-5xl md:text-6xl leading-[1.05] text-white">
             Testing centers you can <span className="text-crimson italic">rely on.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-white/80 leading-relaxed">
-            Six professionally-staffed locations deliver a secure, quiet, and
-            accredited testing environment for certification and licensure
-            exams nationwide.
+            Six computer-based testing centers across the U.S., staffed by
+            trained proctors and built for focused, distraction-free exams.
           </p>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
-          { icon: ShieldCheck, title: "Secure & Accredited", desc: "Industry-standard protocols and staff trained to national certification requirements." },
-          { icon: Clock, title: "Flexible Scheduling", desc: "Weekday and evening appointments across all six locations." },
-          { icon: Award, title: "Professional Environment", desc: "Quiet, private testing rooms designed to minimize distraction." },
+          { icon: ShieldCheck, title: "Secure & Accredited", desc: "Our proctors are trained to each provider's standards. Your exam is handled the right way." },
+          { icon: Clock, title: "Flexible Scheduling", desc: "Weekday and Saturday appointments at all six locations." },
+          { icon: Award, title: "Professional Environment", desc: "Private workstations, secure lockers, and quiet rooms — so you can focus on your exam." },
         ].map((f, i) => {
           const Icon = f.icon;
           return (
             <AnimateOnScroll key={f.title} delay={i * 80}>
               <div className="rounded-xl border border-[color:var(--border)] bg-white p-6">
-                <span className="flex h-11 w-11 items-center justify-center rounded-md bg-black text-crimson">
+                <span className="flex h-11 w-11 items-center justify-center rounded-md bg-black text-white">
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-4 font-serif text-xl text-black">
@@ -74,25 +72,45 @@ export default function TestingPage() {
 
       <section className="mx-auto max-w-7xl px-6 lg:px-8 pb-24">
         <AnimateOnScroll>
-          <div className="flex items-end justify-between mb-10">
-            <div>
+          <div className="border-t-4 border-crimson bg-white p-8 md:p-12">
+            <div className="text-center">
               <span className="text-xs font-semibold tracking-[0.2em] uppercase text-crimson">
                 Our Locations
               </span>
-              <h2 className="mt-2 font-serif text-4xl text-black">
+              <h2 className="mt-2 font-serif text-3xl md:text-4xl text-black">
                 Find a center near you.
               </h2>
             </div>
+
+            <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {LOCATIONS.map((loc) => (
+                <Link
+                  key={loc.slug}
+                  href={`/locations/${loc.slug}`}
+                  className="group flex flex-col items-center gap-1.5 p-4 hover:bg-slate-50 transition-colors text-center"
+                >
+                  <MapPin className="h-5 w-5 text-crimson" />
+                  <span className="font-serif text-lg text-black group-hover:text-crimson transition-colors">
+                    {loc.city}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-black/50">
+                    {loc.state}
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-8 text-center">
+              <Link
+                href="/locations"
+                className="inline-flex items-center gap-2 rounded-sm bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+              >
+                <Search className="h-4 w-4" />
+                Search All Locations
+              </Link>
+            </div>
           </div>
         </AnimateOnScroll>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {LOCATIONS.map((loc, i) => (
-            <AnimateOnScroll key={loc.slug} delay={i * 60}>
-              <LocationCard location={loc} />
-            </AnimateOnScroll>
-          ))}
-        </div>
 
         <AnimateOnScroll>
           <div className="mt-14 rounded-2xl border border-[color:var(--border)] bg-[color:var(--cream)] p-10 text-center">
@@ -100,13 +118,13 @@ export default function TestingPage() {
               Need help choosing a location or exam?
             </h3>
             <p className="mt-3 text-black/70 max-w-2xl mx-auto">
-              Our team can match you with the right center, confirm
-              accreditation for your specific exam, and walk you through
-              what to expect on test day.
+              Give us a call and we&apos;ll help you find the right center,
+              confirm your exam details, and walk you through what to
+              expect on test day.
             </p>
             <Link
               href="/contact"
-              className="mt-6 inline-flex items-center gap-2 rounded-md bg-crimson px-6 py-3 text-sm font-semibold uppercase tracking-wider text-black hover:bg-crimson-soft transition-colors"
+              className="mt-6 inline-flex items-center gap-2 rounded-md bg-crimson px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
             >
               Talk to a proctor <ArrowRight className="h-4 w-4" />
             </Link>

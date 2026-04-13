@@ -11,7 +11,8 @@ import {
 } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import LocationContact from "@/components/LocationContact";
-import LocationHours from "@/components/LocationHours";
+import OpenClosedBadge from "@/components/OpenClosedBadge";
+import ExpandableHours from "@/components/ExpandableHours";
 import {
   LOCATIONS,
   CONTACT,
@@ -34,13 +35,13 @@ export async function generateMetadata(props: {
   const { city } = await props.params;
   const loc = getLocation(city);
   if (!loc) return {};
-  const title = `Authorized Testing Center in ${loc.city}, ${loc.state}`;
+  const title = `BLE Training Testing Center in ${loc.city}, ${loc.state}`;
   const description = `BLE Training's ${loc.city} center delivers proctored exams for Pearson VUE, Prometric, PSI, Meazure Learning, Kryterion, ETS, Scantron, and Examity. Secure lockers, trained proctors, and solid privacy partitions. ${loc.address}. Call ${CONTACT.tollFreeDisplay}.`;
   return {
     title,
     description,
     keywords: [
-      `Authorized Testing Center ${loc.city} ${loc.state}`,
+      `BLE Training Testing Center ${loc.city} ${loc.state}`,
       `Proctored Testing ${loc.city}`,
       `Pearson VUE ${loc.city}`,
       `Prometric ${loc.city}`,
@@ -157,14 +158,17 @@ export default async function LocationPage(props: {
           </nav>
 
           <div className="mt-8 max-w-4xl">
-            <div className="flex items-center gap-2 text-crimson">
-              <ShieldCheck className="h-4 w-4" />
-              <span className="text-xs font-bold uppercase tracking-[0.3em]">
-                Authorized Testing Center
-              </span>
+            <div className="flex items-center gap-3 flex-wrap">
+              <div className="flex items-center gap-2 text-crimson">
+                <ShieldCheck className="h-4 w-4" />
+                <span className="text-xs font-bold uppercase tracking-[0.3em]">
+                  BLE Training Testing Center
+                </span>
+              </div>
+              <OpenClosedBadge schedule={loc.schedule} />
             </div>
             <h1 className="mt-4 font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight text-black">
-              Authorized Testing Center in{" "}
+              BLE Training Testing Center in{" "}
               <span className="text-crimson">
                 {loc.city}, {loc.state}
               </span>
@@ -208,7 +212,7 @@ export default async function LocationPage(props: {
                   <span>{loc.address}</span>
                 </address>
                 <LocationContact extension={loc.extension} />
-                <LocationHours schedule={loc.schedule} />
+                <ExpandableHours schedule={loc.schedule} />
 
                 <div className="mt-6 flex flex-col gap-3">
                   <a

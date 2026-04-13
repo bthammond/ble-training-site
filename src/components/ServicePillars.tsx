@@ -6,28 +6,28 @@ const PILLARS = [
   {
     icon: Users,
     title: "Corporate Training",
-    desc: "Leadership, compliance, and skills programs tailored to your teams — delivered on-site or virtually.",
+    desc: "Leadership, compliance, and skills programs for your teams — on-site or virtual.",
     href: "/#services",
     tag: "For Enterprises",
   },
   {
     icon: ClipboardCheck,
     title: "Proctored Testing",
-    desc: "Secure, accredited testing across six U.S. centers with flexible scheduling for professional exams.",
+    desc: "Computer-based proctored exams at six U.S. testing centers — flexible scheduling, professional staff.",
     href: "/testing",
     tag: "6 Locations",
   },
   {
     icon: Briefcase,
     title: "SMB Consulting",
-    desc: "Strategic advisory, operational coaching, and growth roadmaps for small-to-mid-sized businesses.",
+    desc: "Hands-on advisory and growth planning for small and mid-sized businesses.",
     href: "/consulting",
     tag: "Strategy",
   },
   {
     icon: Heart,
     title: "Family Business & Entrepreneurship",
-    desc: "A specialist practice: succession planning, governance, founders' coaching, and legacy design.",
+    desc: "Succession planning, governance, and coaching for the businesses that families build and keep.",
     href: "/consulting#family",
     tag: "Our Niche",
   },
@@ -42,11 +42,10 @@ export default function ServicePillars() {
             Our Practice
           </span>
           <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black">
-            Four pillars. One partnership.
+            What we do.
           </h2>
           <p className="mt-4 text-lg text-black/70 leading-relaxed">
-            Everything we do serves one outcome — helping organizations and
-            operators build durable, disciplined businesses.
+            Training, testing, and consulting — all under one roof.
           </p>
         </div>
       </AnimateOnScroll>
@@ -61,7 +60,7 @@ export default function ServicePillars() {
                 className="group relative flex flex-col h-full rounded-2xl border border-[color:var(--border)] bg-white p-8 hover:border-crimson/60 hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex items-center justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-black text-crimson group-hover:bg-crimson group-hover:text-black transition-colors">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-black text-white group-hover:bg-crimson group-hover:text-white transition-colors">
                     <Icon className="h-6 w-6" />
                   </span>
                   <span className="text-xs font-medium tracking-widest uppercase text-black/70">

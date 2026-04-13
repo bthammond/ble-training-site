@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "Testing Preparation Checklist",
     "Proctored Exam Success",
     "Test Day Requirements",
-    "Authorized Testing Center Tyler TX",
+    "BLE Training Testing Center Tyler TX",
   ],
 };
 
@@ -114,7 +114,7 @@ export default function ChecklistPage() {
             return (
               <AnimateOnScroll key={c.title} delay={i * 60}>
                 <div className="h-full bg-white border-t-4 border-crimson shadow-sm p-7">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-sm bg-black text-crimson">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-sm bg-black text-white">
                     <Icon className="h-5 w-5" />
                   </span>
                   <h3 className="mt-4 font-serif text-xl text-black">
@@ -151,7 +151,7 @@ export default function ChecklistPage() {
               </Link>
               <Link
                 href="/testing"
-                className="inline-flex items-center gap-2 rounded-sm border-2 border-crimson px-7 py-3 text-xs font-bold uppercase tracking-wider text-crimson hover:bg-crimson hover:text-black transition-colors"
+                className="inline-flex items-center gap-2 rounded-sm border-2 border-crimson px-7 py-3 text-xs font-bold uppercase tracking-wider text-crimson hover:bg-crimson hover:text-white transition-colors"
               >
                 View testing centers
               </Link>

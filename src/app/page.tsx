@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Hero from "@/components/Hero";
+import PartnerLogos from "@/components/PartnerLogos";
 import Stats from "@/components/Stats";
+import ProcessSteps from "@/components/ProcessSteps";
 import ServicePillars from "@/components/ServicePillars";
 import LocationsGrid from "@/components/LocationsGrid";
 import ConsultingFeature from "@/components/ConsultingFeature";
@@ -12,7 +14,9 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <PartnerLogos />
       <Stats />
+      <ProcessSteps />
       <ServicePillars />
       <LocationsGrid />
       <ConsultingFeature />
@@ -24,14 +28,15 @@ export default function Home() {
               About BLE Training
             </span>
             <h2 className="mt-4 font-serif text-4xl md:text-5xl text-black">
-              Quiet expertise, compounded over decades.
+              Twenty years of doing the work.
             </h2>
             <div className="mt-6 h-px w-24 bg-crimson" />
             <p className="mt-6 text-lg text-black/70 leading-relaxed">
-              We are a specialist firm serving corporate clients, certification
-              candidates, and the owner-operators who are the backbone of the
-              American economy. Our practice is built on long relationships,
-              discretion, and measurable results.
+              BLE Training is a corporate training company with a focus on
+              small and mid-sized businesses. We work closely with
+              founder-led and family-owned companies, and we run proctored
+              testing centers across the country. Our clients stay because
+              we deliver.
             </p>
             <Link
               href="/contact"
@@ -81,7 +86,7 @@ export default function Home() {
                 }}
               />
               <div className="relative">
-                <h2 className="font-serif text-4xl md:text-5xl">
+                <h2 className="font-serif text-4xl md:text-5xl text-white">
                   Ready to work with us?
                 </h2>
                 <p className="mt-4 text-white/80 max-w-xl mx-auto">

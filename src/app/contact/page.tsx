@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-import { LOCATIONS, CONTACT, directionsUrl } from "@/lib/locations";
+import { LOCATIONS, CONTACT } from "@/lib/locations";
 
 export const metadata: Metadata = {
   title: "Contact BLE Training — Call 1-877-TRY-BLE-1",
   description:
-    "Reach BLE Training toll-free at 1-877-879-2531 or info@ble.training. Six authorized testing centers: Tyler TX, Clarks Summit PA, Toledo OH, Lincoln NE, Omaha NE, Topeka KS.",
+    "Reach BLE Training toll-free at 1-877-879-2531 or info@ble.training. Six BLE Training testing centers: Tyler TX, Clarks Summit PA, Toledo OH, Lincoln NE, Omaha NE, Topeka KS.",
   keywords: [
     "Contact BLE Training",
     "1-877-TRY-BLE-1",
@@ -97,30 +98,33 @@ export default function ContactPage() {
                 Testing Centers
               </h2>
               <div className="mt-4 h-px w-24 bg-crimson" />
-              <ul className="mt-6 space-y-5">
+              <ul className="mt-6 space-y-3">
                 {LOCATIONS.map((loc) => (
-                  <li key={loc.slug} className="border-t-2 border-crimson pt-4">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-3.5 w-3.5 text-crimson" />
-                      <span className="text-xs font-bold uppercase tracking-widest text-crimson">
-                        {loc.city}, {loc.state}
-                      </span>
-                    </div>
-                    <address className="mt-2 text-sm text-black not-italic leading-relaxed">
-                      {loc.address}
-                    </address>
-                    <a
-                      href={directionsUrl(loc.address)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-black underline underline-offset-4 decoration-2 hover:text-crimson hover:decoration-crimson transition-colors"
+                  <li key={loc.slug}>
+                    <Link
+                      href={`/locations/${loc.slug}`}
+                      className="group flex items-center gap-3 border-t-2 border-crimson pt-3 hover:bg-slate-50 transition-colors -mx-2 px-2 py-1"
                     >
-                      Get Directions
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
+                      <MapPin className="h-3.5 w-3.5 shrink-0 text-crimson" />
+                      <div className="flex-1">
+                        <span className="text-xs font-bold uppercase tracking-widest text-crimson">
+                          {loc.city}, {loc.state}
+                        </span>
+                        <span className="block text-xs text-black/60 mt-0.5">
+                          {loc.schedule.openDaysShort} · {loc.schedule.display}
+                        </span>
+                      </div>
+                      <ArrowRight className="h-3.5 w-3.5 text-black/30 group-hover:text-crimson transition-colors" />
+                    </Link>
                   </li>
                 ))}
               </ul>
+              <Link
+                href="/locations"
+                className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors"
+              >
+                View all locations <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
             </div>
           </AnimateOnScroll>
         </div>

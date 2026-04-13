@@ -85,7 +85,7 @@ export default function LeadForm() {
       <button
         type="submit"
         disabled={loading}
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-crimson px-6 py-4 text-sm font-semibold uppercase tracking-wider text-black hover:bg-crimson-soft transition-colors disabled:opacity-60"
+        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-crimson px-6 py-4 text-sm font-semibold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors disabled:opacity-60"
       >
         {loading ? "Sending..." : (<>Send inquiry <Send className="h-4 w-4" /></>)}
       </button>

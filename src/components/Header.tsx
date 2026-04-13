@@ -49,19 +49,19 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Tier 2 — dark header with white logo + white bold nav */}
+      {/* Tier 2 — white header with black logo + black bold nav */}
       <div
-        className={`bg-black transition-shadow duration-300 ${
-          scrolled ? "shadow-lg" : ""
+        className={`bg-white border-b border-slate-200 transition-shadow duration-300 ${
+          scrolled ? "shadow-md" : ""
         }`}
       >
         <nav className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between h-20">
           <Link href="/" className="flex items-center" aria-label="BLE Training home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/BLE-Training---white-letters.png"
+              src="/BLE-Training---black-letters.png"
               alt="BLE Training — Authorized Professional Testing & Certification Centers"
-              className="h-12 w-auto"
+              className="h-14 w-auto"
             />
           </Link>
 
@@ -70,7 +70,7 @@ export default function Header() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="text-white hover:text-crimson transition-colors"
+                  className="text-black hover:text-crimson transition-colors"
                 >
                   {l.label}
                 </Link>
@@ -79,17 +79,14 @@ export default function Header() {
           </ul>
 
           <div className="hidden lg:block">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 border-2 border-white bg-transparent px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson hover:border-crimson transition-colors"
-            >
+            <Link href="/contact" className="btn-outline">
               Book a Consultation
             </Link>
           </div>
 
           <button
             aria-label="Toggle menu"
-            className="lg:hidden text-white p-2"
+            className="lg:hidden text-black p-2"
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -97,14 +94,14 @@ export default function Header() {
         </nav>
 
         {open && (
-          <div className="lg:hidden border-t border-white/10 bg-black">
+          <div className="lg:hidden border-t border-slate-200 bg-white">
             <ul className="px-6 py-4 flex flex-col gap-3 text-sm uppercase tracking-wider font-bold">
               {NAV_LINKS.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="block py-2 text-white hover:text-crimson"
+                    className="block py-2 text-black hover:text-crimson"
                   >
                     {l.label}
                   </Link>
@@ -114,7 +111,7 @@ export default function Header() {
                 <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
-                  className="inline-flex items-center justify-center w-full border-2 border-white bg-transparent px-5 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson hover:border-crimson transition-colors"
+                  className="btn-outline w-full"
                 >
                   Book a Consultation
                 </Link>

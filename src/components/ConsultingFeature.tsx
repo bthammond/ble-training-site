@@ -11,16 +11,16 @@ export default function ConsultingFeature() {
             SMB &amp; Family Business Consulting
           </span>
           <h2 className="mt-6 font-serif text-5xl md:text-6xl text-black leading-[1.05] tracking-tight">
-            A specialist practice for the businesses that outlast their founders.
+            Built for the businesses that families build and keep.
           </h2>
           <div className="mx-auto mt-8 h-px w-24 bg-crimson" />
           <p className="mt-8 font-serif text-xl md:text-2xl text-black/80 leading-relaxed italic">
-            &ldquo;Family businesses and founder-led companies face a distinct
-            set of challenges — governance, succession, identity. We&apos;ve
-            spent twenty years building a practice designed around them.&rdquo;
+            &ldquo;Family businesses and founder-led companies don&apos;t run
+            like big corporations — and they shouldn&apos;t be coached like
+            one. We&apos;ve spent twenty years working with them.&rdquo;
           </p>
           <p className="mt-6 text-sm uppercase tracking-[0.2em] text-black/70">
-            — The BLE Training Practice
+            — BLE Training
           </p>
         </AnimateOnScroll>
 
@@ -30,17 +30,17 @@ export default function ConsultingFeature() {
               {
                 k: "01",
                 t: "Succession & Governance",
-                d: "Ownership transitions, family constitutions, and the board structures that hold them.",
+                d: "Helping families plan ownership transitions, set up governance, and get the right people in the right seats.",
               },
               {
                 k: "02",
                 t: "Founder Coaching",
-                d: "Confidential advisory for principals making decisions that blur business and relationship.",
+                d: "One-on-one advising for founders and owners navigating decisions that affect both the business and the family.",
               },
               {
                 k: "03",
                 t: "Growth Strategy",
-                d: "Three- and five-year plans tied to operating cadence, pricing, and role clarity.",
+                d: "Practical growth plans — pricing, hiring, and operations — built around where you actually are today.",
               },
             ].map((it) => (
               <div key={it.k}>
@@ -62,7 +62,7 @@ export default function ConsultingFeature() {
           <div className="mt-14">
             <Link
               href="/consulting"
-              className="inline-flex items-center gap-2 rounded-md bg-crimson px-8 py-4 text-sm font-semibold uppercase tracking-wider text-black shadow-md hover:bg-crimson-soft transition-all"
+              className="inline-flex items-center gap-2 rounded-md bg-crimson px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white shadow-md hover:bg-crimson-soft transition-all"
             >
               Explore our consulting practice
               <ArrowRight className="h-4 w-4" />

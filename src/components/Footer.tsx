@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { LOCATIONS, CONTACT } from "@/lib/locations";
 
 export default function Footer() {
@@ -64,7 +64,7 @@ export default function Footer() {
             {LOCATIONS.map((loc) => (
               <li key={loc.slug}>
                 <Link
-                  href={`/testing#${loc.slug}`}
+                  href={`/locations/${loc.slug}`}
                   className="flex items-center gap-2 hover:text-crimson"
                 >
                   <MapPin className="h-3.5 w-3.5 text-crimson" />
@@ -73,6 +73,12 @@ export default function Footer() {
               </li>
             ))}
           </ul>
+          <Link
+            href="/locations"
+            className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-crimson hover:text-crimson-soft transition-colors"
+          >
+            Hours &amp; details <ArrowRight className="h-3 w-3" />
+          </Link>
         </div>
 
         <div>
@@ -86,51 +92,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* CENTER HOURS BAND — white text on black; hours vary by city */}
-      <div className="bg-black text-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-10">
-          <div className="flex items-center gap-3">
-            <Clock className="h-6 w-6 text-crimson" />
-            <h4 className="font-serif text-xl text-white">Center Hours</h4>
-            <span className="text-xs text-white/60 uppercase tracking-widest">
-              Hours vary by location
-            </span>
-          </div>
-          <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3 text-sm">
-            {LOCATIONS.map((loc) => (
-              <li
-                key={loc.slug}
-                className="border-t border-white/15 pt-3 flex flex-col"
-              >
-                <span className="font-bold text-white uppercase tracking-wider text-xs">
-                  {loc.city}, {loc.state}
-                </span>
-                <span className="text-white/90 mt-0.5">
-                  {loc.schedule.openDaysShort} · {loc.schedule.display}
-                </span>
-                <span className="text-white/60 text-xs mt-0.5">
-                  {loc.schedule.closedDaysShort}: Closed
-                </span>
-              </li>
-            ))}
-          </ul>
-          <p
-            className="mt-6 italic text-white/70"
-            style={{ fontSize: "12px" }}
-          >
-            Hours are subject to change based on exam scheduling. Call{" "}
-            <a
-              href={CONTACT.tollFreeHref}
-              className="font-bold text-white hover:text-crimson transition-colors not-italic"
-            >
-              {CONTACT.tollFreeDisplay}
-            </a>{" "}
-            to confirm availability.
-          </p>
-        </div>
-      </div>
-
-      <div className="border-t border-white/10 bg-black text-white/70">
+      <div className="border-t border-slate-200 bg-white text-black/60">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <p>&copy; {year} BLE Training. All rights reserved.</p>
           <p className="flex items-center gap-6">

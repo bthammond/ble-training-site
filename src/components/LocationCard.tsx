@@ -26,7 +26,7 @@ export default function LocationCard({ location }: { location: Location }) {
 
       <div className="p-6 flex flex-col flex-1">
         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-crimson">
-          Testing Center
+          BLE Training Testing Center
         </span>
         <h3 className="mt-2 font-serif text-2xl text-black">
           {location.city}, {location.state}

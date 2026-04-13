@@ -6,7 +6,6 @@ import {
   Flame,
   Scale,
   Sparkles,
-  GraduationCap,
   ArrowRight,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
@@ -74,9 +73,9 @@ export default function AboutPage() {
             About BLE Training
           </span>
           <h1 className="mt-6 font-serif font-bold text-white uppercase tracking-tight leading-[0.95] text-5xl md:text-7xl lg:text-8xl">
-            A Legacy of
+            Who
             <br />
-            <span className="text-white">Clarity &amp; Integrity</span>
+            <span className="text-white">We Are</span>
           </h1>
           <div className="mt-8 mx-auto h-1 w-24 bg-crimson" />
         </div>
@@ -145,19 +144,36 @@ export default function AboutPage() {
       <section className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           <AnimateOnScroll className="lg:col-span-1">
-            <div className="bg-white border-t-4 border-crimson shadow-sm p-8">
-              <div className="flex h-20 w-20 items-center justify-center bg-black text-white">
-                <GraduationCap className="h-10 w-10" strokeWidth={1.5} />
+            <div className="bg-white border-t-4 border-crimson shadow-sm overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brian-hammond-headshot.png"
+                alt="Brian T. Hammond — Founder & Chief Learning Officer, BLE Training"
+                className="w-full aspect-[4/3] object-cover object-top"
+              />
+              <div className="p-8">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-crimson">
+                  Leadership
+                </p>
+                <h3 className="mt-2 font-serif text-3xl text-black leading-tight">
+                  Brian T. Hammond
+                </h3>
+                <p className="mt-2 text-sm font-semibold text-black">
+                  Founder &amp; Chief Learning Officer
+                </p>
+                <p className="mt-1 text-xs text-black/60">
+                  MBA, Louisiana State University
+                </p>
+                <a
+                  href="https://brianthammond.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-crimson hover:text-crimson-soft transition-colors"
+                >
+                  Learn more about Brian
+                  <ArrowRight className="h-3 w-3" />
+                </a>
               </div>
-              <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-crimson">
-                Leadership
-              </p>
-              <h3 className="mt-2 font-serif text-3xl text-black leading-tight">
-                Brian T. Hammond
-              </h3>
-              <p className="mt-2 text-sm font-semibold text-black">
-                Founder &amp; Chief Learning Officer
-              </p>
             </div>
           </AnimateOnScroll>
 
@@ -170,18 +186,17 @@ export default function AboutPage() {
             </h2>
             <div className="mt-6 h-px w-24 bg-crimson" />
             <p className="mt-6 text-black leading-relaxed">
-              Brian personally trains and assesses every cohort of instructors
-              and proctors who wear the BLE Training badge. He reviews
-              curriculum, sits in on delivery, and audits the classroom
-              experience to make sure every session carries what he calls the
-              &ldquo;spirit of proper training&rdquo; — clarity of purpose,
-              respect for the learner, and rigor in execution.
+              With over 30 years of experience building companies — including
+              more than 15 years in corporate America before founding BLE
+              Training — Brian has sat on both sides of the table. He knows
+              what good training looks like from the inside out.
             </p>
             <p className="mt-4 text-black leading-relaxed">
-              That standard is why enterprises, government agencies, and
-              certification candidates return to us year after year. The hours
-              of work that precede any classroom or testing-room door opening
-              are the real product we deliver.
+              As the visionary behind BLE Training, Brian built the systems
+              and processes that drive every location. With leadership at each
+              of our six centers running day-to-day operations, he focuses
+              on what matters most — making sure the standards stay high
+              and the company keeps moving forward.
             </p>
           </AnimateOnScroll>
         </div>
@@ -205,7 +220,7 @@ export default function AboutPage() {
               BLE Training is a Pennsylvania-based learning and testing
               services company formed in 2007. From a single classroom in the
               Northeast, we have grown into a national practice operating six
-              authorized testing centers and drawing on a vetted pool of more
+              BLE Training testing centers and drawing on a vetted pool of more
               than two hundred consultants.
             </p>
             <p className="mt-4 text-lg text-white/90 leading-relaxed">

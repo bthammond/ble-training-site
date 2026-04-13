@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { MapPin, ArrowRight, ExternalLink } from "lucide-react";
-import { LOCATIONS, directionsUrl } from "@/lib/locations";
+import { MapPin, ArrowRight, Search } from "lucide-react";
+import { LOCATIONS } from "@/lib/locations";
 import AnimateOnScroll from "./AnimateOnScroll";
-import LocationContact from "./LocationContact";
-import LocationHours from "./LocationHours";
 
 export default function LocationsGrid() {
   return (
@@ -15,65 +13,54 @@ export default function LocationsGrid() {
               Proctored Testing
             </span>
             <h2 className="mt-4 font-serif text-4xl md:text-5xl text-black">
-              Six centers. One standard of excellence.
+              Our testing centers.
             </h2>
             <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
             <p className="mt-6 text-black/70 leading-relaxed">
-              Accredited, quiet, professionally-staffed environments for
-              certification and licensure candidates nationwide.
+              Six locations across the U.S., all set up for quiet,
+              focused testing with professional staff on-site.
             </p>
           </div>
         </AnimateOnScroll>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {LOCATIONS.map((loc, i) => (
-            <AnimateOnScroll key={loc.slug} delay={i * 70}>
-              <article
-                id={loc.slug}
-                className="group h-full flex flex-col bg-white border-t-4 border-crimson shadow-sm hover:shadow-xl transition-shadow duration-300"
+        <AnimateOnScroll delay={100}>
+          <div className="mt-14 border-t-4 border-crimson bg-white p-8 md:p-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {LOCATIONS.map((loc) => (
+                <Link
+                  key={loc.slug}
+                  href={`/locations/${loc.slug}`}
+                  className="group flex flex-col items-center gap-1.5 p-4 hover:bg-slate-50 transition-colors text-center"
+                >
+                  <MapPin className="h-5 w-5 text-crimson" />
+                  <span className="font-serif text-lg text-black group-hover:text-crimson transition-colors">
+                    {loc.city}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-black/50">
+                    {loc.state}
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/locations"
+                className="inline-flex items-center gap-2 rounded-sm bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
               >
-                <div className="p-8 flex flex-col flex-1">
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-crimson">
-                    <MapPin className="h-3.5 w-3.5" />
-                    Testing Center
-                  </div>
-                  <h3 className="mt-4 font-serif text-3xl text-black leading-tight">
-                    {loc.city},{" "}
-                    <span className="text-crimson">{loc.state}</span>
-                  </h3>
-
-                  <address className="mt-5 flex items-start gap-2.5 text-sm text-black not-italic leading-relaxed">
-                    <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-crimson" />
-                    <span>{loc.address}</span>
-                  </address>
-
-                  <LocationContact extension={loc.extension} />
-                  <LocationHours schedule={loc.schedule} />
-
-                  <a
-                    href={directionsUrl(loc.address)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-black underline underline-offset-4 decoration-2 hover:text-crimson hover:decoration-crimson transition-colors self-start"
-                  >
-                    Get Directions
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-
-                  <div className="mt-auto pt-6">
-                    <Link
-                      href={`/contact?location=${loc.slug}`}
-                      className="inline-flex items-center justify-center gap-2 w-full rounded-sm bg-crimson px-5 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
-                    >
-                      Schedule a Test
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            </AnimateOnScroll>
-          ))}
-        </div>
+                <Search className="h-4 w-4" />
+                Find a Center Near You
+              </Link>
+              <Link
+                href="/register"
+                className="inline-flex items-center gap-2 rounded-sm border-2 border-black bg-white px-8 py-4 text-xs font-bold uppercase tracking-wider text-black hover:bg-crimson hover:text-white hover:border-crimson transition-colors"
+              >
+                Schedule a Test
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

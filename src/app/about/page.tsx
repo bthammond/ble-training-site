@@ -74,9 +74,9 @@ export default function AboutPage() {
             About BLE Training
           </span>
           <h1 className="mt-6 font-serif font-bold text-white uppercase tracking-tight leading-[0.95] text-5xl md:text-7xl lg:text-8xl">
-            A Legacy of
+            Who
             <br />
-            <span className="text-white">Clarity &amp; Integrity</span>
+            <span className="text-white">We Are</span>
           </h1>
           <div className="mt-8 mx-auto h-1 w-24 bg-crimson" />
         </div>
@@ -170,18 +170,14 @@ export default function AboutPage() {
             </h2>
             <div className="mt-6 h-px w-24 bg-crimson" />
             <p className="mt-6 text-black leading-relaxed">
-              Brian personally trains and assesses every cohort of instructors
-              and proctors who wear the BLE Training badge. He reviews
-              curriculum, sits in on delivery, and audits the classroom
-              experience to make sure every session carries what he calls the
-              &ldquo;spirit of proper training&rdquo; — clarity of purpose,
-              respect for the learner, and rigor in execution.
+              Brian personally trains every instructor and proctor who works
+              under the BLE Training name. He reviews the curriculum, sits in
+              on sessions, and makes sure the quality is there — every time.
             </p>
             <p className="mt-4 text-black leading-relaxed">
-              That standard is why enterprises, government agencies, and
-              certification candidates return to us year after year. The hours
-              of work that precede any classroom or testing-room door opening
-              are the real product we deliver.
+              That&apos;s why our clients come back. The preparation that
+              happens before any classroom or testing room opens is the real
+              product.
             </p>
           </AnimateOnScroll>
         </div>

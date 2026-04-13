@@ -24,14 +24,15 @@ export default function Home() {
               About BLE Training
             </span>
             <h2 className="mt-4 font-serif text-4xl md:text-5xl text-black">
-              Quiet expertise, compounded over decades.
+              Twenty years of doing the work.
             </h2>
             <div className="mt-6 h-px w-24 bg-crimson" />
             <p className="mt-6 text-lg text-black/70 leading-relaxed">
-              We are a specialist firm serving corporate clients, certification
-              candidates, and the owner-operators who are the backbone of the
-              American economy. Our practice is built on long relationships,
-              discretion, and measurable results.
+              BLE Training is a corporate training company with a focus on
+              small and mid-sized businesses. We work closely with
+              founder-led and family-owned companies, and we run proctored
+              testing centers across the country. Our clients stay because
+              we deliver.
             </p>
             <Link
               href="/contact"

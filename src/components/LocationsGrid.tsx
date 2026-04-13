@@ -13,12 +13,12 @@ export default function LocationsGrid() {
               Proctored Testing
             </span>
             <h2 className="mt-4 font-serif text-4xl md:text-5xl text-black">
-              Six centers. One standard of excellence.
+              Our testing centers.
             </h2>
             <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
             <p className="mt-6 text-black/70 leading-relaxed">
-              Accredited, quiet, professionally-staffed environments for
-              certification and licensure candidates nationwide.
+              Six locations across the U.S., all set up for quiet,
+              focused testing with professional staff on-site.
             </p>
           </div>
         </AnimateOnScroll>

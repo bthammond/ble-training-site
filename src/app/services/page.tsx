@@ -86,10 +86,9 @@ export default function ServicesPage() {
           </h1>
           <div className="mt-6 h-1 w-24 bg-crimson" />
           <p className="mt-6 text-lg md:text-xl text-black max-w-3xl leading-relaxed">
-            Three practice areas, one standard. Corporate training for Fortune
-            500 enterprises, technical programs for government contractors, and
-            proctored testing for the world&apos;s leading certification
-            providers.
+            Corporate training for Fortune 500 companies, technical programs
+            for government contractors, and proctored testing centers
+            delivering exams for the world&apos;s top certification providers.
           </p>
         </div>
       </section>
@@ -110,8 +109,8 @@ export default function ServicesPage() {
                 We design and deliver training for Fortune 500 companies in
                 manufacturing, pharmaceutical, and financial services — on-site
                 or virtual, classroom or one-to-one, leadership or technical.
-                Every engagement is scoped around the client&apos;s operating
-                reality, not a catalog.
+                Every program is built around the client&apos;s actual
+                needs, not a catalog.
               </p>
             </div>
           </AnimateOnScroll>

@@ -39,18 +39,17 @@ export default function TestingPage() {
             Testing centers you can <span className="text-crimson italic">rely on.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-white/80 leading-relaxed">
-            Six professionally-staffed locations deliver a secure, quiet, and
-            accredited testing environment for certification and licensure
-            exams nationwide.
+            Six computer-based testing centers across the U.S., staffed by
+            trained proctors and built for focused, distraction-free exams.
           </p>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
-          { icon: ShieldCheck, title: "Secure & Accredited", desc: "Industry-standard protocols and staff trained to national certification requirements." },
-          { icon: Clock, title: "Flexible Scheduling", desc: "Weekday and evening appointments across all six locations." },
-          { icon: Award, title: "Professional Environment", desc: "Quiet, private testing rooms designed to minimize distraction." },
+          { icon: ShieldCheck, title: "Secure & Accredited", desc: "Our proctors are trained to each provider's standards. Your exam is handled the right way." },
+          { icon: Clock, title: "Flexible Scheduling", desc: "Weekday and Saturday appointments at all six locations." },
+          { icon: Award, title: "Professional Environment", desc: "Private workstations, secure lockers, and quiet rooms — so you can focus on your exam." },
         ].map((f, i) => {
           const Icon = f.icon;
           return (
@@ -119,9 +118,9 @@ export default function TestingPage() {
               Need help choosing a location or exam?
             </h3>
             <p className="mt-3 text-black/70 max-w-2xl mx-auto">
-              Our team can match you with the right center, confirm
-              accreditation for your specific exam, and walk you through
-              what to expect on test day.
+              Give us a call and we&apos;ll help you find the right center,
+              confirm your exam details, and walk you through what to
+              expect on test day.
             </p>
             <Link
               href="/contact"

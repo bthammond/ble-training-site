@@ -29,9 +29,9 @@ export default function Hero() {
             <span className="text-crimson">&amp; Proctored Testing.</span>
           </h1>
           <p className="mt-8 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed">
-            A specialist firm serving corporate teams, certification candidates,
-            and the owner-operators building enduring businesses. Trusted at six
-            locations across the United States.
+            We help companies train their teams, certify their people, and grow
+            their businesses — with a special focus on family-owned and
+            founder-led companies. Six testing centers across the U.S.
           </p>
           <div className="mt-12 flex flex-col sm:flex-row gap-4">
             <Link

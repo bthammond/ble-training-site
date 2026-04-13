@@ -21,32 +21,32 @@ const PRACTICES = [
   {
     icon: Shield,
     title: "Succession & Governance",
-    desc: "Clear frameworks for ownership transition, family constitutions, and board formation.",
+    desc: "Planning ownership transitions, setting up boards, and getting the right structure in place.",
   },
   {
     icon: Users2,
     title: "Founder & Family Coaching",
-    desc: "Confidential advisory for principals navigating decisions that blur business and relationship.",
+    desc: "One-on-one advising for founders and family members when business decisions get personal.",
   },
   {
     icon: Compass,
     title: "Strategic Roadmaps",
-    desc: "Three- and five-year plans tied to cash flow, operating cadence, and role clarity.",
+    desc: "Practical growth plans built around your cash flow, your team, and where you want to be in three to five years.",
   },
   {
     icon: TrendingUp,
     title: "Growth Operations",
-    desc: "Sales, pricing, and margin work to turn growth ambitions into disciplined execution.",
+    desc: "Hands-on work with your sales, pricing, and margins to turn growth goals into real results.",
   },
   {
     icon: Handshake,
     title: "Transaction Advisory",
-    desc: "Buy-side and sell-side counsel for owners weighing acquisition, recapitalization, or exit.",
+    desc: "Guidance for owners thinking about buying, selling, or restructuring their business.",
   },
   {
     icon: Heart,
     title: "Legacy Design",
-    desc: "Philanthropy, next-gen engagement, and the stewardship that makes businesses last.",
+    desc: "Helping families think about what comes next — bringing in the next generation, giving back, and building something that lasts.",
   },
 ];
 
@@ -70,10 +70,10 @@ export default function ConsultingPage() {
             A specialist practice for <span className="text-crimson italic">family businesses</span> and <span className="text-crimson italic">founders.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-white/80 leading-relaxed">
-            Most consulting firms treat family businesses like smaller versions
-            of corporations. We don&apos;t. Our work is tailored to the governance,
-            continuity, and relational dynamics that make these companies
-            unlike any other.
+            Most consultants treat family businesses like smaller versions
+            of big corporations. We don&apos;t. We understand the dynamics
+            that come with family ownership — and we work with them,
+            not around them.
           </p>
         </div>
       </section>
@@ -85,13 +85,13 @@ export default function ConsultingPage() {
               Our Approach
             </span>
             <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black">
-              Patient counsel. Rigorous execution.
+            How we work.
             </h2>
             <p className="mt-4 text-lg text-black/70 leading-relaxed">
-              We sit with owners, operators, and families to build the
-              structure that allows the business to grow and the relationships
-              to hold. Every engagement is bespoke, confidential, and
-              outcome-driven.
+              We sit down with owners, operators, and families to figure out
+              what needs to happen — then we help make it happen. Every
+              engagement is confidential and built around your situation,
+              not a template.
             </p>
           </div>
         </AnimateOnScroll>
@@ -128,16 +128,16 @@ export default function ConsultingPage() {
               Tell us what you&apos;re trying to solve.
             </h2>
             <p className="mt-5 text-lg text-black/70 leading-relaxed">
-              Most of our engagements begin with a confidential 30-minute call.
-              No pitch decks, no pressure — just a conversation about what&apos;s
-              working, what isn&apos;t, and whether we&apos;re the right fit.
+              It usually starts with a 30-minute call. No pitch deck, no
+              pressure — just a conversation about what&apos;s going on and
+              whether we can help.
             </p>
 
             <ul className="mt-8 space-y-4 text-black">
               {[
                 "Confidential & NDA-friendly",
                 "Response within one business day",
-                "Engagements scoped to fit the decision at hand",
+                "We scope the work to fit the problem, not the other way around",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-crimson" />

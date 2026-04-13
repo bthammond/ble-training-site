@@ -6,28 +6,28 @@ const PILLARS = [
   {
     icon: Users,
     title: "Corporate Training",
-    desc: "Leadership, compliance, and skills programs tailored to your teams — delivered on-site or virtually.",
+    desc: "Leadership, compliance, and skills programs for your teams — on-site or virtual.",
     href: "/#services",
     tag: "For Enterprises",
   },
   {
     icon: ClipboardCheck,
     title: "Proctored Testing",
-    desc: "Secure, accredited testing across six U.S. centers with flexible scheduling for professional exams.",
+    desc: "Computer-based proctored exams at six U.S. testing centers — flexible scheduling, professional staff.",
     href: "/testing",
     tag: "6 Locations",
   },
   {
     icon: Briefcase,
     title: "SMB Consulting",
-    desc: "Strategic advisory, operational coaching, and growth roadmaps for small-to-mid-sized businesses.",
+    desc: "Hands-on advisory and growth planning for small and mid-sized businesses.",
     href: "/consulting",
     tag: "Strategy",
   },
   {
     icon: Heart,
     title: "Family Business & Entrepreneurship",
-    desc: "A specialist practice: succession planning, governance, founders' coaching, and legacy design.",
+    desc: "Succession planning, governance, and coaching for the businesses that families build and keep.",
     href: "/consulting#family",
     tag: "Our Niche",
   },
@@ -42,11 +42,10 @@ export default function ServicePillars() {
             Our Practice
           </span>
           <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black">
-            Four pillars. One partnership.
+            What we do.
           </h2>
           <p className="mt-4 text-lg text-black/70 leading-relaxed">
-            Everything we do serves one outcome — helping organizations and
-            operators build durable, disciplined businesses.
+            Training, testing, and consulting — all under one roof.
           </p>
         </div>
       </AnimateOnScroll>

@@ -193,7 +193,7 @@ export default function AboutPage() {
             </p>
             <p className="mt-4 text-black leading-relaxed">
               As the visionary behind BLE Training, Brian built the systems
-              and processes that drive every location. With managers at each
+              and processes that drive every location. With leadership at each
               of our six centers running day-to-day operations, he focuses
               on what matters most — making sure the standards stay high
               and the company keeps moving forward.

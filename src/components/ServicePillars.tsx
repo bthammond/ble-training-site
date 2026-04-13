@@ -61,7 +61,7 @@ export default function ServicePillars() {
                 className="group relative flex flex-col h-full rounded-2xl border border-[color:var(--border)] bg-white p-8 hover:border-crimson/60 hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex items-center justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-black text-crimson group-hover:bg-crimson group-hover:text-black transition-colors">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-black text-white group-hover:bg-crimson group-hover:text-white transition-colors">
                     <Icon className="h-6 w-6" />
                   </span>
                   <span className="text-xs font-medium tracking-widest uppercase text-black/70">

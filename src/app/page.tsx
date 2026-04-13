@@ -81,7 +81,7 @@ export default function Home() {
                 }}
               />
               <div className="relative">
-                <h2 className="font-serif text-4xl md:text-5xl">
+                <h2 className="font-serif text-4xl md:text-5xl text-white">
                   Ready to work with us?
                 </h2>
                 <p className="mt-4 text-white/80 max-w-xl mx-auto">

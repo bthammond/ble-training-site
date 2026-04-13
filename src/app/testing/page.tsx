@@ -35,7 +35,7 @@ export default function TestingPage() {
             <ShieldCheck className="h-3.5 w-3.5" />
             Proctored Testing Hub
           </span>
-          <h1 className="mt-5 font-serif text-5xl md:text-6xl leading-[1.05]">
+          <h1 className="mt-5 font-serif text-5xl md:text-6xl leading-[1.05] text-white">
             Testing centers you can <span className="text-crimson italic">rely on.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-white/80 leading-relaxed">
@@ -56,7 +56,7 @@ export default function TestingPage() {
           return (
             <AnimateOnScroll key={f.title} delay={i * 80}>
               <div className="rounded-xl border border-[color:var(--border)] bg-white p-6">
-                <span className="flex h-11 w-11 items-center justify-center rounded-md bg-black text-crimson">
+                <span className="flex h-11 w-11 items-center justify-center rounded-md bg-black text-white">
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-4 font-serif text-xl text-black">
@@ -125,7 +125,7 @@ export default function TestingPage() {
             </p>
             <Link
               href="/contact"
-              className="mt-6 inline-flex items-center gap-2 rounded-md bg-crimson px-6 py-3 text-sm font-semibold uppercase tracking-wider text-black hover:bg-crimson-soft transition-colors"
+              className="mt-6 inline-flex items-center gap-2 rounded-md bg-crimson px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
             >
               Talk to a proctor <ArrowRight className="h-4 w-4" />
             </Link>

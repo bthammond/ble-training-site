@@ -43,7 +43,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/testing"
-              className="group inline-flex items-center justify-center gap-2 rounded-sm border-2 border-crimson bg-transparent px-8 py-4 text-sm font-bold uppercase tracking-wider text-crimson hover:bg-crimson hover:text-black transition-colors"
+              className="group inline-flex items-center justify-center gap-2 rounded-sm border-2 border-crimson bg-transparent px-8 py-4 text-sm font-bold uppercase tracking-wider text-crimson hover:bg-crimson hover:text-white transition-colors"
             >
               <ClipboardCheck className="h-4 w-4" />
               Schedule a Test

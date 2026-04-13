@@ -62,7 +62,7 @@ export default function ConsultingFeature() {
           <div className="mt-14">
             <Link
               href="/consulting"
-              className="inline-flex items-center gap-2 rounded-md bg-crimson px-8 py-4 text-sm font-semibold uppercase tracking-wider text-black shadow-md hover:bg-crimson-soft transition-all"
+              className="inline-flex items-center gap-2 rounded-md bg-crimson px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white shadow-md hover:bg-crimson-soft transition-all"
             >
               Explore our consulting practice
               <ArrowRight className="h-4 w-4" />

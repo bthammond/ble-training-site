@@ -66,7 +66,7 @@ export default function ConsultingPage() {
           <span className="inline-flex items-center gap-2 rounded-full border border-crimson/40 bg-crimson/10 px-4 py-1.5 text-xs font-medium text-crimson-soft uppercase tracking-wide">
             Consulting Corner
           </span>
-          <h1 className="mt-5 font-serif text-5xl md:text-6xl leading-[1.05] max-w-4xl">
+          <h1 className="mt-5 font-serif text-5xl md:text-6xl leading-[1.05] max-w-4xl text-white">
             A specialist practice for <span className="text-crimson italic">family businesses</span> and <span className="text-crimson italic">founders.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-white/80 leading-relaxed">
@@ -102,7 +102,7 @@ export default function ConsultingPage() {
             return (
               <AnimateOnScroll key={p.title} delay={i * 60}>
                 <div className="h-full rounded-xl border border-[color:var(--border)] bg-white p-7 hover:border-crimson/60 transition-colors">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-md bg-black text-crimson">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-md bg-black text-white">
                     <Icon className="h-5 w-5" />
                   </span>
                   <h3 className="mt-4 font-serif text-xl text-black">

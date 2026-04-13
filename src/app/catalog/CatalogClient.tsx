@@ -1,151 +1,457 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { Search, BookOpen } from "lucide-react";
+import { useState, useMemo, useEffect, useCallback } from "react";
+import Link from "next/link";
+import {
+  Search,
+  BookOpen,
+  ArrowLeft,
+  ArrowRight,
+  Lock,
+  Download,
+  Star,
+} from "lucide-react";
 import { COURSES, CATEGORIES, type Course } from "@/data/courses";
 import CourseModal from "@/components/CourseModal";
+import CatalogGate from "@/components/CatalogGate";
 
-const CATEGORY_EMOJIS: Record<string, string> = {
-  "Leadership & Management": "👔",
-  Communication: "💬",
-  "Sales & Marketing": "📈",
-  "HR & Talent": "👥",
-  "Finance & Business": "💰",
-  "Safety & Compliance": "🛡️",
-  "Project Management": "📋",
-  "Personal Development": "🎯",
-  "Training & Facilitation": "🎓",
-  "Technology & Digital": "💻",
+/* ── Category metadata ──────────────────────────────────────── */
+const CAT_META: Record<
+  string,
+  { emoji: string; gradient: string; description: string }
+> = {
+  "Leadership & Management": {
+    emoji: "👔",
+    gradient: "from-slate-900 to-slate-700",
+    description: "Build stronger leaders at every level of your organization.",
+  },
+  Communication: {
+    emoji: "💬",
+    gradient: "from-blue-900 to-blue-700",
+    description: "Write, speak, listen, and present with confidence.",
+  },
+  "Sales & Marketing": {
+    emoji: "📈",
+    gradient: "from-emerald-900 to-emerald-700",
+    description: "Grow revenue with proven sales and marketing techniques.",
+  },
+  "HR & Talent": {
+    emoji: "👥",
+    gradient: "from-purple-900 to-purple-700",
+    description: "Recruit, retain, and develop the people behind the business.",
+  },
+  "Finance & Business": {
+    emoji: "💰",
+    gradient: "from-amber-900 to-amber-700",
+    description: "Sharpen financial skills and business acumen across your team.",
+  },
+  "Safety & Compliance": {
+    emoji: "🛡️",
+    gradient: "from-red-900 to-red-700",
+    description: "Keep your workplace safe, compliant, and audit-ready.",
+  },
+  "Project Management": {
+    emoji: "📋",
+    gradient: "from-cyan-900 to-cyan-700",
+    description: "Plan, execute, and deliver projects on time and on budget.",
+  },
+  "Personal Development": {
+    emoji: "🎯",
+    gradient: "from-rose-900 to-rose-700",
+    description: "Help individuals grow in confidence, creativity, and focus.",
+  },
+  "Training & Facilitation": {
+    emoji: "🎓",
+    gradient: "from-indigo-900 to-indigo-700",
+    description: "Train the trainers — facilitation, design, and delivery.",
+  },
+  "Technology & Digital": {
+    emoji: "💻",
+    gradient: "from-teal-900 to-teal-700",
+    description: "Digital literacy, cybersecurity, and tech-forward skills.",
+  },
 };
 
+const POPULAR_IDS = [1, 3, 10, 25, 40, 70]; // Curated popular courses
+
+const FREE_PREVIEWS = 2;
+
+/* ── Helpers ─────────────────────────────────────────────────── */
 function getTeaser(overview: string): string {
-  const firstSentence = overview.split(/\.\s/)[0];
-  if (firstSentence.length > 120) return firstSentence.substring(0, 117) + "...";
-  return firstSentence + ".";
+  const first = overview.split(/\.\s/)[0];
+  return first.length > 120 ? first.substring(0, 117) + "..." : first + ".";
 }
 
-export default function CatalogClient() {
-  const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+function getCookie(name: string): string | null {
+  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : null;
+}
 
-  const filtered = useMemo(() => {
+/* ── Component ───────────────────────────────────────────────── */
+export default function CatalogClient() {
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const [viewCount, setViewCount] = useState(0);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [showGate, setShowGate] = useState(false);
+
+  // Check cookie on mount
+  useEffect(() => {
+    if (getCookie("ble_catalog_access") === "granted") {
+      setIsRegistered(true);
+    }
+  }, []);
+
+  // Content protection
+  useEffect(() => {
+    const prevent = (e: Event) => e.preventDefault();
+    document.addEventListener("contextmenu", prevent);
+    document.addEventListener("copy", prevent);
+    document.addEventListener("selectstart", prevent);
+
+    // Block print
+    const style = document.createElement("style");
+    style.textContent = "@media print { body { display: none !important; } }";
+    document.head.appendChild(style);
+
+    return () => {
+      document.removeEventListener("contextmenu", prevent);
+      document.removeEventListener("copy", prevent);
+      document.removeEventListener("selectstart", prevent);
+      style.remove();
+    };
+  }, []);
+
+  // Block keyboard shortcuts for copy/save/print
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (
+        (e.ctrlKey || e.metaKey) &&
+        ["c", "s", "p", "a", "u"].includes(e.key.toLowerCase())
+      ) {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, []);
+
+  const handleCategoryClick = useCallback(
+    (cat: string) => {
+      if (!isRegistered) {
+        const newCount = viewCount + 1;
+        setViewCount(newCount);
+        if (newCount > FREE_PREVIEWS) {
+          setShowGate(true);
+          return;
+        }
+      }
+      setActiveCategory(cat);
+      setSearch("");
+    },
+    [isRegistered, viewCount]
+  );
+
+  const handleRegistered = useCallback(() => {
+    setIsRegistered(true);
+    setShowGate(false);
+  }, []);
+
+  const filteredCourses = useMemo(() => {
+    if (!activeCategory) return [];
     return COURSES.filter((c) => {
+      const matchesCat = c.category === activeCategory;
       const matchesSearch =
         !search || c.title.toLowerCase().includes(search.toLowerCase());
-      const matchesCategory =
-        activeCategory === "All" || c.category === activeCategory;
-      return matchesSearch && matchesCategory;
+      return matchesCat && matchesSearch;
     });
-  }, [search, activeCategory]);
+  }, [activeCategory, search]);
 
+  const popularCourses = useMemo(
+    () => COURSES.filter((c) => POPULAR_IDS.includes(c.id)).slice(0, 6),
+    []
+  );
+
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const c of COURSES) {
+      counts[c.category] = (counts[c.category] || 0) + 1;
+    }
+    return counts;
+  }, []);
+
+  const previewsLeft = Math.max(0, FREE_PREVIEWS - viewCount);
+
+  /* ── CATEGORY BROWSING VIEW ──────────────────────────────── */
+  if (activeCategory) {
+    return (
+      <>
+        {/* Header bar */}
+        <section className="bg-black text-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-10">
+            <button
+              onClick={() => setActiveCategory(null)}
+              className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors mb-4"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to all categories
+            </button>
+            <div className="flex items-center gap-4">
+              <span className="text-4xl">
+                {CAT_META[activeCategory]?.emoji || "📚"}
+              </span>
+              <div>
+                <h1 className="font-serif text-3xl md:text-4xl text-white">
+                  {activeCategory}
+                </h1>
+                <p className="mt-1 text-white/60 text-sm">
+                  {filteredCourses.length} courses available
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Search */}
+        <section className="bg-white border-b border-slate-200 sticky top-0 z-30">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-4">
+            <div className="relative max-w-md">
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-black/40" />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder={`Search ${activeCategory} courses...`}
+                className="w-full border border-slate-300 bg-white py-2.5 pl-10 pr-4 text-sm text-black shadow-sm focus:border-crimson focus:outline-none focus:ring-2 focus:ring-crimson/20"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Course grid */}
+        <section className="bg-slate-50 min-h-[60vh]">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-10">
+            {filteredCourses.length === 0 ? (
+              <div className="py-20 text-center">
+                <p className="text-lg font-medium text-black/50">
+                  No courses match your search.
+                </p>
+                <button
+                  onClick={() => setSearch("")}
+                  className="mt-3 text-sm font-medium text-crimson underline"
+                >
+                  Clear search
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {filteredCourses.map((course) => (
+                  <button
+                    key={course.id}
+                    onClick={() => setSelectedCourse(course)}
+                    className="group text-left bg-white border border-slate-200 rounded-lg p-6 hover:border-crimson/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                  >
+                    <span className="text-2xl">
+                      {CAT_META[course.category]?.emoji || "📚"}
+                    </span>
+                    <h3 className="mt-3 font-serif text-base text-black leading-snug group-hover:text-crimson transition-colors">
+                      {course.title}
+                    </h3>
+                    <p className="mt-2 text-xs text-black/50 leading-relaxed">
+                      {getTeaser(course.overview)}
+                    </p>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Modal */}
+        {selectedCourse && (
+          <CourseModal
+            course={selectedCourse}
+            onClose={() => setSelectedCourse(null)}
+          />
+        )}
+      </>
+    );
+  }
+
+  /* ── LANDING VIEW ────────────────────────────────────────── */
   return (
     <>
       {/* Hero */}
-      <section className="bg-black text-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 md:py-24 text-center">
+      <section className="relative bg-black text-white overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 30% 20%, #9e1b32, transparent 40%), radial-gradient(circle at 70% 80%, #9e1b32, transparent 40%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-20 md:py-28 text-center">
           <div className="flex items-center justify-center gap-2 text-crimson mb-4">
-            <BookOpen className="h-6 w-6" />
+            <BookOpen className="h-7 w-7" />
           </div>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight tracking-tight">
             SoftSkills Course Catalog
           </h1>
-          <p className="mt-2 text-lg text-crimson font-semibold tracking-wide">
+          <p className="mt-3 text-lg text-crimson font-semibold tracking-wide">
             2026 Edition
           </p>
           <div className="mx-auto mt-4 h-1 w-16 bg-crimson" />
-          <p className="mt-6 text-white/70 max-w-2xl mx-auto">
-            {COURSES.length} courses across {CATEGORIES.length - 1} categories.
-            Search, filter, and request any course for onsite or web-based delivery.
+          <p className="mt-6 text-white/60 max-w-2xl mx-auto text-lg">
+            {COURSES.length} courses across {CATEGORIES.length - 1} categories —
+            available for onsite or web-based delivery.
           </p>
+
+          {/* Request Full Catalog CTA */}
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={`mailto:info@ble.training?subject=${encodeURIComponent("Request Full Course Catalog PDF")}&body=${encodeURIComponent("Hi BLE Training,\n\nI'd like to request a copy of the full SoftSkills Course Catalog.\n\nName: \nOrganization: \nEmail: \nPhone: \n\nThank you!")}`}
+              className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+            >
+              <Download className="h-4 w-4" />
+              Request Full Catalog PDF
+            </a>
+            <a
+              href="#categories"
+              className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
+            >
+              Browse Categories
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Search + Filters */}
-      <section className="bg-white border-b border-slate-200 sticky top-0 z-30">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-4">
-          {/* Search bar */}
-          <div className="relative max-w-xl mx-auto mb-4">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-black/40" />
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search courses by title..."
-              className="w-full border border-slate-300 bg-white py-2.5 pl-10 pr-4 text-sm text-black shadow-sm transition-all focus:border-crimson focus:outline-none focus:ring-2 focus:ring-crimson/20"
-            />
-          </div>
-
-          {/* Category filters */}
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            {CATEGORIES.map((cat) => (
+      {/* Preview counter */}
+      {!isRegistered && (
+        <div className="bg-slate-900 text-white text-center py-2.5 text-xs tracking-wider">
+          <Lock className="inline h-3 w-3 mr-1.5 text-crimson" />
+          {previewsLeft > 0 ? (
+            <>
+              You have{" "}
+              <span className="font-bold text-crimson">{previewsLeft}</span>{" "}
+              free preview{previewsLeft !== 1 ? "s" : ""} remaining
+            </>
+          ) : (
+            <>
               <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors ${
-                  activeCategory === cat
-                    ? "bg-crimson text-white"
-                    : "bg-slate-100 text-black/60 hover:bg-slate-200"
-                }`}
+                onClick={() => setShowGate(true)}
+                className="font-bold text-crimson underline"
               >
-                {cat === "All" ? "All" : `${CATEGORY_EMOJIS[cat] || ""} ${cat}`}
+                Register for free
+              </button>{" "}
+              to unlock the full catalog
+            </>
+          )}
+        </div>
+      )}
+
+      {/* Popular Courses */}
+      <section className="bg-white border-b border-slate-200">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
+          <div className="flex items-center gap-2 mb-8">
+            <Star className="h-5 w-5 text-crimson" />
+            <h2 className="font-serif text-2xl text-black">Popular Courses</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {popularCourses.map((course) => (
+              <button
+                key={course.id}
+                onClick={() => setSelectedCourse(course)}
+                className="group text-left bg-slate-50 border border-slate-200 rounded-lg p-6 hover:border-crimson/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <span className="text-2xl">
+                    {CAT_META[course.category]?.emoji || "📚"}
+                  </span>
+                  <span className="shrink-0 rounded-full bg-crimson/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-crimson">
+                    {course.category}
+                  </span>
+                </div>
+                <h3 className="mt-3 font-serif text-lg text-black leading-snug group-hover:text-crimson transition-colors">
+                  {course.title}
+                </h3>
+                <p className="mt-2 text-sm text-black/50 leading-relaxed">
+                  {getTeaser(course.overview)}
+                </p>
               </button>
             ))}
           </div>
-
-          {/* Counter */}
-          <p className="mt-3 text-center text-xs text-black/50">
-            Showing{" "}
-            <span className="font-bold text-black">
-              {filtered.length}
-            </span>{" "}
-            of {COURSES.length} courses
-          </p>
         </div>
       </section>
 
-      {/* Card grid */}
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-10">
-          {filtered.length === 0 ? (
-            <div className="py-20 text-center">
-              <p className="text-lg font-medium text-black/50">
-                No courses match your search.
-              </p>
-              <button
-                onClick={() => {
-                  setSearch("");
-                  setActiveCategory("All");
-                }}
-                className="mt-3 text-sm font-medium text-crimson underline"
-              >
-                Clear filters
-              </button>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {filtered.map((course) => (
+      {/* Category Cards */}
+      <section id="categories" className="bg-slate-50">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20">
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+              Browse by Category
+            </span>
+            <h2 className="mt-3 font-serif text-3xl md:text-4xl text-black">
+              {CATEGORIES.length - 1} areas of expertise.
+            </h2>
+            <p className="mt-3 text-black/50">
+              Click a category to explore its courses.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+            {CATEGORIES.filter((c) => c !== "All").map((cat) => {
+              const meta = CAT_META[cat] || {
+                emoji: "📚",
+                gradient: "from-slate-900 to-slate-700",
+                description: "",
+              };
+              const count = categoryCounts[cat] || 0;
+              return (
                 <button
-                  key={course.id}
-                  onClick={() => setSelectedCourse(course)}
-                  className="group text-left bg-white border border-slate-200 p-5 hover:border-crimson/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                  key={cat}
+                  onClick={() => handleCategoryClick(cat)}
+                  className={`group relative overflow-hidden rounded-lg bg-gradient-to-br ${meta.gradient} p-6 text-left text-white shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}
                 >
-                  <div className="text-2xl mb-3">
-                    {CATEGORY_EMOJIS[course.category] || "📚"}
-                  </div>
-                  <h3 className="font-serif text-base text-black leading-snug group-hover:text-crimson transition-colors">
-                    {course.title}
+                  <span className="text-3xl">{meta.emoji}</span>
+                  <h3 className="mt-3 font-serif text-lg leading-snug">
+                    {cat}
                   </h3>
-                  <span className="mt-2 inline-block rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-black/50">
-                    {course.category}
-                  </span>
-                  <p className="mt-2 text-xs text-black/60 leading-relaxed">
-                    {getTeaser(course.overview)}
+                  <p className="mt-1 text-xs text-white/50 leading-relaxed">
+                    {meta.description}
                   </p>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="text-xs font-bold text-white/70">
+                      {count} courses
+                    </span>
+                    <ArrowRight className="h-4 w-4 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                  </div>
                 </button>
-              ))}
-            </div>
-          )}
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-black">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-16 text-center">
+          <h2 className="font-serif text-3xl md:text-4xl text-white">
+            Need help choosing the right courses?
+          </h2>
+          <p className="mt-4 text-white/60 max-w-xl mx-auto">
+            Our team can recommend a training program based on your
+            team&apos;s size, industry, and goals. Let&apos;s talk.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-8 inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+          >
+            Talk to Us
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 
@@ -154,6 +460,14 @@ export default function CatalogClient() {
         <CourseModal
           course={selectedCourse}
           onClose={() => setSelectedCourse(null)}
+        />
+      )}
+
+      {/* Registration Gate */}
+      {showGate && (
+        <CatalogGate
+          onRegistered={handleRegistered}
+          previewsRemaining={previewsLeft}
         />
       )}
     </>

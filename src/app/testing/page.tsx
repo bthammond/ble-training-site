@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck, Clock, Award, ArrowRight } from "lucide-react";
-import LocationCard from "@/components/LocationCard";
+import { ShieldCheck, Clock, Award, ArrowRight, MapPin, Search } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { LOCATIONS } from "@/lib/locations";
 
@@ -74,25 +73,45 @@ export default function TestingPage() {
 
       <section className="mx-auto max-w-7xl px-6 lg:px-8 pb-24">
         <AnimateOnScroll>
-          <div className="flex items-end justify-between mb-10">
-            <div>
+          <div className="border-t-4 border-crimson bg-white p-8 md:p-12">
+            <div className="text-center">
               <span className="text-xs font-semibold tracking-[0.2em] uppercase text-crimson">
                 Our Locations
               </span>
-              <h2 className="mt-2 font-serif text-4xl text-black">
+              <h2 className="mt-2 font-serif text-3xl md:text-4xl text-black">
                 Find a center near you.
               </h2>
             </div>
+
+            <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {LOCATIONS.map((loc) => (
+                <Link
+                  key={loc.slug}
+                  href={`/locations/${loc.slug}`}
+                  className="group flex flex-col items-center gap-1.5 p-4 hover:bg-slate-50 transition-colors text-center"
+                >
+                  <MapPin className="h-5 w-5 text-crimson" />
+                  <span className="font-serif text-lg text-black group-hover:text-crimson transition-colors">
+                    {loc.city}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-black/50">
+                    {loc.state}
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-8 text-center">
+              <Link
+                href="/locations"
+                className="inline-flex items-center gap-2 rounded-sm bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+              >
+                <Search className="h-4 w-4" />
+                Search All Locations
+              </Link>
+            </div>
           </div>
         </AnimateOnScroll>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {LOCATIONS.map((loc, i) => (
-            <AnimateOnScroll key={loc.slug} delay={i * 60}>
-              <LocationCard location={loc} />
-            </AnimateOnScroll>
-          ))}
-        </div>
 
         <AnimateOnScroll>
           <div className="mt-14 rounded-2xl border border-[color:var(--border)] bg-[color:var(--cream)] p-10 text-center">

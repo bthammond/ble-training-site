@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IdCard, Clock, Lock, ExternalLink, Phone } from "lucide-react";
+import { IdCard, Clock, Lock, ArrowRight } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import PartnerCard from "@/components/PartnerCard";
 import { PARTNERS } from "@/lib/partners";
-import {
-  LOCATIONS,
-  CONTACT,
-  directionsUrl,
-  telHrefWithExt,
-} from "@/lib/locations";
 
 export const metadata: Metadata = {
   title: "Authorized Partner Hub — Official Exam Registration",
@@ -165,57 +159,28 @@ export default function RegisterPage() {
         </div>
       </section>
 
-      {/* LOCATIONS — simple text list with Get Directions links */}
+      {/* LOCATIONS — compact CTA linking to /locations */}
       <section className="bg-slate-50 border-t border-slate-200">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-16 text-center">
           <AnimateOnScroll>
-            <div className="border-b-2 border-black pb-5 mb-10">
-              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-                Our Testing Centers
-              </span>
-              <h2 className="mt-2 font-serif text-3xl md:text-4xl text-black">
-                Six locations nationwide.
-              </h2>
-            </div>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+              6 locations nationwide
+            </span>
+            <h2 className="mt-3 font-serif text-3xl md:text-4xl text-black">
+              Need to find your testing center?
+            </h2>
+            <p className="mt-4 text-black/70 max-w-xl mx-auto">
+              Search by city or zip code, check hours, and get directions to
+              the center nearest you.
+            </p>
+            <Link
+              href="/locations"
+              className="mt-8 inline-flex items-center gap-2 rounded-sm bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+            >
+              Find a Center
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </AnimateOnScroll>
-
-          <ul className="divide-y divide-slate-300">
-            {LOCATIONS.map((loc) => (
-              <li
-                key={loc.slug}
-                className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 py-4"
-              >
-                <div className="flex-1">
-                  <span className="font-serif text-lg text-black">
-                    {loc.city}, {loc.state}
-                  </span>
-                  <address className="ml-0 md:ml-3 text-sm text-black/70 not-italic inline">
-                    {loc.address}
-                  </address>
-                  <p className="mt-1 text-sm flex items-center gap-1.5">
-                    <Phone className="h-3.5 w-3.5 text-crimson" />
-                    <a
-                      href={telHrefWithExt(loc.extension)}
-                      className="text-black hover:text-crimson transition-colors"
-                    >
-                      {CONTACT.tollFreeDisplay}
-                      <span className="mx-1.5 text-black/40">·</span>
-                      Ext: <span className="font-bold">{loc.extension}</span>
-                    </a>
-                  </p>
-                </div>
-                <a
-                  href={directionsUrl(loc.address)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-black underline underline-offset-4 decoration-2 hover:text-crimson hover:decoration-crimson transition-colors"
-                >
-                  Get Directions
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
     </>

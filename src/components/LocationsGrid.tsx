@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { MapPin, Phone, ArrowRight } from "lucide-react";
-import { LOCATIONS, CONTACT } from "@/lib/locations";
+import { MapPin, ArrowRight, Search } from "lucide-react";
+import { LOCATIONS } from "@/lib/locations";
 import AnimateOnScroll from "./AnimateOnScroll";
 
 export default function LocationsGrid() {
@@ -23,56 +23,42 @@ export default function LocationsGrid() {
           </div>
         </AnimateOnScroll>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {LOCATIONS.map((loc, i) => (
-            <AnimateOnScroll key={loc.slug} delay={i * 70}>
+        <AnimateOnScroll delay={100}>
+          <div className="mt-14 border-t-4 border-crimson bg-white p-8 md:p-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {LOCATIONS.map((loc) => (
+                <Link
+                  key={loc.slug}
+                  href={`/locations/${loc.slug}`}
+                  className="group flex flex-col items-center gap-1.5 p-4 hover:bg-slate-50 transition-colors text-center"
+                >
+                  <MapPin className="h-5 w-5 text-crimson" />
+                  <span className="font-serif text-lg text-black group-hover:text-crimson transition-colors">
+                    {loc.city}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-black/50">
+                    {loc.state}
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href={`/locations/${loc.slug}`}
-                className="group h-full flex flex-col bg-white border-t-4 border-crimson shadow-sm hover:shadow-xl transition-all duration-300"
+                href="/locations"
+                className="inline-flex items-center gap-2 rounded-sm bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
               >
-                <div className="p-8 flex flex-col flex-1">
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-crimson">
-                    <MapPin className="h-3.5 w-3.5" />
-                    BLE Training Testing Center
-                  </div>
-                  <h3 className="mt-4 font-serif text-3xl text-black leading-tight group-hover:text-crimson transition-colors">
-                    {loc.city},{" "}
-                    <span className="text-crimson">{loc.state}</span>
-                  </h3>
-
-                  <address className="mt-5 flex items-start gap-2.5 text-sm text-black not-italic leading-relaxed">
-                    <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-crimson" />
-                    <span>{loc.address}</span>
-                  </address>
-
-                  <p className="mt-3 flex items-center gap-2 text-sm">
-                    <Phone className="h-4 w-4 shrink-0 text-crimson" />
-                    <span className="text-black">
-                      {CONTACT.tollFreeDisplay}
-                      <span className="mx-2 text-black/40">·</span>
-                      Ext: <span className="font-bold">{loc.extension}</span>
-                    </span>
-                  </p>
-
-                  <div className="mt-3 text-sm text-black/70">
-                    <span className="font-semibold text-black">{loc.schedule.openDaysShort}:</span>{" "}
-                    {loc.schedule.display}
-                  </div>
-                </div>
+                <Search className="h-4 w-4" />
+                Find a Center Near You
               </Link>
-            </AnimateOnScroll>
-          ))}
-        </div>
-
-        <AnimateOnScroll>
-          <div className="mt-12 text-center">
-            <Link
-              href="/locations"
-              className="inline-flex items-center gap-2 rounded-sm bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
-            >
-              View All Locations
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+              <Link
+                href="/register"
+                className="inline-flex items-center gap-2 rounded-sm border-2 border-black bg-white px-8 py-4 text-xs font-bold uppercase tracking-wider text-black hover:bg-crimson hover:text-white hover:border-crimson transition-colors"
+              >
+                Schedule a Test
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </AnimateOnScroll>
       </div>

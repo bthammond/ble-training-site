@@ -61,7 +61,7 @@ export default function Header() {
             <img
               src="/BLE-Training---black-letters.png"
               alt="BLE Training — Authorized Professional Testing & Certification Centers"
-              className="h-12 w-auto"
+              className="h-14 w-auto"
             />
           </Link>
 

@@ -9,7 +9,7 @@ export default function Hero() {
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(115deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 55%, rgba(158,27,50,0.55) 100%), url('https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=2400&q=80')",
+            "linear-gradient(115deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 50%, rgba(158,27,50,0.6) 100%), url('/home-hero.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -24,14 +24,12 @@ export default function Hero() {
             </span>
           </div>
           <h1 className="mt-6 font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight text-white">
-            Premier Corporate Training
+            Corporate Training
             <br />
             <span className="text-crimson">&amp; Proctored Testing.</span>
           </h1>
           <p className="mt-8 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed">
-            We help companies train their teams, certify their people, and grow
-            their businesses — with a special focus on family-owned and
-            founder-led companies. Six testing centers across the U.S.
+            We help companies build their workforce for today and tomorrow.
           </p>
           <div className="mt-12 flex flex-col sm:flex-row gap-4">
             <Link

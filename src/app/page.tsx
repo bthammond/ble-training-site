@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Hero from "@/components/Hero";
+import PartnerLogos from "@/components/PartnerLogos";
 import Stats from "@/components/Stats";
+import ProcessSteps from "@/components/ProcessSteps";
 import ServicePillars from "@/components/ServicePillars";
 import LocationsGrid from "@/components/LocationsGrid";
 import ConsultingFeature from "@/components/ConsultingFeature";
@@ -12,7 +14,9 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <PartnerLogos />
       <Stats />
+      <ProcessSteps />
       <ServicePillars />
       <LocationsGrid />
       <ConsultingFeature />

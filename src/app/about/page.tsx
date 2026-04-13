@@ -192,10 +192,11 @@ export default function AboutPage() {
               what good training looks like from the inside out.
             </p>
             <p className="mt-4 text-black leading-relaxed">
-              He personally trains every instructor and proctor who works
-              under the BLE Training name. He reviews the curriculum, sits in
-              on sessions, and makes sure the quality is there — every time.
-              That&apos;s why our clients come back.
+              As the visionary behind BLE Training, Brian built the systems
+              and processes that drive every location. With managers at each
+              of our six centers running day-to-day operations, he focuses
+              on what matters most — making sure the standards stay high
+              and the company keeps moving forward.
             </p>
           </AnimateOnScroll>
         </div>

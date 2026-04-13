@@ -161,6 +161,18 @@ export default function AboutPage() {
                 <p className="mt-2 text-sm font-semibold text-black">
                   Founder &amp; Chief Learning Officer
                 </p>
+                <p className="mt-1 text-xs text-black/60">
+                  MBA, Louisiana State University
+                </p>
+                <a
+                  href="https://brianthammond.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-crimson hover:text-crimson-soft transition-colors"
+                >
+                  Learn more about Brian
+                  <ArrowRight className="h-3 w-3" />
+                </a>
               </div>
             </div>
           </AnimateOnScroll>
@@ -174,14 +186,16 @@ export default function AboutPage() {
             </h2>
             <div className="mt-6 h-px w-24 bg-crimson" />
             <p className="mt-6 text-black leading-relaxed">
-              Brian personally trains every instructor and proctor who works
-              under the BLE Training name. He reviews the curriculum, sits in
-              on sessions, and makes sure the quality is there — every time.
+              With over 30 years of experience building companies — including
+              more than 15 years in corporate America before founding BLE
+              Training — Brian has sat on both sides of the table. He knows
+              what good training looks like from the inside out.
             </p>
             <p className="mt-4 text-black leading-relaxed">
-              That&apos;s why our clients come back. The preparation that
-              happens before any classroom or testing room opens is the real
-              product.
+              He personally trains every instructor and proctor who works
+              under the BLE Training name. He reviews the curriculum, sits in
+              on sessions, and makes sure the quality is there — every time.
+              That&apos;s why our clients come back.
             </p>
           </AnimateOnScroll>
         </div>

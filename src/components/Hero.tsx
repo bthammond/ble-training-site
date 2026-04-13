@@ -23,7 +23,7 @@ export default function Hero() {
               BLE Training
             </span>
           </div>
-          <h1 className="mt-6 font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight">
+          <h1 className="mt-6 font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight text-white">
             Premier Corporate Training
             <br />
             <span className="text-crimson">&amp; Proctored Testing.</span>

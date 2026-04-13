@@ -2,25 +2,161 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+
+  /* Detoxed palette: Red / White / Black */
+  --crimson: #9e1b32;
+  --crimson-soft: #b8233e;
+  --victory-white: #ffffff;
+  --solid-black: #000000;
+  --slate-50: #f8fafc;
+  --border: #e5e7eb;
+
+  /* Legacy tokens (kept as aliases so existing pages don't blow up) */
+  --ble-navy: #002147;
+  --ble-navy-deep: #00132b;
+  --ble-navy-soft: #0b3166;
+  --ble-gold: #d4af37;
+  --ble-gold-soft: #e8c766;
+  --ua-gray: #828a8f;
+  --cream: #f8f7f4;
+
+  /* semantic aliases */
+  --primary: var(--solid-black);
+  --primary-deep: var(--solid-black);
+  --primary-soft: var(--solid-black);
+  --secondary: var(--crimson);
+  --secondary-soft: var(--crimson-soft);
+  --accent: var(--crimson);
+  --neutral-gray: var(--ua-gray);
+  --navy: var(--ble-navy);
+  --gold: var(--ble-gold);
+  --muted: var(--ua-gray);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-crimson: var(--crimson);
+  --color-crimson-soft: var(--crimson-soft);
+  --color-black: var(--solid-black);
+  --color-white: var(--victory-white);
+
+  /* Legacy tokens preserved so other pages still compile */
+  --color-bleNavy: var(--ble-navy);
+  --color-bleNavy-deep: var(--ble-navy-deep);
+  --color-bleNavy-soft: var(--ble-navy-soft);
+  --color-bleGold: var(--ble-gold);
+  --color-bleGold-soft: var(--ble-gold-soft);
+  --color-uaGray: var(--ua-gray);
+  --color-ble-navy: var(--ble-navy);
+  --color-ble-gold: var(--ble-gold);
+  --color-ua-gray: var(--ua-gray);
+  --color-primary: var(--solid-black);
+  --color-primary-deep: var(--solid-black);
+  --color-primary-soft: var(--solid-black);
+  --color-secondary: var(--crimson);
+  --color-secondary-soft: var(--crimson-soft);
+  --color-accent: var(--crimson);
+  --color-neutral-gray: var(--ua-gray);
+  --color-cream: var(--cream);
+  --color-navy: var(--ble-navy);
+  --color-navy-deep: var(--ble-navy-deep);
+  --color-gold: var(--ble-gold);
+  --color-muted: var(--ua-gray);
+
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--foreground); /* Solid Black */
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-playfair), "Times New Roman", Georgia, serif;
+  letter-spacing: -0.01em;
+  color: var(--solid-black);
+}
+
+/* Contrast safety nets */
+.bg-crimson,
+.bg-crimson-soft,
+.bg-secondary {
+  color: #ffffff;
+}
+.bg-white,
+.bg-slate-50,
+.bg-cream {
+  color: var(--solid-black);
+}
+
+/* Legacy dark-container safety nets (so navy pages still read white) */
+.bg-bleNavy,
+.bg-bleNavy-deep,
+.bg-bleNavy-soft,
+.bg-ble-navy,
+.bg-primary,
+.bg-primary-deep,
+.bg-primary-soft,
+.bg-navy,
+.bg-navy-deep {
+  color: #ffffff;
+}
+
+/* Reusable button styles — Black-outline → Crimson fill on hover */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--solid-black);
+  background: var(--victory-white);
+  color: var(--solid-black);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background-color 200ms, color 200ms;
+}
+.btn-outline:hover {
+  background: var(--crimson);
+  color: var(--victory-white);
+  border-color: var(--crimson);
+}
+
+/* Animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes marquee-fade {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.slide-in {
+  animation: marquee-fade 500ms ease-out both;
 }

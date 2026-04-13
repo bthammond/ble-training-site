@@ -6,7 +6,6 @@ import {
   Flame,
   Scale,
   Sparkles,
-  GraduationCap,
   ArrowRight,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
@@ -145,19 +144,24 @@ export default function AboutPage() {
       <section className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           <AnimateOnScroll className="lg:col-span-1">
-            <div className="bg-white border-t-4 border-crimson shadow-sm p-8">
-              <div className="flex h-20 w-20 items-center justify-center bg-black text-white">
-                <GraduationCap className="h-10 w-10" strokeWidth={1.5} />
+            <div className="bg-white border-t-4 border-crimson shadow-sm overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brian-hammond-headshot.png"
+                alt="Brian T. Hammond — Founder & Chief Learning Officer, BLE Training"
+                className="w-full aspect-[4/3] object-cover object-top"
+              />
+              <div className="p-8">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-crimson">
+                  Leadership
+                </p>
+                <h3 className="mt-2 font-serif text-3xl text-black leading-tight">
+                  Brian T. Hammond
+                </h3>
+                <p className="mt-2 text-sm font-semibold text-black">
+                  Founder &amp; Chief Learning Officer
+                </p>
               </div>
-              <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-crimson">
-                Leadership
-              </p>
-              <h3 className="mt-2 font-serif text-3xl text-black leading-tight">
-                Brian T. Hammond
-              </h3>
-              <p className="mt-2 text-sm font-semibold text-black">
-                Founder &amp; Chief Learning Officer
-              </p>
             </div>
           </AnimateOnScroll>
 

@@ -24,12 +24,12 @@ export default function Hero() {
             </span>
           </div>
           <h1 className="mt-6 font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight text-white">
-            Corporate Training
+            Build Teams. Certify Talent.
             <br />
-            <span className="text-crimson">&amp; Proctored Testing.</span>
+            <span className="text-crimson">Grow Businesses.</span>
           </h1>
           <p className="mt-8 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed">
-            We help companies build their workforce for today and tomorrow.
+            Training, testing, and consulting — from startups to the Fortune 500.
           </p>
           <div className="mt-12 flex flex-col sm:flex-row gap-4">
             <Link

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { LOCATIONS, CONTACT } from "@/lib/locations";
+import NewsletterSignup from "./NewsletterSignup";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -44,6 +45,12 @@ export default function Footer() {
                 {CONTACT.email}
               </a>
             </p>
+          </div>
+          <div className="mt-6">
+            <p className="text-xs font-bold uppercase tracking-wider text-black/50 mb-2">
+              Stay in the loop
+            </p>
+            <NewsletterSignup />
           </div>
         </div>
 
@@ -105,9 +112,9 @@ export default function Footer() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <p>&copy; {year} BLE Training. All rights reserved.</p>
           <p className="flex items-center gap-6">
-            <Link href="#" className="hover:text-crimson">Privacy</Link>
-            <Link href="#" className="hover:text-crimson">Terms</Link>
-            <Link href="#" className="hover:text-crimson">Accessibility</Link>
+            <Link href="/privacy" className="hover:text-crimson">Privacy</Link>
+            <Link href="/terms" className="hover:text-crimson">Terms</Link>
+            <Link href="/accessibility-statement" className="hover:text-crimson">Accessibility</Link>
           </p>
         </div>
       </div>

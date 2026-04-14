@@ -1,0 +1,16 @@
+{
+  "name": "BLE Training",
+  "short_name": "BLE Training",
+  "description": "Build Teams. Certify Talent. Grow Businesses.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#9e1b32",
+  "icons": [
+    {
+      "src": "/BLE-Training---black-letters.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

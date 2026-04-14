@@ -14,14 +14,48 @@ const INTERESTS = [
 export default function LeadForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = data.get("name") as string;
+    const company = data.get("company") as string;
+    const email = data.get("email") as string;
+    const phone = data.get("phone") as string;
+    const interest = data.get("interest") as string;
+    const message = data.get("message") as string;
+
+    const subject = encodeURIComponent(`New Lead — ${interest} — ${name}`);
+    const body = encodeURIComponent(
+      `New inquiry from bletraining.com:\n\n` +
+      `Name: ${name}\n` +
+      `Company: ${company || "Not provided"}\n` +
+      `Email: ${email}\n` +
+      `Phone: ${phone || "Not provided"}\n` +
+      `Interest: ${interest}\n` +
+      `Message: ${message || "None"}\n\n` +
+      `Submitted: ${new Date().toLocaleString()}`
+    );
+
+    // Open mailto
+    window.open(`mailto:info@ble.training?subject=${subject}&body=${body}`, "_blank");
+
+    // Store lead locally as backup
+    try {
+      const leads = JSON.parse(localStorage.getItem("ble_leads") || "[]");
+      leads.push({ name, company, email, phone, interest, message, date: new Date().toISOString() });
+      localStorage.setItem("ble_leads", JSON.stringify(leads));
+    } catch { /* silent */ }
+
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-    }, 600);
+    }, 500);
   };
 
   if (submitted) {
@@ -32,8 +66,7 @@ export default function LeadForm() {
           Thank you — we&apos;ll be in touch.
         </h3>
         <p className="mt-2 text-black/70">
-          A member of our team will reach out within one business day to
-          schedule your consultation.
+          A member of our team will reach out within one business day.
         </p>
       </div>
     );
@@ -81,6 +114,8 @@ export default function LeadForm() {
           placeholder="What challenges are you facing? What outcomes matter most?"
         />
       </div>
+
+      {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
 
       <button
         type="submit"

@@ -11,7 +11,6 @@ const UTILITY_LINKS = [
 
 const NAV_LINKS = [
   { href: "/services", label: "Services" },
-  { href: "/catalog", label: "Course Catalog" },
   { href: "/locations", label: "Locations" },
   { href: "/register", label: "Register" },
   { href: "/consulting", label: "Consulting" },
@@ -80,8 +79,8 @@ export default function Header() {
           </ul>
 
           <div className="hidden lg:block">
-            <Link href="/contact" className="btn-outline">
-              Book a Consultation
+            <Link href="/catalog" className="btn-outline">
+              Course Catalog
             </Link>
           </div>
 
@@ -110,11 +109,11 @@ export default function Header() {
               ))}
               <li className="pt-2">
                 <Link
-                  href="/contact"
+                  href="/catalog"
                   onClick={() => setOpen(false)}
                   className="btn-outline w-full"
                 >
-                  Book a Consultation
+                  Course Catalog
                 </Link>
               </li>
             </ul>

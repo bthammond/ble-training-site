@@ -35,8 +35,8 @@ const REQUIREMENTS = [
   },
   {
     icon: Clock,
-    title: "Arrive 15 Minutes Early",
-    desc: "Plan to arrive at your BLE Training center at least 15 minutes before your scheduled appointment so check-in, biometrics, and locker storage don't compress your start time.",
+    title: "Arrive 30 Minutes Early",
+    desc: "Plan to arrive at your BLE Training center at least 30 minutes before your scheduled appointment so check-in, biometrics, and locker storage don't compress your start time.",
   },
   {
     icon: Lock,

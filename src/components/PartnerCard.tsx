@@ -133,7 +133,7 @@ export default function PartnerCard({ partner }: { partner: Partner }) {
                   </p>
                   <p className="mt-2 text-sm text-black leading-relaxed">
                     Bring <strong>2 forms of valid ID</strong> and arrive{" "}
-                    <strong>15 minutes early</strong>. Registration has been
+                    <strong>30 minutes early</strong>. Registration has been
                     opened in a new tab — complete it there, then return here
                     when you&apos;re ready.
                   </p>

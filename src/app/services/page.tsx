@@ -147,15 +147,14 @@ export default function ServicesPage() {
                 02 — Government &amp; Contractors
               </span>
               <h2 className="mt-4 font-serif text-4xl md:text-5xl text-black">
-                An ideal partner for contractors.
+                Government &amp; contractor training.
               </h2>
               <div className="mt-6 h-px w-24 bg-crimson" />
               <p className="mt-6 text-black leading-relaxed">
-                BLE Training is an ideal partner for prime and sub-contractors
-                delivering to federal, state, and local agencies. We supply
-                discreet, experienced instructors for operational security and
-                technical design training — delivered on secure sites, at the
-                contractor&apos;s facility, or in our centers.
+                We work with government agencies and contractors at every
+                level — federal, state, and local. Our instructors deliver
+                operational security and technical design training on secure
+                sites, at your facility, or in our centers.
               </p>
             </div>
           </AnimateOnScroll>

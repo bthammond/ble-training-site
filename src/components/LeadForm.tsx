@@ -62,14 +62,28 @@ export default function LeadForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-crimson/40 bg-[color:var(--cream)] p-10 text-center">
-        <CheckCircle2 className="mx-auto h-12 w-12 text-crimson" />
-        <h3 className="mt-4 font-serif text-2xl text-black">
-          Thank you — we&apos;ll be in touch.
-        </h3>
-        <p className="mt-2 text-black/70">
-          A member of our team will reach out within one business day.
-        </p>
+      <div className="rounded-2xl border border-crimson/40 bg-[color:var(--cream)] p-10">
+        <div className="text-center">
+          <CheckCircle2 className="mx-auto h-12 w-12 text-crimson" />
+          <h3 className="mt-4 font-serif text-2xl text-black">
+            Thank you — we&apos;ll be in touch.
+          </h3>
+        </div>
+        <div className="mt-6 space-y-4 text-sm text-black/80">
+          <p className="font-semibold text-black">Here&apos;s what happens next:</p>
+          <div className="flex items-start gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-crimson text-white text-xs font-bold">1</span>
+            <p>A member of our team will review your inquiry within one business day.</p>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-crimson text-white text-xs font-bold">2</span>
+            <p>We&apos;ll reach out by phone or email to learn more about your needs.</p>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-crimson text-white text-xs font-bold">3</span>
+            <p>If there&apos;s a fit, we&apos;ll send you a clear proposal — no obligation.</p>
+          </div>
+        </div>
       </div>
     );
   }

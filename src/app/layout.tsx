@@ -21,29 +21,29 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://bletraining.com"),
   title: {
-    default: "BLE Training | Build Teams. Certify Talent. Grow Businesses.",
+    default: "BLE Training — Build High-Performing Organizations",
     template: "%s | BLE Training",
   },
   description:
-    "Corporate training, proctored testing, and consulting — from startups to the Fortune 500. Six testing centers across the U.S.",
+    "Enterprise-tested training, organizational design, and advisory services for business owners and founder-led companies. Six testing centers nationwide.",
   keywords: [
     "Corporate Training",
-    "Professional Development",
+    "Organizational Design",
+    "Owner Advisory",
+    "Family Business Consulting",
     "Proctored Testing Centers",
     "Pearson VUE Testing",
     "Prometric Testing",
-    "Business Consulting",
+    "Founder Coaching",
+    "Succession Planning",
     "Leadership Training",
-    "Family Business Consulting",
-    "Certification Exams",
-    "SMB Consulting",
     "BLE Training",
   ],
   openGraph: {
     type: "website",
-    title: "BLE Training | Build Teams. Certify Talent. Grow Businesses.",
+    title: "BLE Training — Build High-Performing Organizations",
     description:
-      "Corporate training, proctored testing, and consulting — from startups to the Fortune 500.",
+      "Enterprise-tested training, organizational design, and advisory services for business owners and founder-led companies.",
     siteName: "BLE Training",
     images: [
       {
@@ -56,9 +56,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BLE Training | Build Teams. Certify Talent. Grow Businesses.",
+    title: "BLE Training — Build High-Performing Organizations",
     description:
-      "Corporate training, proctored testing, and consulting — from startups to the Fortune 500.",
+      "Enterprise-tested training, organizational design, and advisory services for business owners and founder-led companies.",
     images: ["/BLE-Training---black-letters.png"],
   },
   robots: { index: true, follow: true },

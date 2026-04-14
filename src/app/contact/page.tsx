@@ -6,34 +6,36 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { LOCATIONS, CONTACT } from "@/lib/locations";
 
 export const metadata: Metadata = {
-  title: "Contact BLE Training — Call 1-877-TRY-BLE-1",
+  title: "Contact BLE Training",
   description:
-    "Reach BLE Training toll-free at 1-877-879-2531 or info@ble.training. Six BLE Training testing centers: Tyler TX, Clarks Summit PA, Toledo OH, Lincoln NE, Omaha NE, Topeka KS.",
+    "Talk to the BLE Training team. Schedule a consultation, book a test, or ask about our advisory and training services.",
   keywords: [
     "Contact BLE Training",
     "1-877-TRY-BLE-1",
-    "Book a Consultation",
     "Corporate Training Inquiry",
     "Proctored Testing Appointment",
+    "Owner Advisory Inquiry",
   ],
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
   return (
     <>
-      {/* HERO STRIP */}
-      <section className="bg-white border-b border-slate-200">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-14 pb-12 text-center">
+      {/* HERO */}
+      <section className="bg-black text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 md:py-28 text-center">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
             Get in Touch
           </span>
-          <h1 className="mt-4 font-serif text-5xl md:text-6xl text-black">
-            Contact BLE Training
+          <h1 className="mt-5 font-serif text-5xl md:text-7xl text-white leading-[1.05]">
+            Let&apos;s talk.
           </h1>
           <div className="mx-auto mt-6 h-1 w-24 bg-crimson" />
-          <p className="mt-6 text-lg text-black/70 max-w-2xl mx-auto leading-relaxed">
-            Call our toll-free line, send an email, or submit the form below.
-            A member of our team responds within one business day.
+          <p className="mt-8 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+            Whether you&apos;re ready to get started or still figuring out
+            whether we&apos;re the right fit — a 30-minute conversation is
+            always the right first step.
           </p>
         </div>
       </section>
@@ -80,12 +82,12 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-3 gap-10">
           <AnimateOnScroll className="lg:col-span-2">
             <h2 className="font-serif text-3xl md:text-4xl text-black">
-              Send us a message
+              What are you working on?
             </h2>
             <div className="mt-4 h-px w-24 bg-crimson" />
             <p className="mt-4 text-black/70 leading-relaxed">
-              Share a little context and we&apos;ll be in touch within one
-              business day to schedule a confidential 30-minute call.
+              Tell us a bit about your situation and we&apos;ll be in touch
+              within one business day.
             </p>
             <div className="mt-8">
               <LeadForm />

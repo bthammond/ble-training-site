@@ -8,6 +8,9 @@ import {
   ChevronRight,
   ShieldCheck,
   HeartPulse,
+  Compass,
+  Users,
+  CalendarDays,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import LocationContact from "@/components/LocationContact";
@@ -294,6 +297,98 @@ export default async function LocationPage(props: {
           </div>
         </section>
       )}
+
+      {/* MORE THAN A TESTING CENTER */}
+      <section className="bg-white border-t border-slate-200">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+          <AnimateOnScroll>
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+                BLE In {loc.city}
+              </span>
+              <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black leading-tight">
+                We&apos;re more than a testing center in {loc.city}.
+              </h2>
+              <div className="mt-6 h-px w-24 bg-crimson" />
+              <p className="mt-6 text-lg text-black/75 leading-relaxed">
+                BLE Training&apos;s presence in {loc.city} goes beyond proctored
+                exams. We work with local business owners, founders, and
+                organizations to build the teams and systems that drive real
+                growth.
+              </p>
+              <p className="mt-4 text-lg text-black/75 leading-relaxed">
+                Whether you&apos;re navigating a leadership transition, building
+                out your team&apos;s capabilities, or thinking about where the
+                business goes next — we&apos;re here for that conversation too.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Compass,
+                title: "Owner Advisory",
+                body:
+                  "Strategic consulting for founders and family businesses.",
+                cta: "Learn more",
+                href: "/consulting",
+              },
+              {
+                icon: Users,
+                title: "Organizational Training",
+                body: "Custom programs for your team.",
+                cta: "Learn more",
+                href: "/how-we-work",
+              },
+              {
+                icon: CalendarDays,
+                title: "Host an Event",
+                body:
+                  "Interested in hosting a workshop or roundtable at this location? Let's talk.",
+                cta: "Get in touch",
+                href: "/contact",
+              },
+            ].map((tile, i) => {
+              const Icon = tile.icon;
+              return (
+                <AnimateOnScroll key={tile.title} delay={i * 80}>
+                  <Link
+                    href={tile.href}
+                    className="group block h-full bg-[#F7F7F7] border-t-4 border-crimson p-8 hover:bg-white hover:shadow-lg transition-all"
+                  >
+                    <Icon className="h-8 w-8 text-crimson" strokeWidth={1.5} />
+                    <h3 className="mt-4 font-serif text-2xl text-black">
+                      {tile.title}
+                    </h3>
+                    <p className="mt-3 text-sm text-black/70 leading-relaxed">
+                      {tile.body}
+                    </p>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-crimson group-hover:text-crimson-soft">
+                      {tile.cta} <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  </Link>
+                </AnimateOnScroll>
+              );
+            })}
+          </div>
+
+          <AnimateOnScroll>
+            <div className="mt-14 text-center">
+              <p className="text-lg text-black/70 max-w-xl mx-auto">
+                Ready to connect? We&apos;d love to meet the businesses building
+                in {loc.city}.
+              </p>
+              <Link
+                href="/contact"
+                className="mt-6 inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+              >
+                Start a Conversation <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
 
       {/* OTHER CENTERS */}
       <section className="bg-slate-50 border-t border-slate-200">

@@ -20,8 +20,8 @@ export default function Footer() {
             />
           </Link>
           <p className="text-sm leading-relaxed text-black/70">
-            Corporate training, proctored testing, and SMB consulting — with a
-            niche focus on family business and entrepreneurship.
+            Enterprise-tested organizational training, proctored testing,
+            and advisory services for owners and family businesses.
           </p>
           <div className="mt-5 space-y-3 text-sm">
             <p className="flex items-start gap-2">
@@ -59,11 +59,10 @@ export default function Footer() {
         <div>
           <h4 className="font-serif text-lg text-black mb-4">Services</h4>
           <ul className="space-y-2 text-sm text-black/70">
-            <li><Link href="/#services" className="hover:text-crimson">Corporate Training</Link></li>
+            <li><Link href="/how-we-work" className="hover:text-crimson">Organizational Training</Link></li>
+            <li><Link href="/consulting" className="hover:text-crimson">Owner Advisory</Link></li>
             <li><Link href="/testing" className="hover:text-crimson">Proctored Testing</Link></li>
-            <li><Link href="/consulting" className="hover:text-crimson">SMB Consulting</Link></li>
             <li><Link href="/consulting#family" className="hover:text-crimson">Family Business</Link></li>
-            <li><Link href="/consulting#entrepreneurship" className="hover:text-crimson">Entrepreneurship</Link></li>
           </ul>
           <a
             href="https://www.redcross.org/take-a-class/bls?latitude=41.3117471&longitude=-75.83741739999999&searchtype=class&zip=Wyoming%2C%20PA%2018644%2C%20USA&zipcode=18644"

@@ -12,9 +12,9 @@ import {
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 export const metadata: Metadata = {
-  title: "About BLE Training — A Legacy of Clarity & Integrity",
+  title: "About BLE Training — Twenty Years of Doing the Work",
   description:
-    "Founded in 2007 in Pennsylvania, BLE Training delivers targeted enterprise training through a vetted pool of experienced consultants. Led by Founder & Chief Learning Officer Brian T. Hammond.",
+    "BLE Training is a Pennsylvania-based corporate training and advisory company founded in 2007. Six testing centers. Enterprise experience. Owner-focused.",
   keywords: [
     "About BLE Training",
     "Brian T. Hammond",
@@ -58,63 +58,97 @@ export default function AboutPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('/home-hero.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-32 md:py-48 text-center">
-          <span className="text-xs font-bold uppercase tracking-[0.3em] text-white/85">
+      <section className="bg-black text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 md:py-32">
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
             About BLE Training
           </span>
-          <h1 className="mt-6 font-serif font-bold text-white uppercase tracking-tight leading-[0.95] text-5xl md:text-7xl lg:text-8xl">
-            Who
-            <br />
-            <span className="text-white">We Are</span>
+          <h1 className="mt-5 font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight text-white">
+            Twenty years of<br />
+            <span className="text-crimson">doing the work.</span>
           </h1>
-          <div className="mt-8 mx-auto h-1 w-24 bg-crimson" />
+          <div className="mt-8 h-1 w-24 bg-crimson" />
+          <p className="mt-8 max-w-3xl text-lg md:text-xl text-white/80 leading-relaxed">
+            We are a corporate training and advisory company with deep roots in
+            enterprise performance — and a focused practice built for the
+            owners and families running the businesses that matter most.
+          </p>
         </div>
       </section>
 
       {/* MISSION */}
       <section className="bg-white border-b border-slate-200">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-20 text-center">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-24 text-center">
           <AnimateOnScroll>
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
               Our Mission
             </span>
-            <blockquote className="mt-6 font-serif text-3xl md:text-5xl text-black leading-[1.15] tracking-tight">
+            <blockquote className="mt-8 font-serif text-3xl md:text-5xl text-black leading-[1.2] tracking-tight">
               &ldquo;To enhance enterprise productivity by providing targeted
               training that strengthens employee technical skills, processes,
-              and strategy.&rdquo;
+              and strategy — at every level of business.&rdquo;
             </blockquote>
-            <div className="mx-auto mt-8 h-1 w-20 bg-crimson" />
+            <div className="mx-auto mt-10 h-1 w-20 bg-crimson" />
           </AnimateOnScroll>
         </div>
       </section>
 
-      {/* VALUES — 4-column (wraps to 5 on xl) */}
-      <section className="bg-slate-50 border-b border-slate-200">
+      {/* COMPANY STORY */}
+      <section className="bg-[#F7F7F7] border-b border-slate-200">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24">
+          <AnimateOnScroll>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+              Our Story
+            </span>
+            <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black leading-tight">
+              Built from the inside out.
+            </h2>
+            <div className="mt-6 h-px w-24 bg-crimson" />
+
+            <div className="mt-10 space-y-6 text-lg text-black/80 leading-relaxed">
+              <p>
+                BLE Training was founded in 2007 with a single conviction: that
+                great training is something you feel, not just something you buy.
+              </p>
+              <p>
+                Over the past twenty years, we&apos;ve worked inside enterprise
+                organizations across financial services, automotive, and
+                professional services — designing the onboarding systems,
+                coaching frameworks, and organizational workflows that define
+                high-performing teams.
+              </p>
+              <p>
+                That experience shaped everything. It&apos;s why our programs
+                feel specific, not generic. It&apos;s why our consultants are
+                matched by domain expertise, not availability. And it&apos;s why
+                our clients stay.
+              </p>
+              <p>
+                Today, BLE operates six testing centers across the United States
+                and an advisory practice focused on the founders and family
+                businesses building for the long term.
+              </p>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* VALUES */}
+      <section className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
           <AnimateOnScroll>
             <div className="text-center max-w-3xl mx-auto">
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
                 Our Values
               </span>
-              <h2 className="mt-4 font-serif text-4xl md:text-5xl text-black">
+              <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black">
                 The principles we operate by.
               </h2>
-              <div className="mx-auto mt-6 h-1 w-20 bg-crimson" />
+              <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
             </div>
           </AnimateOnScroll>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
             {VALUES.map((v, i) => {
               const Icon = v.icon;
               return (
@@ -122,7 +156,7 @@ export default function AboutPage() {
                   <div className="text-center">
                     <div className="mx-auto flex h-16 w-16 items-center justify-center">
                       <Icon
-                        className="h-14 w-14 text-crimson"
+                        className="h-12 w-12 text-crimson"
                         strokeWidth={1.75}
                       />
                     </div>
@@ -141,8 +175,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* LEADERSHIP */}
-      <section className="bg-white border-b border-slate-200">
+      {/* LEADERSHIP — Brian Hammond */}
+      <section className="bg-[#F7F7F7] border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           <AnimateOnScroll className="lg:col-span-1">
             <div className="bg-white border-t-4 border-crimson shadow-sm overflow-hidden">
@@ -183,92 +217,71 @@ export default function AboutPage() {
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
               Founder&apos;s Note
             </span>
-            <h2 className="mt-4 font-serif text-3xl md:text-4xl text-black">
-              Training is something you <em>do</em>, not something you buy.
+            <h2 className="mt-4 font-serif text-3xl md:text-5xl text-black leading-tight">
+              The work before the work is the real product.
             </h2>
             <div className="mt-6 h-px w-24 bg-crimson" />
-            <p className="mt-6 text-black leading-relaxed">
-              With over 30 years of experience building companies — including
-              more than 15 years in corporate America before founding BLE
-              Training — Brian has sat on both sides of the table. He knows
-              what good training looks like from the inside out.
-            </p>
-            <p className="mt-4 text-black leading-relaxed">
-              As the visionary behind BLE Training, Brian built the systems
-              and processes that drive every location. With leadership at each
-              of our six centers running day-to-day operations, he focuses
-              on what matters most — making sure the standards stay high
-              and the company keeps moving forward.
-            </p>
+            <div className="mt-8 space-y-5 text-lg text-black/80 leading-relaxed">
+              <p>
+                Brian founded BLE Training after more than fifteen years in
+                corporate America — building teams, designing training systems,
+                and leading organizational development at the enterprise level.
+              </p>
+              <p>
+                His work has taken him inside some of the country&apos;s most
+                recognized organizations, where he designed the coaching
+                frameworks and operational structures that turned good teams
+                into high-performing ones.
+              </p>
+              <p>
+                At BLE, Brian&apos;s focus is simple: bring that standard to the
+                owners and families who are building businesses worth keeping.
+              </p>
+              <p>
+                His MBA from Louisiana State University concentrated in
+                entrepreneurship and family business — the same work BLE&apos;s
+                advisory practice is now built around.
+              </p>
+            </div>
           </AnimateOnScroll>
         </div>
       </section>
 
-      {/* COMPANY PROFILE */}
+      {/* COMPANY PROFILE STATS */}
       <section className="bg-black text-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <AnimateOnScroll className="lg:col-span-1">
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-              Company Profile
-            </span>
-            <h2 className="mt-4 font-serif text-4xl md:text-5xl text-white">
-              A Pennsylvania firm, built since 2007.
-            </h2>
-            <div className="mt-6 h-1 w-20 bg-crimson" />
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={120} className="lg:col-span-2">
-            <p className="text-lg text-white leading-relaxed">
-              BLE Training is a Pennsylvania-based learning and testing
-              services company formed in 2007. From a single classroom in the
-              Northeast, we have grown into a national practice operating six
-              BLE Training testing centers and drawing on a vetted pool of more
-              than a vetted pool of experienced consultants.
-            </p>
-            <p className="mt-4 text-lg text-white/90 leading-relaxed">
-              Our consultants are selected for operational depth — nearly all
-              have spent the bulk of their careers inside the industries they
-              now teach. They are matched to each engagement by domain, not by
-              availability, which is why our programs feel specific to the
-              client, never off-the-shelf.
-            </p>
-
-            <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { value: "2007", label: "Founded" },
-                { value: "PA", label: "Headquartered" },
-                { value: "40+", label: "Industries Served" },
-                { value: "6", label: "Testing Centers" },
-              ].map((s) => (
-                <div
-                  key={s.label}
-                  className="border-t-4 border-crimson pt-4"
-                >
-                  <div className="font-serif text-4xl text-white">
-                    {s.value}
-                  </div>
-                  <div className="mt-1 text-xs uppercase tracking-widest text-white/70">
-                    {s.label}
-                  </div>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { value: "2007", label: "Founded" },
+              { value: "PA", label: "Headquartered" },
+              { value: "40+", label: "Industries Served" },
+              { value: "6", label: "Testing Centers" },
+            ].map((s) => (
+              <div key={s.label} className="border-t-4 border-crimson pt-5">
+                <div className="font-serif text-4xl md:text-5xl text-white">
+                  {s.value}
                 </div>
-              ))}
-            </div>
+                <div className="mt-2 text-xs uppercase tracking-widest text-white/70">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
 
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center gap-2 bg-crimson px-7 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
-              >
-                Our services <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white bg-transparent px-7 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors"
-              >
-                Contact us
-              </Link>
-            </div>
-          </AnimateOnScroll>
+          <div className="mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <Link
+              href="/how-we-work"
+              className="inline-flex items-center justify-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+            >
+              How We Work <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 border-2 border-white bg-transparent px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
       </section>
     </>

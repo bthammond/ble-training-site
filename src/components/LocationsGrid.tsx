@@ -13,12 +13,12 @@ export default function LocationsGrid() {
               Proctored Testing
             </span>
             <h2 className="mt-4 font-serif text-4xl md:text-5xl text-black">
-              Our testing centers.
+              Six locations. One standard.
             </h2>
             <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
             <p className="mt-6 text-black/70 leading-relaxed">
-              Six locations across the U.S., all set up for quiet,
-              focused testing with professional staff on-site.
+              Every BLE center is staffed, equipped, and held to the same
+              professional standard — wherever you are.
             </p>
           </div>
         </AnimateOnScroll>

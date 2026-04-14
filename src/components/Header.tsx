@@ -11,11 +11,10 @@ const UTILITY_LINKS = [
 ];
 
 const NAV_LINKS = [
-  { href: "/services", label: "Services" },
-  { href: "/locations", label: "Locations" },
-  { href: "/consulting", label: "Consulting" },
+  { href: "/how-we-work", label: "How We Work" },
+  { href: "/consulting", label: "Owner Advisory" },
+  { href: "/locations", label: "Testing Centers" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact Us" },
 ];
 
 export default function Header() {
@@ -78,11 +77,22 @@ export default function Header() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/contact"
+                className="text-black hover:text-crimson transition-colors"
+              >
+                Contact
+              </Link>
+            </li>
           </ul>
 
           <div className="hidden lg:block">
-            <Link href="/catalog" className="btn-outline">
-              Course Catalog
+            <Link
+              href="/register"
+              className="inline-flex items-center justify-center bg-crimson px-6 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+            >
+              Schedule a Test
             </Link>
           </div>
 
@@ -109,13 +119,22 @@ export default function Header() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/contact"
+                  onClick={() => setOpen(false)}
+                  className="block py-2 text-black hover:text-crimson"
+                >
+                  Contact
+                </Link>
+              </li>
               <li className="pt-2">
                 <Link
-                  href="/catalog"
+                  href="/register"
                   onClick={() => setOpen(false)}
-                  className="btn-outline w-full"
+                  className="block text-center bg-crimson px-6 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
                 >
-                  Course Catalog
+                  Schedule a Test
                 </Link>
               </li>
             </ul>

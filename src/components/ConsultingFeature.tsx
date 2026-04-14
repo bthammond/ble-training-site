@@ -2,71 +2,74 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import AnimateOnScroll from "./AnimateOnScroll";
 
+const SERVICES = [
+  "Succession & Governance",
+  "Founder Coaching",
+  "Growth Strategy",
+  "Growth Operations",
+  "Transaction Advisory",
+  "Legacy Design",
+];
+
 export default function ConsultingFeature() {
   return (
-    <section className="bg-white border-t border-[color:var(--border)]">
-      <div className="mx-auto max-w-5xl px-6 lg:px-8 py-28 text-center">
-        <AnimateOnScroll>
-          <span className="text-xs font-semibold tracking-[0.25em] uppercase text-crimson">
-            SMB &amp; Family Business Consulting
+    <section className="relative overflow-hidden bg-black text-white">
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 15% 30%, #9e1b32, transparent 45%), radial-gradient(circle at 85% 70%, #9e1b32, transparent 45%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+        <AnimateOnScroll className="lg:col-span-3">
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+            Owner &amp; Family Business Advisory
           </span>
-          <h2 className="mt-6 font-serif text-5xl md:text-6xl text-black leading-[1.05] tracking-tight">
-            Built for the businesses that families build and keep.
+          <h2 className="mt-5 font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05]">
+            The businesses that families build<br />
+            <span className="text-crimson">deserve more than a template.</span>
           </h2>
-          <div className="mx-auto mt-8 h-px w-24 bg-crimson" />
-          <p className="mt-8 font-serif text-xl md:text-2xl text-black/80 leading-relaxed italic">
-            &ldquo;Family businesses and founder-led companies don&apos;t run
-            like big corporations — and they shouldn&apos;t be coached like
-            one. We&apos;ve spent twenty years working with them.&rdquo;
+          <div className="mt-8 h-px w-24 bg-crimson" />
+
+          <p className="mt-8 text-lg text-white/80 leading-relaxed">
+            We&apos;ve worked inside organizations that run at the highest levels.
+            We know what a high-functioning team looks like, what succession
+            planning actually requires, and what founders need when business
+            decisions get personal.
           </p>
-          <p className="mt-6 text-sm uppercase tracking-[0.2em] text-black/70">
-            — BLE Training
+
+          <p className="mt-5 text-lg text-white/80 leading-relaxed">
+            Our advisory practice is built for owner-led and family businesses —
+            the kind that don&apos;t run like corporations, and shouldn&apos;t be
+            coached like one.
           </p>
+
+          <Link
+            href="/consulting"
+            className="mt-10 inline-flex items-center gap-2 bg-crimson px-8 py-4 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+          >
+            Explore Our Advisory Practice <ArrowRight className="h-4 w-4" />
+          </Link>
         </AnimateOnScroll>
 
-        <AnimateOnScroll delay={150}>
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
-            {[
-              {
-                k: "01",
-                t: "Succession & Governance",
-                d: "Helping families plan ownership transitions, set up governance, and get the right people in the right seats.",
-              },
-              {
-                k: "02",
-                t: "Founder Coaching",
-                d: "One-on-one advising for founders and owners navigating decisions that affect both the business and the family.",
-              },
-              {
-                k: "03",
-                t: "Growth Strategy",
-                d: "Practical growth plans — pricing, hiring, and operations — built around where you actually are today.",
-              },
-            ].map((it) => (
-              <div key={it.k}>
-                <div className="font-serif text-3xl text-crimson">
-                  {it.k}
-                </div>
-                <h3 className="mt-3 font-serif text-2xl text-black">
-                  {it.t}
-                </h3>
-                <p className="mt-3 text-black/70 leading-relaxed">
-                  {it.d}
-                </p>
-              </div>
-            ))}
-          </div>
-        </AnimateOnScroll>
-
-        <AnimateOnScroll delay={250}>
-          <div className="mt-14">
-            <Link
-              href="/consulting"
-              className="inline-flex items-center gap-2 rounded-md bg-crimson px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white shadow-md hover:bg-crimson-soft transition-all"
-            >
-              Explore our consulting practice
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+        <AnimateOnScroll delay={150} className="lg:col-span-2">
+          <div className="border-t-4 border-crimson bg-white/[0.04] p-8 backdrop-blur">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-crimson">
+              Practice Areas
+            </p>
+            <ul className="mt-6 space-y-3">
+              {SERVICES.map((s) => (
+                <li
+                  key={s}
+                  className="flex items-center gap-3 font-serif text-lg text-white border-b border-white/10 pb-3 last:border-0"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
+                  {s}
+                </li>
+              ))}
+            </ul>
           </div>
         </AnimateOnScroll>
       </div>

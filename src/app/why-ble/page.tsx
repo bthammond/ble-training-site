@@ -24,7 +24,7 @@ const DIFFERENTIATORS = [
   {
     icon: Users,
     title: "We work with businesses of all sizes",
-    description: "From startups to the Fortune 500. We don't have a minimum contract size or a one-size-fits-all program. We meet you where you are.",
+    description: "From small businesses to enterprise clients. We don't have a minimum contract size or a one-size-fits-all program. We meet you where you are.",
   },
   {
     icon: Heart,
@@ -154,10 +154,10 @@ export default function WhyBLEPage() {
                 Let&apos;s Talk <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/catalog"
+                href="/how-we-work"
                 className="inline-flex items-center gap-2 border-2 border-black px-8 py-4 text-xs font-bold uppercase tracking-wider text-black hover:bg-crimson hover:text-white hover:border-crimson transition-colors"
               >
-                Browse Our Courses
+                See How We Work
               </Link>
             </div>
           </AnimateOnScroll>

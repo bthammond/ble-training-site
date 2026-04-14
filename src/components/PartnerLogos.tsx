@@ -1,14 +1,14 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 
 const PARTNERS = [
-  { name: "Pearson VUE", logo: "/pearson-vue-logo.png" },
-  { name: "Prometric", logo: "/prometric-logo.png" },
-  { name: "PSI", logo: "/psi-logo.png" },
-  { name: "Meazure Learning", logo: "/meazure-learning-logo.png" },
-  { name: "Kryterion", logo: "/kryterion-logo.png" },
-  { name: "ETS", logo: "/ets-logo.png" },
-  { name: "Scantron", logo: "/scantron-logo.png" },
-  { name: "Examity", logo: "/examity-logo.png" },
+  { name: "Pearson VUE", logo: "/pearson-vue-logo.png", height: "h-10" },
+  { name: "Prometric", logo: "/prometric-logo.png", height: "h-14" },
+  { name: "PSI", logo: "/psi-logo.png", height: "h-10" },
+  { name: "Meazure Learning", logo: "/meazure-learning-logo.png", height: "h-10" },
+  { name: "Kryterion", logo: "/kryterion-logo.png", height: "h-10" },
+  { name: "ETS", logo: "/ets-logo.png", height: "h-10" },
+  { name: "Scantron", logo: "/scantron-logo.png", height: "h-10" },
+  { name: "Examity", logo: "/examity-logo.png", height: "h-10" },
 ];
 
 export default function PartnerLogos() {
@@ -26,7 +26,7 @@ export default function PartnerLogos() {
                 key={p.name}
                 src={p.logo}
                 alt={p.name}
-                className="h-10 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                className={`${p.height} w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300`}
               />
             ))}
           </div>

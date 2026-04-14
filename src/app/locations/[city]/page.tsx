@@ -200,6 +200,7 @@ export default async function LocationPage(props: {
                   src={mapSrc}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  sandbox="allow-scripts allow-same-origin allow-popups"
                   className="absolute inset-0 h-full w-full border-0 grayscale-[30%] hover:grayscale-0 transition-all"
                 />
               </div>

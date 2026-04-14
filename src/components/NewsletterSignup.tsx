@@ -9,7 +9,8 @@ export default function NewsletterSignup() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    const cleanEmail = email.replace(/[\r\n]/g, "").trim();
+    if (!cleanEmail) return;
 
     // Open mailto with subscription request
     const subject = encodeURIComponent("Newsletter Signup");

@@ -23,12 +23,14 @@ export default function LeadForm() {
 
     const form = e.currentTarget;
     const data = new FormData(form);
-    const name = data.get("name") as string;
-    const company = data.get("company") as string;
-    const email = data.get("email") as string;
-    const phone = data.get("phone") as string;
-    const interest = data.get("interest") as string;
-    const message = data.get("message") as string;
+    // Strip newlines/carriage returns to prevent mailto header injection
+    const clean = (v: string) => v.replace(/[\r\n]/g, " ").trim();
+    const name = clean(data.get("name") as string);
+    const company = clean(data.get("company") as string);
+    const email = clean(data.get("email") as string);
+    const phone = clean(data.get("phone") as string);
+    const interest = clean(data.get("interest") as string);
+    const message = (data.get("message") as string || "").trim();
 
     const subject = encodeURIComponent(`New Lead — ${interest} — ${name}`);
     const body = encodeURIComponent(

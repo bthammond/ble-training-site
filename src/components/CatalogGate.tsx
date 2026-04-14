@@ -17,11 +17,17 @@ export default function CatalogGate({ onRegistered, previewsRemaining }: Props) 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim() || !phone.trim()) {
+    // Sanitize inputs — strip newlines to prevent mailto header injection
+    const clean = (v: string) => v.replace(/[\r\n]/g, " ").trim();
+    const cleanName = clean(name);
+    const cleanEmail = clean(email);
+    const cleanPhone = clean(phone);
+
+    if (!cleanName || !cleanEmail || !cleanPhone) {
       setError("Please fill in all fields.");
       return;
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cleanEmail)) {
       setError("Please enter a valid email address.");
       return;
     }
@@ -32,7 +38,7 @@ export default function CatalogGate({ onRegistered, previewsRemaining }: Props) 
     // Send lead via mailto (opens email client)
     const subject = encodeURIComponent("New Course Catalog Lead");
     const body = encodeURIComponent(
-      `New lead from the Course Catalog:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nDate: ${new Date().toLocaleString()}\n`
+      `New lead from the Course Catalog:\n\nName: ${cleanName}\nEmail: ${cleanEmail}\nPhone: ${cleanPhone}\nDate: ${new Date().toLocaleString()}\n`
     );
     window.open(`mailto:info@ble.training?subject=${subject}&body=${body}`, "_blank");
 
@@ -41,7 +47,7 @@ export default function CatalogGate({ onRegistered, previewsRemaining }: Props) 
     document.cookie = `ble_catalog_access=granted; expires=${expires}; path=/; SameSite=Lax`;
 
     // Also store in localStorage as backup
-    localStorage.setItem("ble_catalog_lead", JSON.stringify({ name, email, phone, date: new Date().toISOString() }));
+    localStorage.setItem("ble_catalog_lead", JSON.stringify({ name: cleanName, email: cleanEmail, phone: cleanPhone, date: new Date().toISOString() }));
 
     setTimeout(() => {
       setSending(false);

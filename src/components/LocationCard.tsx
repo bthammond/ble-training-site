@@ -20,6 +20,7 @@ export default function LocationCard({ location }: { location: Location }) {
           src={mapSrc}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
+          sandbox="allow-scripts allow-same-origin allow-popups"
           className="absolute inset-0 h-full w-full border-0 grayscale-[40%] group-hover:grayscale-0 transition-all"
         />
       </div>

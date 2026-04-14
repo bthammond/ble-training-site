@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Factory,
-  FlaskConical,
-  Landmark,
+  Users,
+  MonitorPlay,
+  Target,
   ShieldAlert,
   Cpu,
   ClipboardCheck,
@@ -34,19 +34,19 @@ export const metadata: Metadata = {
 
 const CORPORATE_SECTORS = [
   {
-    icon: Factory,
-    title: "Manufacturing",
-    desc: "Process, safety, and operator certification programs for global manufacturers — delivered at the plant or in classroom cohorts.",
+    icon: Users,
+    title: "Leadership & Team Development",
+    desc: "Management training, team building, and leadership programs that give your people the skills to lead — not just manage.",
   },
   {
-    icon: FlaskConical,
-    title: "Pharmaceutical",
-    desc: "Regulated-environment training including GxP refreshers, SOP rollouts, and technical onboarding for R&D and production teams.",
+    icon: MonitorPlay,
+    title: "On-Site & Virtual Delivery",
+    desc: "We come to you or deliver remotely. Classroom, one-to-one, or blended — whatever fits your team and schedule.",
   },
   {
-    icon: Landmark,
-    title: "Financial Services",
-    desc: "Compliance, licensure, leadership, and analyst-track curricula for banks, broker-dealers, insurers, and asset managers.",
+    icon: Target,
+    title: "Compliance & Technical Skills",
+    desc: "Safety, regulatory, and technical training tailored to your industry — from onboarding to annual refreshers.",
   },
 ];
 
@@ -106,11 +106,10 @@ export default function ServicesPage() {
               </h2>
               <div className="mt-6 h-px w-24 bg-crimson" />
               <p className="mt-6 text-black leading-relaxed">
-                We design and deliver training for Fortune 500 companies in
-                manufacturing, pharmaceutical, and financial services — on-site
-                or virtual, classroom or one-to-one, leadership or technical.
-                Every program is built around the client&apos;s actual
-                needs, not a catalog.
+                We design and deliver training for large enterprises —
+                on-site or virtual, classroom or one-to-one, leadership or
+                technical. Every program is built around the client&apos;s
+                actual needs, not a catalog.
               </p>
             </div>
           </AnimateOnScroll>

@@ -116,6 +116,7 @@ export default function Footer() {
           <p>&copy; {year} BLE Training. All rights reserved.</p>
           <p className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-crimson">Privacy</Link>
+            <Link href="/cookies" className="hover:text-crimson">Cookies</Link>
             <Link href="/terms" className="hover:text-crimson">Terms</Link>
             <Link href="/accessibility-statement" className="hover:text-crimson">Accessibility</Link>
           </p>

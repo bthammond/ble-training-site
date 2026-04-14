@@ -46,13 +46,33 @@ export default function PrivacyPage() {
           </div>
 
           <div>
+            <h2 className="font-serif text-2xl text-black">Data Retention</h2>
+            <p>We retain your personal information only for as long as necessary to fulfill the purposes for which it was collected, provide our services, or comply with legal obligations. Contact form submissions and lead data are retained for up to 24 months. You may request deletion at any time.</p>
+          </div>
+
+          <div>
+            <h2 className="font-serif text-2xl text-black">California Privacy Rights (CCPA)</h2>
+            <p>If you are a California resident, you have the right to: know what personal information we collect about you, request deletion of your personal information, opt out of the sale of your personal information (we do not sell personal information), and not be discriminated against for exercising your privacy rights. To exercise these rights, contact us at <a href="mailto:info@ble.training" className="text-crimson hover:text-crimson-soft">info@ble.training</a>.</p>
+          </div>
+
+          <div>
+            <h2 className="font-serif text-2xl text-black">Children&apos;s Privacy</h2>
+            <p>Our website and services are not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal information from a child under 13, we will take steps to delete it promptly.</p>
+          </div>
+
+          <div>
+            <h2 className="font-serif text-2xl text-black">Do Not Track</h2>
+            <p>Our website does not currently respond to &ldquo;Do Not Track&rdquo; browser signals. However, you can opt out of analytics tracking by declining cookies when the consent banner appears, or by using the Google Analytics Opt-out Browser Add-on.</p>
+          </div>
+
+          <div>
             <h2 className="font-serif text-2xl text-black">Changes to This Policy</h2>
             <p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated revision date.</p>
           </div>
 
           <div>
             <h2 className="font-serif text-2xl text-black">Contact</h2>
-            <p>If you have questions about this privacy policy, contact us at <a href="mailto:info@ble.training" className="text-crimson hover:text-crimson-soft">info@ble.training</a>.</p>
+            <p>If you have questions about this privacy policy, contact us at <a href="mailto:info@ble.training" className="text-crimson hover:text-crimson-soft">info@ble.training</a> or call <a href="tel:+18778792531" className="text-crimson hover:text-crimson-soft">1-877-879-2531</a>.</p>
           </div>
         </div>
       </div>

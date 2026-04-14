@@ -41,6 +41,23 @@ export default function TermsPage() {
           </div>
 
           <div>
+            <h2 className="font-serif text-2xl text-black">Acceptable Use</h2>
+            <p>When using our website and course catalog, you agree not to:</p>
+            <ul className="mt-3 space-y-2">
+              <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-crimson" /><span>Copy, reproduce, or download course descriptions, learning objectives, or other proprietary content from the catalog</span></li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-crimson" /><span>Use automated tools (bots, scrapers) to extract content from the site</span></li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-crimson" /><span>Misrepresent your identity when submitting forms or registering for the catalog</span></li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-crimson" /><span>Use the site for any unlawful purpose or in violation of any applicable laws</span></li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-crimson" /><span>Attempt to circumvent access controls, including the course catalog registration gate</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="font-serif text-2xl text-black">Disclaimer</h2>
+            <p>The information on this website is provided &ldquo;as is&rdquo; without warranties of any kind. While we strive to keep content current and accurate, we make no guarantees about the completeness or reliability of any information on the site.</p>
+          </div>
+
+          <div>
             <h2 className="font-serif text-2xl text-black">Governing Law</h2>
             <p>These terms are governed by the laws of the Commonwealth of Pennsylvania, without regard to conflict of law principles.</p>
           </div>

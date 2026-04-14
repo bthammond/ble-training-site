@@ -19,15 +19,19 @@ export default function PartnerLogos() {
           <p className="text-center text-xs font-bold uppercase tracking-[0.3em] text-black/50">
             Delivering exams for the world&apos;s leading testing providers
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6">
             {PARTNERS.map((p) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <div
                 key={p.name}
-                src={p.logo}
-                alt={p.name}
-                className={`${p.height} w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300`}
-              />
+                className="flex items-center justify-center h-20 px-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={p.logo}
+                  alt={p.name}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
             ))}
           </div>
         </AnimateOnScroll>

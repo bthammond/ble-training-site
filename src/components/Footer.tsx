@@ -56,6 +56,15 @@ export default function Footer() {
             <li><Link href="/consulting#family" className="hover:text-crimson">Family Business</Link></li>
             <li><Link href="/consulting#entrepreneurship" className="hover:text-crimson">Entrepreneurship</Link></li>
           </ul>
+          <a
+            href="https://www.redcross.org/take-a-class/bls?latitude=41.3117471&longitude=-75.83741739999999&searchtype=class&zip=Wyoming%2C%20PA%2018644%2C%20USA&zipcode=18644"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-flex items-center gap-2 rounded-full bg-red-50 border border-red-200 px-4 py-2 text-xs font-bold text-red-700 hover:bg-red-100 transition-colors"
+          >
+            <span>🏥</span>
+            Red Cross BLS / CPR / First Aid
+          </a>
         </div>
 
         <div>

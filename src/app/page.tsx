@@ -73,6 +73,41 @@ export default function Home() {
 
       <TestimonialSlider />
 
+      {/* RED CROSS BANNER */}
+      <section className="bg-white border-y border-slate-200">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8 py-16">
+          <AnimateOnScroll>
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-red-50 border-2 border-red-200">
+                <span className="text-4xl">🏥</span>
+              </div>
+              <div className="text-center md:text-left flex-1">
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-red-600">
+                  American Red Cross
+                </span>
+                <h2 className="mt-2 font-serif text-3xl md:text-4xl text-black">
+                  BLS, First Aid &amp; CPR Training
+                </h2>
+                <p className="mt-3 text-black/70 max-w-xl leading-relaxed">
+                  We offer American Red Cross Basic Life Support, First Aid,
+                  and CPR classes at our testing centers. Register directly
+                  with the Red Cross and we&apos;ll see you in the classroom.
+                </p>
+              </div>
+              <a
+                href="https://www.redcross.org/take-a-class/bls?latitude=41.3117471&longitude=-75.83741739999999&searchtype=class&zip=Wyoming%2C%20PA%2018644%2C%20USA&zipcode=18644"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center gap-2 bg-red-600 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-red-700 transition-colors"
+              >
+                Register with Red Cross
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-6 lg:px-8 py-24">
           <AnimateOnScroll>

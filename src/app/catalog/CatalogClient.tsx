@@ -297,7 +297,7 @@ export default function CatalogClient() {
             <BookOpen className="h-7 w-7" />
           </div>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight tracking-tight">
-            SoftSkills Course Catalog
+            Professional Development Catalog
           </h1>
           <p className="mt-3 text-lg text-crimson font-semibold tracking-wide">
             2026 Edition
@@ -311,7 +311,7 @@ export default function CatalogClient() {
           {/* Request Full Catalog CTA */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={`mailto:info@ble.training?subject=${encodeURIComponent("Request Full Course Catalog PDF")}&body=${encodeURIComponent("Hi BLE Training,\n\nI'd like to request a copy of the full SoftSkills Course Catalog.\n\nName: \nOrganization: \nEmail: \nPhone: \n\nThank you!")}`}
+              href={`mailto:info@ble.training?subject=${encodeURIComponent("Request Full Course Catalog PDF")}&body=${encodeURIComponent("Hi BLE Training,\n\nI'd like to request a copy of the full Professional Development Catalog.\n\nName: \nOrganization: \nEmail: \nPhone: \n\nThank you!")}`}
               className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
             >
               <Download className="h-4 w-4" />

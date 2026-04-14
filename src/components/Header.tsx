@@ -12,7 +12,6 @@ const UTILITY_LINKS = [
 const NAV_LINKS = [
   { href: "/services", label: "Services" },
   { href: "/locations", label: "Locations" },
-  { href: "/register", label: "Register" },
   { href: "/consulting", label: "Consulting" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact Us" },

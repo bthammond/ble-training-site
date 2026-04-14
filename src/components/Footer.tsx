@@ -87,7 +87,7 @@ export default function Footer() {
             <li><Link href="/#about" className="hover:text-crimson">About</Link></li>
             <li><Link href="/#stories" className="hover:text-crimson">Success Stories</Link></li>
             <li><Link href="/contact" className="hover:text-crimson">Contact</Link></li>
-            <li><Link href="/contact" className="hover:text-crimson">Book a Consultation</Link></li>
+            <li><Link href="/contact" className="hover:text-crimson">Get Started</Link></li>
           </ul>
         </div>
       </div>

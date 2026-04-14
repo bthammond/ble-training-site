@@ -98,7 +98,7 @@ export default function Home() {
                   href="/contact"
                   className="mt-8 inline-flex items-center gap-2 rounded-sm bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
                 >
-                  Book a Consultation <ArrowRight className="h-4 w-4" />
+                  Get Started <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>

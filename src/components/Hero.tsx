@@ -36,7 +36,7 @@ export default function Hero() {
               href="/contact"
               className="group inline-flex items-center justify-center gap-2 rounded-sm bg-crimson px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-xl hover:bg-crimson-soft transition-colors"
             >
-              Book a Consultation
+              Let&apos;s Talk
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link

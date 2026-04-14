@@ -42,3 +42,8 @@ next-env.d.ts
 
 # Claude Code local state
 .claude/
+
+# Build/dev utility scripts
+extract-courses.mjs
+optimize-images.mjs
+raw-courses.txt

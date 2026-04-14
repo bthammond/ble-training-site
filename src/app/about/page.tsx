@@ -13,7 +13,7 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 export const metadata: Metadata = {
   title: "About BLE Training — A Legacy of Clarity & Integrity",
   description:
-    "Founded in 2007 in Pennsylvania, BLE Training delivers targeted enterprise training through a vetted pool of 200+ consultants. Led by Founder & Chief Learning Officer Brian T. Hammond.",
+    "Founded in 2007 in Pennsylvania, BLE Training delivers targeted enterprise training through a vetted pool of experienced consultants. Led by Founder & Chief Learning Officer Brian T. Hammond.",
   keywords: [
     "About BLE Training",
     "Brian T. Hammond",
@@ -221,7 +221,7 @@ export default function AboutPage() {
               services company formed in 2007. From a single classroom in the
               Northeast, we have grown into a national practice operating six
               BLE Training testing centers and drawing on a vetted pool of more
-              than two hundred consultants.
+              than a vetted pool of experienced consultants.
             </p>
             <p className="mt-4 text-lg text-white/90 leading-relaxed">
               Our consultants are selected for operational depth — nearly all
@@ -235,7 +235,7 @@ export default function AboutPage() {
               {[
                 { value: "2007", label: "Founded" },
                 { value: "PA", label: "Headquartered" },
-                { value: "200+", label: "Consultants" },
+                { value: "40+", label: "Industries Served" },
                 { value: "6", label: "Testing Centers" },
               ].map((s) => (
                 <div

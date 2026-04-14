@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Shield,
   HandHeart,
@@ -145,10 +146,11 @@ export default function AboutPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           <AnimateOnScroll className="lg:col-span-1">
             <div className="bg-white border-t-4 border-crimson shadow-sm overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/brian-hammond-headshot.png"
                 alt="Brian T. Hammond — Founder & Chief Learning Officer, BLE Training"
+                width={800}
+                height={600}
                 className="w-full aspect-[4/3] object-cover object-top"
               />
               <div className="p-8">

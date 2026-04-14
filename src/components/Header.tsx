@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -56,11 +57,13 @@ export default function Header() {
       >
         <nav className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between h-20">
           <Link href="/" className="flex items-center" aria-label="BLE Training home">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/BLE-Training---black-letters.png"
-              alt="BLE Training — Authorized Professional Testing & Certification Centers"
+              alt="BLE Training"
+              width={280}
+              height={56}
               className="h-14 w-auto"
+              priority
             />
           </Link>
 

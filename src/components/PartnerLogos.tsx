@@ -1,14 +1,15 @@
+import Image from "next/image";
 import AnimateOnScroll from "./AnimateOnScroll";
 
 const PARTNERS = [
-  { name: "Pearson VUE", logo: "/pearson-vue-logo.png", height: "h-10" },
-  { name: "Prometric", logo: "/prometric-logo.png", height: "h-14" },
-  { name: "PSI", logo: "/psi-logo.png", height: "h-10" },
-  { name: "Meazure Learning", logo: "/meazure-learning-logo.png", height: "h-10" },
-  { name: "Kryterion", logo: "/kryterion-logo.png", height: "h-10" },
-  { name: "ETS", logo: "/ets-logo.png", height: "h-10" },
-  { name: "Scantron", logo: "/scantron-logo.png", height: "h-10" },
-  { name: "Examity", logo: "/examity-logo.png", height: "h-10" },
+  { name: "Pearson VUE", logo: "/pearson-vue-logo.png", w: 200, h: 80 },
+  { name: "Prometric", logo: "/prometric-logo.png", w: 200, h: 80 },
+  { name: "PSI", logo: "/psi-logo.png", w: 200, h: 80 },
+  { name: "Meazure Learning", logo: "/meazure-learning-logo.png", w: 200, h: 80 },
+  { name: "Kryterion", logo: "/kryterion-logo.png", w: 200, h: 80 },
+  { name: "ETS", logo: "/ets-logo.png", w: 200, h: 80 },
+  { name: "Scantron", logo: "/scantron-logo.png", w: 200, h: 80 },
+  { name: "Examity", logo: "/examity-logo.png", w: 200, h: 80 },
 ];
 
 export default function PartnerLogos() {
@@ -25,10 +26,11 @@ export default function PartnerLogos() {
                 key={p.name}
                 className="flex items-center justify-center h-20 px-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={p.logo}
                   alt={p.name}
+                  width={p.w}
+                  height={p.h}
                   className="max-h-full max-w-full object-contain"
                 />
               </div>

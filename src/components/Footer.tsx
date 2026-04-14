@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { LOCATIONS, CONTACT } from "@/lib/locations";
 import NewsletterSignup from "./NewsletterSignup";
@@ -10,10 +11,11 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div>
           <Link href="/" className="inline-flex items-center mb-5" aria-label="BLE Training home">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/BLE-Training---black-letters.png"
-              alt="BLE Training — Authorized Professional Testing & Certification Centers"
+              alt="BLE Training"
+              width={200}
+              height={40}
               className="h-10 w-auto"
             />
           </Link>

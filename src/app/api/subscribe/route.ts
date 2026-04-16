@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 
 const API_KEY = process.env.MAILCHIMP_API_KEY!;
 const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID!;
-const SERVER = process.env.MAILCHIMP_SERVER!; // e.g. "us22"
+const SERVER = process.env.MAILCHIMP_SERVER!;
 
 export async function POST(request: Request) {
   try {
-    const { email, firstName, phone } = await request.json();
+    const { email, tag } = await request.json();
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
       return NextResponse.json(
@@ -15,8 +15,9 @@ export async function POST(request: Request) {
       );
     }
 
-    // Subscribe to Mailchimp with "pending" status (double opt-in)
-    // Mailchimp will automatically send the confirmation email
+    const tagName = tag === "pdf" ? "PDF Request" : "Catalog Lead";
+
+    // Subscribe with "pending" status (triggers double opt-in)
     const response = await fetch(
       `https://${SERVER}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members`,
       {
@@ -27,12 +28,8 @@ export async function POST(request: Request) {
         },
         body: JSON.stringify({
           email_address: email,
-          status: "pending", // This triggers double opt-in confirmation email
-          merge_fields: {
-            FNAME: firstName || "",
-            PHONE: phone || "",
-          },
-          tags: ["Catalog Lead"],
+          status: "pending",
+          tags: [tagName],
         }),
       }
     );
@@ -42,16 +39,33 @@ export async function POST(request: Request) {
     if (response.ok) {
       return NextResponse.json({
         success: true,
-        message: "Check your email to confirm your subscription.",
+        message: "Check your email to confirm.",
       });
     }
 
-    // Handle "already subscribed" case
     if (data.title === "Member Exists") {
+      // Already subscribed — add the new tag via the tags endpoint
+      const subscriberHash = await getSubscriberHash(email);
+      if (subscriberHash) {
+        await fetch(
+          `https://${SERVER}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members/${subscriberHash}/tags`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `apikey ${API_KEY}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              tags: [{ name: tagName, status: "active" }],
+            }),
+          }
+        );
+      }
+
       return NextResponse.json({
         success: true,
         alreadySubscribed: true,
-        message: "You're already subscribed. Access granted.",
+        message: "You're already confirmed. Access granted.",
       });
     }
 
@@ -65,4 +79,18 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
+}
+
+async function getSubscriberHash(email: string): Promise<string | null> {
+  // Mailchimp uses MD5 hash of lowercase email as subscriber ID
+  const encoder = new TextEncoder();
+  const data = encoder.encode(email.toLowerCase());
+  const hashBuffer = await crypto.subtle.digest("MD5", data).catch(() => null);
+  if (!hashBuffer) {
+    // Fallback: use the email directly (Mailchimp also accepts this)
+    return email.toLowerCase();
+  }
+  return Array.from(new Uint8Array(hashBuffer))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }

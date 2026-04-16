@@ -10,6 +10,10 @@ import {
   Lock,
   Download,
   Star,
+  Mail,
+  Send,
+  Loader2,
+  CheckCircle2,
 } from "lucide-react";
 import { COURSES, CATEGORIES, type Course } from "@/data/courses";
 import CourseModal from "@/components/CourseModal";
@@ -95,6 +99,7 @@ export default function CatalogClient() {
   const [viewCount, setViewCount] = useState(0);
   const [isRegistered, setIsRegistered] = useState(false);
   const [showGate, setShowGate] = useState(false);
+  const [showPdfGate, setShowPdfGate] = useState(false);
 
   // Check cookie on mount
   useEffect(() => {
@@ -308,15 +313,15 @@ export default function CatalogClient() {
             available for onsite or web-based delivery.
           </p>
 
-          {/* Request Full Catalog CTA */}
+          {/* CTAs */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href={`mailto:info@ble.training?subject=${encodeURIComponent("Request Full Course Catalog PDF")}&body=${encodeURIComponent("Hi BLE Training,\n\nI'd like to request a copy of the full Professional Development Catalog.\n\nName: \nOrganization: \nEmail: \nPhone: \n\nThank you!")}`}
+            <button
+              onClick={() => setShowPdfGate(true)}
               className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
             >
               <Download className="h-4 w-4" />
-              Request Full Catalog PDF
-            </a>
+              Request Full Catalog
+            </button>
             <a
               href="#categories"
               className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
@@ -470,6 +475,159 @@ export default function CatalogClient() {
           previewsRemaining={previewsLeft}
         />
       )}
+
+      {showPdfGate && (
+        <PdfRequestGate onClose={() => setShowPdfGate(false)} />
+      )}
     </>
+  );
+}
+
+/* ── PDF Request Gate ──────────────────────────────────────── */
+function PdfRequestGate({ onClose }: { onClose: () => void }) {
+  const [email, setEmail] = useState("");
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [stage, setStage] = useState<"form" | "check-email" | "done">("form");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const cleanEmail = email.replace(/[\r\n]/g, "").trim();
+    if (!cleanEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cleanEmail)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    setSending(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: cleanEmail, tag: "pdf" }),
+      });
+      const data = await res.json();
+
+      if (data.success && data.alreadySubscribed) {
+        setStage("done");
+      } else if (data.success) {
+        setStage("check-email");
+      } else {
+        setError(data.error || "Something went wrong.");
+      }
+    } catch {
+      setError("Connection error. Try again.");
+    } finally {
+      setSending(false);
+    }
+  };
+
+  if (stage === "done") {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+        <div className="w-full max-w-md bg-white rounded-lg shadow-2xl p-10 text-center">
+          <CheckCircle2 className="mx-auto h-14 w-14 text-green-600" />
+          <h2 className="mt-4 font-serif text-2xl text-black">
+            Your catalog is ready.
+          </h2>
+          <p className="mt-3 text-sm text-black/60">
+            Click below to view the full Professional Development Catalog.
+          </p>
+          <a
+            href="/BLE-Training-Professional-Development-Catalog-2026.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+          >
+            <Download className="h-4 w-4" />
+            View Catalog
+          </a>
+          <button
+            onClick={onClose}
+            className="mt-4 block mx-auto text-xs text-black/40 hover:text-black transition-colors"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (stage === "check-email") {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+        <div className="w-full max-w-md bg-white rounded-lg shadow-2xl overflow-hidden">
+          <div className="bg-black p-8 text-center">
+            <Mail className="mx-auto h-10 w-10 text-crimson" />
+            <h2 className="mt-4 font-serif text-2xl text-white">
+              Check Your Email
+            </h2>
+            <p className="mt-3 text-sm text-white/70">
+              We sent a confirmation link to <strong className="text-white">{email}</strong>.
+              Confirm your email and we&apos;ll send you the catalog.
+            </p>
+          </div>
+          <div className="p-8 space-y-4 text-center">
+            <button
+              onClick={() => setStage("done")}
+              className="w-full bg-crimson px-6 py-4 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+            >
+              I&apos;ve Confirmed My Email
+            </button>
+            <p className="text-[11px] text-black/40">
+              Check your spam folder if you don&apos;t see it.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-2xl overflow-hidden">
+        <div className="bg-black p-8 text-center">
+          <Download className="mx-auto h-10 w-10 text-crimson" />
+          <h2 className="mt-4 font-serif text-2xl text-white">
+            Get the Full Catalog
+          </h2>
+          <p className="mt-2 text-sm text-white/70">
+            Enter your email and we&apos;ll send you access to the complete
+            Professional Development Catalog.
+          </p>
+        </div>
+        <form onSubmit={handleSubmit} className="p-8 space-y-4">
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-black/50 mb-1">
+              Work Email
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@company.com"
+              className="w-full border border-slate-300 px-4 py-3 text-sm text-black focus:border-crimson focus:outline-none focus:ring-2 focus:ring-crimson/20"
+              required
+            />
+          </div>
+          {error && <p className="text-xs text-red-600">{error}</p>}
+          <button
+            type="submit"
+            disabled={sending}
+            className="w-full flex items-center justify-center gap-2 bg-crimson px-6 py-4 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors disabled:opacity-60"
+          >
+            {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <><Send className="h-4 w-4" /> Send Me the Catalog</>}
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="block mx-auto text-xs text-black/40 hover:text-black transition-colors"
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }

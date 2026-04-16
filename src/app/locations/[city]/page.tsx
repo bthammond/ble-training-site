@@ -311,15 +311,15 @@ export default async function LocationPage(props: {
               </h2>
               <div className="mt-6 h-px w-24 bg-crimson" />
               <p className="mt-6 text-lg text-black/75 leading-relaxed">
-                BLE Training&apos;s presence in {loc.city} goes beyond proctored
-                exams. We work with local business owners, founders, and
-                organizations to build the teams and systems that drive real
-                growth.
+                Most companies hire one vendor to test, another to train, and
+                a third to consult. In {loc.city}, BLE does all three — because
+                training without credentials is incomplete, and strategy without
+                trained people is just a plan on paper.
               </p>
               <p className="mt-4 text-lg text-black/75 leading-relaxed">
-                Whether you&apos;re navigating a leadership transition, building
-                out your team&apos;s capabilities, or thinking about where the
-                business goes next — we&apos;re here for that conversation too.
+                Whether you&apos;re certifying your team, developing their
+                leadership, or planning where the business goes next — we&apos;re
+                here for all of it.
               </p>
             </div>
           </AnimateOnScroll>

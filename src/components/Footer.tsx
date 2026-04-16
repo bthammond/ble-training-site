@@ -20,8 +20,8 @@ export default function Footer() {
             />
           </Link>
           <p className="text-sm leading-relaxed text-black/70">
-            Enterprise-tested organizational training, proctored testing,
-            and consulting services for owners and family businesses.
+            One company. Three stages. We train your team, certify their
+            skills, and consult on the strategy that drives growth.
           </p>
           <div className="mt-5 space-y-3 text-sm">
             <p className="flex items-start gap-2">

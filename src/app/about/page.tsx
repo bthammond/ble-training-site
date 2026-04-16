@@ -124,9 +124,12 @@ export default function AboutPage() {
                 our clients stay.
               </p>
               <p>
-                Today, BLE operates six testing centers across the United States
-                and an consulting practice focused on the founders and family
-                businesses building for the long term.
+                Today, BLE is one company that does three things: we train
+                teams, certify their skills, and provide the strategic
+                consulting that helps owner-led businesses grow. Most firms
+                specialize in one. We connect all three — because training
+                without credentials is incomplete, and strategy without
+                trained people is just a plan on paper.
               </p>
             </div>
           </AnimateOnScroll>

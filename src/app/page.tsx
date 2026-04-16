@@ -117,11 +117,79 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pillar connector */}
-      <section className="bg-white py-10 text-center">
-        <p className="text-lg text-black/60 italic font-serif max-w-xl mx-auto px-6">
-          Most of our clients start with one. Many end up using all three.
-        </p>
+      {/* WHY ONE COMPANY */}
+      <section className="bg-white border-b border-slate-200">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-24">
+          <AnimateOnScroll>
+            <div className="text-center max-w-3xl mx-auto">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+                Why One Company
+              </span>
+              <h2 className="mt-4 font-serif text-3xl md:text-5xl text-black leading-tight">
+                Train. Certify. Grow.<br />
+                <span className="text-crimson">One partner. All three stages.</span>
+              </h2>
+              <div className="mx-auto mt-8 h-px w-24 bg-crimson" />
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={100}>
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+              <div className="space-y-5 text-lg text-black/80 leading-relaxed">
+                <p>
+                  Most companies hire a training vendor, send their people to
+                  a separate testing center, and bring in a different consultant
+                  for strategy. Three vendors. Three relationships. None of
+                  them talking to each other.
+                </p>
+                <p>
+                  We built BLE to be the one partner that connects all three —
+                  because training without credentials is incomplete, testing
+                  without development is a missed opportunity, and strategy
+                  without trained people is just a plan on paper.
+                </p>
+              </div>
+              <div className="space-y-4">
+                {[
+                  {
+                    step: "01",
+                    title: "Train",
+                    desc: "Build your team's capabilities through programs designed for your business.",
+                  },
+                  {
+                    step: "02",
+                    title: "Certify",
+                    desc: "Validate their skills at one of six professional testing centers.",
+                  },
+                  {
+                    step: "03",
+                    title: "Grow",
+                    desc: "Scale the business with a team that performs — and a plan that lasts.",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.step}
+                    className="flex items-start gap-4 border-t-2 border-crimson pt-4"
+                  >
+                    <span className="font-serif text-2xl text-crimson shrink-0">
+                      {item.step}
+                    </span>
+                    <div>
+                      <h3 className="font-serif text-xl text-black">{item.title}</h3>
+                      <p className="mt-1 text-sm text-black/60">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={200}>
+            <p className="mt-12 text-center text-lg text-black/60 italic font-serif">
+              Most of our clients start with one. Many end up using all three.
+            </p>
+          </AnimateOnScroll>
+        </div>
       </section>
 
       {/* 4 — STATS: Proof you've done this before */}

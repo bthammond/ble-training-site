@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Heart, Compass, Shield, TrendingUp, Users2, Handshake } from "lucide-react";
+import Link from "next/link";
+import { Heart, Compass, Shield, TrendingUp, Users2, Handshake, ArrowRight } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
@@ -186,6 +187,37 @@ export default function ConsultingPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* TRAIN → CERTIFY → GROW BRIDGE */}
+      <section className="bg-black text-white">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-16 text-center">
+          <AnimateOnScroll>
+            <p className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
+              Strategy is only as good as the team that executes it. That&apos;s
+              why we also
+              <span className="text-crimson font-semibold"> train your people </span>
+              and
+              <span className="text-crimson font-semibold"> certify their skills </span>
+              — all under one roof.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/how-we-work"
+                className="text-sm font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors inline-flex items-center gap-2"
+              >
+                See how we train teams <ArrowRight className="h-4 w-4" />
+              </Link>
+              <span className="text-white/30 hidden sm:inline">|</span>
+              <Link
+                href="/testing"
+                className="text-sm font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors inline-flex items-center gap-2"
+              >
+                See our testing centers <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </AnimateOnScroll>
         </div>
       </section>
 

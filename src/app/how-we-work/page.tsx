@@ -184,6 +184,36 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
+      {/* TRAIN → CERTIFY → GROW BRIDGE */}
+      <section className="bg-black text-white">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-16 text-center">
+          <AnimateOnScroll>
+            <p className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
+              Training is step one. When your team is ready,
+              <span className="text-crimson font-semibold"> certify their skills </span>
+              at one of our six testing centers — and
+              <span className="text-crimson font-semibold"> grow with confidence </span>
+              knowing they&apos;re qualified.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/testing"
+                className="text-sm font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors inline-flex items-center gap-2"
+              >
+                See our testing centers <ArrowRight className="h-4 w-4" />
+              </Link>
+              <span className="text-white/30 hidden sm:inline">|</span>
+              <Link
+                href="/consulting"
+                className="text-sm font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors inline-flex items-center gap-2"
+              >
+                Explore consulting <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* COURSE CATALOG CTA */}
       <section className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 py-20 text-center">

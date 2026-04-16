@@ -64,6 +64,27 @@ export default function WhyBLEPage() {
         </div>
       </section>
 
+      {/* THE REAL REASON */}
+      <section className="bg-[#F7F7F7] border-b border-slate-200">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-20 text-center">
+          <AnimateOnScroll>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+              One partner. Three stages.
+            </span>
+            <h2 className="mt-4 font-serif text-3xl md:text-4xl text-black leading-tight">
+              Most companies hire three different vendors to train, certify,
+              and advise. We do all three — because they work better together.
+            </h2>
+            <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
+            <p className="mt-6 text-lg text-black/70 leading-relaxed max-w-2xl mx-auto">
+              Training without credentials is incomplete. Testing without
+              development is a missed opportunity. And strategy without
+              trained people is just a plan on paper.
+            </p>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* Differentiators */}
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">

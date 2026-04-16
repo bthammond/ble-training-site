@@ -117,6 +117,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pillar connector */}
+      <section className="bg-white py-10 text-center">
+        <p className="text-lg text-black/60 italic font-serif max-w-xl mx-auto px-6">
+          Most of our clients start with one. Many end up using all three.
+        </p>
+      </section>
+
       {/* 4 — STATS: Proof you've done this before */}
       <Stats />
 
@@ -245,15 +252,23 @@ export default function Home() {
               Let&apos;s talk about your team.
             </h2>
             <p className="mt-6 text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
-              30 minutes. No pitch deck. Just an honest conversation about
+              No pitch deck. No pressure. Just an honest conversation about
               what&apos;s working, what isn&apos;t, and whether we can help.
             </p>
-            <Link
-              href="/contact"
-              className="mt-10 inline-flex items-center gap-2 bg-crimson px-10 py-4 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
-            >
-              Talk to Us <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-crimson px-10 py-4 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+              >
+                Talk to Us <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/scorecard"
+                className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
+              >
+                Not ready? Take the free scorecard
+              </Link>
+            </div>
           </AnimateOnScroll>
         </div>
       </section>

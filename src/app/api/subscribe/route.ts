@@ -15,7 +15,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const tagName = tag === "pdf" ? "PDF Request" : "Catalog Lead";
+    const tagMap: Record<string, string> = {
+      pdf: "PDF Request",
+      scorecard: "Scorecard Lead",
+    };
+    const tagName = tagMap[tag] || "Catalog Lead";
 
     // Subscribe with "pending" status (triggers double opt-in)
     const response = await fetch(

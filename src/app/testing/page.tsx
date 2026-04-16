@@ -128,6 +128,24 @@ export default function TestingPage() {
         </div>
       </section>
 
+      {/* CROSS-SELL BRIDGE */}
+      <section className="bg-black text-white">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-16 text-center">
+          <AnimateOnScroll>
+            <p className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
+              Certifying your team&apos;s skills is step one.
+              <span className="text-crimson font-semibold"> Growing their performance is step two.</span>
+            </p>
+            <Link
+              href="/how-we-work"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors"
+            >
+              See how we train teams <ArrowRight className="h-4 w-4" />
+            </Link>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* LOCATION GRID */}
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">

@@ -30,13 +30,19 @@ export default function Hero() {
           <p className="mt-8 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed">
             You built the business. Let us build the team.
           </p>
-          <div className="mt-10">
+          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Link
               href="/contact"
               className="group inline-flex items-center justify-center gap-2 bg-crimson px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-xl hover:bg-crimson-soft transition-colors"
             >
               Talk to Us
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/scorecard"
+              className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
+            >
+              Check Your Readiness Score
             </Link>
           </div>
 

@@ -99,6 +99,27 @@ export default function ConsultingPage() {
         </div>
       </section>
 
+      {/* ENTERPRISE CREDIBILITY BRIDGE */}
+      <section className="bg-black text-white">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24 text-center">
+          <AnimateOnScroll>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+              Enterprise-Tested. Owner-Focused.
+            </span>
+            <h2 className="mt-4 font-serif text-3xl md:text-5xl text-white leading-tight">
+              We learned what good looks like at scale.
+            </h2>
+            <div className="mx-auto mt-8 h-px w-24 bg-crimson" />
+            <p className="mt-8 text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
+              We didn&apos;t start in consulting. We started inside organizations —
+              building the teams, coaching the leaders, and designing the
+              operating structures that made them perform.
+              That&apos;s what makes our consulting practice different.
+            </p>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* WHO THIS IS FOR */}
       <section className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24">
@@ -165,32 +186,6 @@ export default function ConsultingPage() {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* ENTERPRISE CREDIBILITY BRIDGE */}
-      <section className="bg-black text-white">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24 text-center">
-          <AnimateOnScroll>
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-              Enterprise-Tested. Owner-Focused.
-            </span>
-            <h2 className="mt-4 font-serif text-3xl md:text-5xl text-white leading-tight">
-              Our principals learned what good looks like at scale.
-            </h2>
-            <div className="mx-auto mt-8 h-px w-24 bg-crimson" />
-            <p className="mt-8 text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-              We didn&apos;t start in consulting. We started inside organizations —
-              building the teams, coaching the leaders, and designing the
-              operating structures that made them perform.
-            </p>
-            <p className="mt-5 text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-              That&apos;s what makes our consulting practice different. We know
-              what a high-functioning organization looks like because we&apos;ve
-              built them. Now we bring that experience to the owners and
-              families who want the same thing for their business.
-            </p>
-          </AnimateOnScroll>
         </div>
       </section>
 

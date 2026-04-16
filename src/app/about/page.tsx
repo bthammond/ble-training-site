@@ -84,9 +84,9 @@ export default function AboutPage() {
               Our Mission
             </span>
             <blockquote className="mt-8 font-serif text-3xl md:text-5xl text-black leading-[1.2] tracking-tight">
-              &ldquo;To enhance enterprise productivity by providing targeted
-              training that strengthens employee technical skills, processes,
-              and strategy — at every level of business.&rdquo;
+              &ldquo;We exist to make teams perform better — through training
+              that actually sticks, consulting that fits the business, and
+              testing that meets the standard.&rdquo;
             </blockquote>
             <div className="mx-auto mt-10 h-1 w-20 bg-crimson" />
           </AnimateOnScroll>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Users, ShieldCheck, Building2, Heart, Award, Clock } from "lucide-react";
+import { ArrowRight, Users, ShieldCheck, Building2, Heart, Award, Clock } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 export const metadata: Metadata = {
@@ -41,15 +41,6 @@ const DIFFERENTIATORS = [
     title: "We don't sell off-the-shelf",
     description: "Every training program is designed around your team, your industry, and your goals. We don't resell someone else's courseware and call it custom.",
   },
-];
-
-const COMPARED = [
-  { us: "Custom-designed programs", them: "Off-the-shelf courseware" },
-  { us: "Founder-led, hands-on", them: "Account manager you never meet" },
-  { us: "6 physical testing centers", them: "Virtual only" },
-  { us: "SMB and family business specialists", them: "Enterprise-only focus" },
-  { us: "Flat project pricing", them: "Hourly billing with retainers" },
-  { us: "One call to get started", them: "Weeks of procurement" },
 ];
 
 export default function WhyBLEPage() {
@@ -94,45 +85,6 @@ export default function WhyBLEPage() {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* Comparison */}
-      <section className="bg-slate-50 border-y border-slate-200">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24">
-          <AnimateOnScroll>
-            <div className="text-center mb-12">
-              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-                The Difference
-              </span>
-              <h2 className="mt-3 font-serif text-3xl md:text-4xl text-black">
-                BLE Training vs. the typical training company.
-              </h2>
-            </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={100}>
-            <div className="overflow-hidden rounded-lg border border-slate-200">
-              <div className="grid grid-cols-2 bg-black text-white text-center text-xs font-bold uppercase tracking-wider py-4">
-                <div className="text-crimson">BLE Training</div>
-                <div className="text-white/50">The Other Guys</div>
-              </div>
-              {COMPARED.map((row, i) => (
-                <div
-                  key={i}
-                  className={`grid grid-cols-2 text-sm ${
-                    i % 2 === 0 ? "bg-white" : "bg-slate-50"
-                  }`}
-                >
-                  <div className="flex items-center gap-2 px-6 py-4 border-r border-slate-200">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-green-600" />
-                    <span className="text-black font-medium">{row.us}</span>
-                  </div>
-                  <div className="px-6 py-4 text-black/50">{row.them}</div>
-                </div>
-              ))}
-            </div>
-          </AnimateOnScroll>
         </div>
       </section>
 

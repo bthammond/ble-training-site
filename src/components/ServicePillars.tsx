@@ -20,7 +20,7 @@ const PILLARS = [
   {
     icon: Briefcase,
     title: "SMB Consulting",
-    desc: "Hands-on advisory and growth planning for small and mid-sized businesses.",
+    desc: "Hands-on consulting and growth planning for small and mid-sized businesses.",
     href: "/consulting",
     tag: "Strategy",
   },

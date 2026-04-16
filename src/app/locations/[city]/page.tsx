@@ -328,7 +328,7 @@ export default async function LocationPage(props: {
             {[
               {
                 icon: Compass,
-                title: "Owner Advisory",
+                title: "Owner Consulting",
                 body:
                   "Strategic consulting for founders and family businesses.",
                 cta: "Learn more",

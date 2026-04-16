@@ -5,7 +5,7 @@ import { Send, CheckCircle2 } from "lucide-react";
 
 const INTERESTS = [
   "Family Business Consulting",
-  "Entrepreneurship Advisory",
+  "Entrepreneurship Consulting",
   "Corporate Training",
   "Proctored Testing",
   "Other",

@@ -25,7 +25,7 @@ export default function ConsultingFeature() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
         <AnimateOnScroll className="lg:col-span-3">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-            Owner &amp; Family Business Advisory
+            Owner &amp; Family Business Consulting
           </span>
           <h2 className="mt-5 font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05]">
             The businesses that families build<br />
@@ -41,7 +41,7 @@ export default function ConsultingFeature() {
           </p>
 
           <p className="mt-5 text-lg text-white/80 leading-relaxed">
-            Our advisory practice is built for owner-led and family businesses —
+            Our consulting practice is built for owner-led and family businesses —
             the kind that don&apos;t run like corporations, and shouldn&apos;t be
             coached like one.
           </p>
@@ -50,7 +50,7 @@ export default function ConsultingFeature() {
             href="/consulting"
             className="mt-10 inline-flex items-center gap-2 bg-crimson px-8 py-4 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
           >
-            Explore Our Advisory Practice <ArrowRight className="h-4 w-4" />
+            Explore Our Consulting Practice <ArrowRight className="h-4 w-4" />
           </Link>
         </AnimateOnScroll>
 

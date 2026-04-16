@@ -14,7 +14,7 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 export const metadata: Metadata = {
   title: "About BLE Training — Twenty Years of Doing the Work",
   description:
-    "BLE Training is a Pennsylvania-based corporate training and advisory company founded in 2007. Six testing centers. Enterprise experience. Owner-focused.",
+    "BLE Training is a Pennsylvania-based corporate training and consulting company founded in 2007. Six testing centers. Enterprise experience. Owner-focused.",
   keywords: [
     "About BLE Training",
     "Brian T. Hammond",
@@ -69,7 +69,7 @@ export default function AboutPage() {
           </h1>
           <div className="mt-8 h-1 w-24 bg-crimson" />
           <p className="mt-8 max-w-3xl text-lg md:text-xl text-white/80 leading-relaxed">
-            We are a corporate training and advisory company with deep roots in
+            We are a corporate training and consulting company with deep roots in
             enterprise performance — and a focused practice built for the
             owners and families running the businesses that matter most.
           </p>
@@ -125,7 +125,7 @@ export default function AboutPage() {
               </p>
               <p>
                 Today, BLE operates six testing centers across the United States
-                and an advisory practice focused on the founders and family
+                and an consulting practice focused on the founders and family
                 businesses building for the long term.
               </p>
             </div>
@@ -240,7 +240,7 @@ export default function AboutPage() {
               <p>
                 His MBA from Louisiana State University concentrated in
                 entrepreneurship and family business — the same work BLE&apos;s
-                advisory practice is now built around.
+                consulting practice is now built around.
               </p>
             </div>
           </AnimateOnScroll>

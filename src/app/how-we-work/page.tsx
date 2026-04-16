@@ -210,7 +210,7 @@ export default function HowWeWorkPage() {
                 href="/consulting"
                 className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
               >
-                Explore Owner Advisory
+                Explore Owner Consulting
               </Link>
             </div>
           </AnimateOnScroll>

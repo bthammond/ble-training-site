@@ -4,11 +4,11 @@ import LeadForm from "@/components/LeadForm";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 export const metadata: Metadata = {
-  title: "Owner & Family Business Advisory",
+  title: "Owner & Family Business Consulting",
   description:
     "Strategic consulting for founders, owners, and family businesses. Succession planning, growth strategy, and founder coaching from BLE Training.",
   keywords: [
-    "Owner Advisory",
+    "Owner Consulting",
     "Family Business Consulting",
     "Founder Coaching",
     "Succession Planning",
@@ -84,7 +84,7 @@ export default function ConsultingPage() {
         />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-32">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-            Owner &amp; Family Business Advisory
+            Owner &amp; Family Business Consulting
           </span>
           <h1 className="mt-5 font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-5xl text-white">
             A specialist practice for the businesses that
@@ -185,7 +185,7 @@ export default function ConsultingPage() {
               operating structures that made them perform.
             </p>
             <p className="mt-5 text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-              That&apos;s what makes our advisory practice different. We know
+              That&apos;s what makes our consulting practice different. We know
               what a high-functioning organization looks like because we&apos;ve
               built them. Now we bring that experience to the owners and
               families who want the same thing for their business.

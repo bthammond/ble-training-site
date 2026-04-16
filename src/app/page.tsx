@@ -76,12 +76,12 @@ export default function Home() {
               },
               {
                 icon: Compass,
-                title: "Strategic advisory for founders, owners, and the families who built with them.",
-                label: "Owner & Family Business Advisory",
+                title: "Strategic consulting for owners, founders, and family businesses.",
+                label: "Owner & Family Business Consulting",
                 body:
                   "Succession planning, founder coaching, and growth strategy — designed for the specific dynamics of owner-led and family businesses.",
                 href: "/consulting",
-                cta: "Explore Advisory",
+                cta: "Explore Consulting",
               },
               {
                 icon: ClipboardCheck,

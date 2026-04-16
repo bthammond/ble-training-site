@@ -25,11 +25,11 @@ export const metadata: Metadata = {
     template: "%s | BLE Training",
   },
   description:
-    "Enterprise-tested training, organizational design, and advisory services for business owners and founder-led companies. Six testing centers nationwide.",
+    "Enterprise-tested training, organizational design, and consulting services for business owners and founder-led companies. Six testing centers nationwide.",
   keywords: [
     "Corporate Training",
     "Organizational Design",
-    "Owner Advisory",
+    "Owner Consulting",
     "Family Business Consulting",
     "Proctored Testing Centers",
     "Pearson VUE Testing",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "BLE Training — Build High-Performing Organizations",
     description:
-      "Enterprise-tested training, organizational design, and advisory services for business owners and founder-led companies.",
+      "Enterprise-tested training, organizational design, and consulting services for business owners and founder-led companies.",
     siteName: "BLE Training",
     images: [
       {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BLE Training — Build High-Performing Organizations",
     description:
-      "Enterprise-tested training, organizational design, and advisory services for business owners and founder-led companies.",
+      "Enterprise-tested training, organizational design, and consulting services for business owners and founder-led companies.",
     images: ["/BLE-Training---black-letters.png"],
   },
   robots: { index: true, follow: true },

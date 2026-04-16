@@ -8,13 +8,13 @@ import { LOCATIONS, CONTACT } from "@/lib/locations";
 export const metadata: Metadata = {
   title: "Contact BLE Training",
   description:
-    "Talk to the BLE Training team. Schedule a consultation, book a test, or ask about our advisory and training services.",
+    "Talk to the BLE Training team. Schedule a consultation, book a test, or ask about our consulting and training services.",
   keywords: [
     "Contact BLE Training",
     "1-877-TRY-BLE-1",
     "Corporate Training Inquiry",
     "Proctored Testing Appointment",
-    "Owner Advisory Inquiry",
+    "Owner Consulting Inquiry",
   ],
   alternates: { canonical: "/contact" },
 };

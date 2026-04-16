@@ -184,8 +184,31 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      {/* CATALOG REMOVED — To be reintroduced in a future phase.
-          Reinstate from /pages/catalog.jsx when ready. */}
+      {/* COURSE CATALOG CTA */}
+      <section className="bg-white border-b border-slate-200">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-20 text-center">
+          <AnimateOnScroll>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+              Course Catalog
+            </span>
+            <h2 className="mt-3 font-serif text-3xl md:text-4xl text-black">
+              150+ programs across 10 categories.
+            </h2>
+            <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
+            <p className="mt-6 text-lg text-black/70 max-w-2xl mx-auto leading-relaxed">
+              Looking for something specific? Browse our full Professional
+              Development Catalog — leadership, communication, sales, HR,
+              compliance, and more. Available for onsite or virtual delivery.
+            </p>
+            <Link
+              href="/catalog"
+              className="mt-8 inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+            >
+              Browse the Catalog <ArrowRight className="h-4 w-4" />
+            </Link>
+          </AnimateOnScroll>
+        </div>
+      </section>
 
       {/* CLOSING CTA */}
       <section className="bg-black text-white">

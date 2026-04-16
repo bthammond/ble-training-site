@@ -128,15 +128,6 @@ export default function Header() {
                   Contact
                 </Link>
               </li>
-              <li className="pt-2">
-                <Link
-                  href="/register"
-                  onClick={() => setOpen(false)}
-                  className="block text-center bg-crimson px-6 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
-                >
-                  Schedule a Test
-                </Link>
-              </li>
             </ul>
           </div>
         )}

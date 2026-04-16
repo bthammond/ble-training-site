@@ -1,26 +1,20 @@
 import Link from "next/link";
-import { ArrowRight, Layers, Compass, ClipboardCheck } from "lucide-react";
+import { ArrowRight, Layers, Compass, ClipboardCheck, MapPin } from "lucide-react";
+import Image from "next/image";
 import Hero from "@/components/Hero";
-import PartnerLogos from "@/components/PartnerLogos";
 import Stats from "@/components/Stats";
-import LocationsGrid from "@/components/LocationsGrid";
 import ConsultingFeature from "@/components/ConsultingFeature";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { LOCATIONS } from "@/lib/locations";
 
 export default function Home() {
   return (
     <>
-      {/* SECTION 1 — HERO */}
+      {/* 1 — HERO: Hook them */}
       <Hero />
 
-      {/* SECTION 2 — SOCIAL PROOF / CREDIBILITY BAR */}
-      <PartnerLogos />
-
-      {/* SECTION 3 — STATS */}
-      <Stats />
-
-      {/* SECTION 4 — THE PROBLEM WE SOLVE */}
+      {/* 2 — PROBLEM: Show you understand their pain */}
       <section className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           <AnimateOnScroll className="lg:col-span-2">
@@ -48,7 +42,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 5 — THREE PILLARS */}
+      {/* 3 — THREE PILLARS: Here's how we help */}
       <section className="bg-[#F7F7F7] border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
           <AnimateOnScroll>
@@ -68,7 +62,7 @@ export default function Home() {
               {
                 icon: Layers,
                 title: "Build a team that performs without you managing every detail.",
-                label: "Organizational Systems & Training",
+                label: "Organizational Training",
                 body:
                   "We design training programs, onboarding systems, and coaching frameworks that create high-functioning organizations. Tested in enterprise environments. Built for your business.",
                 href: "/how-we-work",
@@ -123,18 +117,102 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 6 — TESTING CENTERS MAP STRIP */}
-      <LocationsGrid />
+      {/* 4 — STATS: Proof you've done this before */}
+      <Stats />
 
-      {/* SECTION 7 — CONSULTING FEATURE */}
+      {/* 5 — CONSULTING DEEP DIVE: Your differentiator */}
       <ConsultingFeature />
 
-      {/* SECTION 8 — CLIENT TESTIMONIAL */}
+      {/* 6 — TESTIMONIAL: Social proof */}
       <TestimonialSlider />
 
-      {/* SECTION 9 — RED CROSS CPR/BLS */}
-      <section className="bg-[#F7F7F7] border-y border-slate-200">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-20 text-center">
+      {/* 7 — TESTING CENTERS + PARTNER LOGOS (combined): Your other business */}
+      <section className="bg-white border-y border-slate-200">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+          <AnimateOnScroll>
+            <div className="text-center max-w-2xl mx-auto">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+                Proctored Testing
+              </span>
+              <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black">
+                Six testing centers. All major providers.
+              </h2>
+              <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
+              <p className="mt-6 text-black/70 leading-relaxed">
+                We deliver computer-based proctored exams for Pearson VUE,
+                Prometric, PSI, Meazure Learning, Kryterion, ETS, Scantron,
+                and Examity — with professional staff at every location.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          {/* Location pins */}
+          <AnimateOnScroll delay={100}>
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {LOCATIONS.map((loc) => (
+                <Link
+                  key={loc.slug}
+                  href={`/locations/${loc.slug}`}
+                  className="group flex flex-col items-center gap-1.5 p-5 border border-slate-200 hover:border-crimson hover:bg-[#F7F7F7] transition-all text-center"
+                >
+                  <MapPin className="h-5 w-5 text-crimson" />
+                  <span className="font-serif text-lg text-black group-hover:text-crimson transition-colors">
+                    {loc.city}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-black/50">
+                    {loc.state}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </AnimateOnScroll>
+
+          {/* Partner logos */}
+          <AnimateOnScroll delay={200}>
+            <p className="mt-14 text-center text-xs font-bold uppercase tracking-[0.3em] text-black/40">
+              Authorized test delivery partner for
+            </p>
+            <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6">
+              {[
+                { name: "Pearson VUE", logo: "/pearson-vue-logo.png" },
+                { name: "Prometric", logo: "/prometric-logo.png" },
+                { name: "PSI", logo: "/psi-logo.png" },
+                { name: "Meazure Learning", logo: "/meazure-learning-logo.png" },
+                { name: "Kryterion", logo: "/kryterion-logo.png" },
+                { name: "ETS", logo: "/ets-logo.png" },
+                { name: "Scantron", logo: "/scantron-logo.png" },
+                { name: "Examity", logo: "/examity-logo.png" },
+              ].map((p) => (
+                <div
+                  key={p.name}
+                  className="flex items-center justify-center h-16 px-3 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                >
+                  <Image
+                    src={p.logo}
+                    alt={p.name}
+                    width={160}
+                    height={64}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </AnimateOnScroll>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/testing"
+              className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+            >
+              Learn More About Testing <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 8 — RED CROSS: Additional service */}
+      <section className="bg-[#F7F7F7]">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-16 text-center">
           <AnimateOnScroll>
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-red-600">
               American Red Cross
@@ -143,7 +221,7 @@ export default function Home() {
               BLS, CPR &amp; First Aid
             </h2>
             <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
-            <p className="mt-6 text-lg text-black/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 text-black/70 max-w-2xl mx-auto leading-relaxed">
               Offered at BLE Training locations. Register directly with the
               Red Cross and we&apos;ll see you in the classroom.
             </p>
@@ -159,7 +237,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 10 — CLOSING CTA */}
+      {/* 9 — CLOSING CTA: Ask */}
       <section className="bg-black text-white">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24 text-center">
           <AnimateOnScroll>

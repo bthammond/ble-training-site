@@ -25,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/insights`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE}/case-studies`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/scorecard`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/careers`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.5 },
   ];
 

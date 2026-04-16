@@ -18,6 +18,7 @@ export async function POST(request: Request) {
     const tagMap: Record<string, string> = {
       pdf: "PDF Request",
       scorecard: "Scorecard Lead",
+      applicant: "Proctor Applicant",
     };
     const tagName = tagMap[tag] || "Catalog Lead";
 

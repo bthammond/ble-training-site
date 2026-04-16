@@ -1,39 +1,47 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, CheckCircle2 } from "lucide-react";
+import { Mail, CheckCircle2, Loader2 } from "lucide-react";
 
 export default function NewsletterSignup() {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const cleanEmail = email.replace(/[\r\n]/g, "").trim();
     if (!cleanEmail) return;
 
-    // Open mailto with subscription request
-    const subject = encodeURIComponent("Newsletter Signup");
-    const body = encodeURIComponent(
-      `New newsletter subscriber:\n\nEmail: ${email}\nDate: ${new Date().toLocaleString()}`
-    );
-    window.open(`mailto:info@ble.training?subject=${subject}&body=${body}`, "_blank");
+    setStatus("loading");
+    setErrorMsg("");
 
-    // Store locally
     try {
-      const subs = JSON.parse(localStorage.getItem("ble_newsletter") || "[]");
-      subs.push({ email, date: new Date().toISOString() });
-      localStorage.setItem("ble_newsletter", JSON.stringify(subs));
-    } catch { /* silent */ }
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: cleanEmail }),
+      });
 
-    setSubmitted(true);
+      const data = await res.json();
+
+      if (data.success) {
+        setStatus("success");
+      } else {
+        setErrorMsg(data.error || "Something went wrong.");
+        setStatus("error");
+      }
+    } catch {
+      setErrorMsg("Connection error. Try again.");
+      setStatus("error");
+    }
   };
 
-  if (submitted) {
+  if (status === "success") {
     return (
       <div className="flex items-center gap-2 text-sm text-green-700">
         <CheckCircle2 className="h-4 w-4" />
-        <span>You&apos;re on the list!</span>
+        <span>Check your email to confirm!</span>
       </div>
     );
   }
@@ -53,10 +61,14 @@ export default function NewsletterSignup() {
       </div>
       <button
         type="submit"
-        className="shrink-0 bg-crimson px-4 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+        disabled={status === "loading"}
+        className="shrink-0 bg-crimson px-4 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors disabled:opacity-60"
       >
-        Subscribe
+        {status === "loading" ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : "Subscribe"}
       </button>
+      {status === "error" && (
+        <p className="absolute mt-10 text-[10px] text-red-600">{errorMsg}</p>
+      )}
     </form>
   );
 }

@@ -103,7 +103,6 @@ export default function Footer() {
           <ul className="space-y-2 text-sm text-black/70">
             <li><Link href="/about" className="hover:text-crimson">About</Link></li>
             <li><Link href="/why-ble" className="hover:text-crimson">Why BLE Training</Link></li>
-            <li><Link href="/blog" className="hover:text-crimson">Blog</Link></li>
             <li><Link href="/faq" className="hover:text-crimson">FAQ</Link></li>
             <li><Link href="/contact" className="hover:text-crimson">Contact</Link></li>
           </ul>

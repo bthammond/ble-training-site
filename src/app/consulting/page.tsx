@@ -180,15 +180,15 @@ export default function ConsultingPage() {
             </h2>
             <div className="mx-auto mt-8 h-px w-24 bg-crimson" />
             <p className="mt-8 text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-              Our team has worked directly with enterprise clients across
-              financial services, automotive, and professional services —
-              designing the onboarding systems, coaching frameworks, and
-              organizational workflows that define high-performing teams.
+              We didn&apos;t start in consulting. We started inside organizations —
+              building the teams, coaching the leaders, and designing the
+              operating structures that made them perform.
             </p>
             <p className="mt-5 text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-              That work taught us what good looks like at scale. Our consulting
-              practice exists to bring that standard to the owners and families
-              who are building for the long term.
+              That&apos;s what makes our advisory practice different. We know
+              what a high-functioning organization looks like because we&apos;ve
+              built them. Now we bring that experience to the owners and
+              families who want the same thing for their business.
             </p>
           </AnimateOnScroll>
         </div>

@@ -23,13 +23,12 @@ export default function Hero() {
               Built for Business Owners
             </span>
           </div>
-          <h1 className="mt-6 font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-white">
-            We Build the Systems That Let Your<br />
-            <span className="text-crimson">Business Grow Without You Carrying It.</span>
+          <h1 className="mt-6 font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight text-white">
+            Train Your Team.<br />
+            <span className="text-crimson">Grow Your Business.</span>
           </h1>
           <p className="mt-8 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed">
-            BLE Training brings enterprise-grade organizational design, coaching,
-            and training to founders and business owners who are ready for the next level.
+            You built the business. Let us build the team.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-5">
             <Link

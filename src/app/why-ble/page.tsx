@@ -151,7 +151,7 @@ export default function WhyBLEPage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
               >
-                Let&apos;s Talk <ArrowRight className="h-4 w-4" />
+                Talk to Us <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/how-we-work"

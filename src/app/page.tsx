@@ -85,10 +85,10 @@ export default function Home() {
               },
               {
                 icon: ClipboardCheck,
-                title: "Six professional testing centers across the U.S.",
+                title: "Credential your team with confidence.",
                 label: "Proctored Testing Centers",
                 body:
-                  "Computer-based proctored exams through Pearson VUE, Prometric, PSI, and more. Flexible scheduling, professional staff, six locations.",
+                  "Six professional testing centers across the U.S. Computer-based proctored exams through Pearson VUE, Prometric, PSI, and more.",
                 href: "/locations",
                 cta: "Find a Center",
               },
@@ -164,17 +164,17 @@ export default function Home() {
         <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24 text-center">
           <AnimateOnScroll>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
-              Ready to build something that lasts?
+              Let&apos;s talk about your team.
             </h2>
             <p className="mt-6 text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
-              Book a 30-minute consultation. We&apos;ll listen, ask the right
-              questions, and tell you honestly whether we&apos;re the right fit.
+              30 minutes. No pitch deck. Just an honest conversation about
+              what&apos;s working, what isn&apos;t, and whether we can help.
             </p>
             <Link
               href="/contact"
               className="mt-10 inline-flex items-center gap-2 bg-crimson px-10 py-4 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
             >
-              Get Started <ArrowRight className="h-4 w-4" />
+              Talk to Us <ArrowRight className="h-4 w-4" />
             </Link>
           </AnimateOnScroll>
         </div>

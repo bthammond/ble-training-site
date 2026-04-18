@@ -66,7 +66,8 @@ export default function ChatWidget() {
       if (data.message) {
         setMessages([...newMessages, { role: "assistant", content: data.message }]);
       } else {
-        setError(data.error || "Something went wrong.");
+        const errMsg = data.debug ? `${data.error} [${data.debug}]` : data.error;
+        setError(errMsg || "Something went wrong.");
       }
     } catch {
       setError("Connection error. Please try again.");

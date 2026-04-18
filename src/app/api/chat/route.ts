@@ -86,7 +86,7 @@ export async function POST(request: Request) {
     const recentMessages = messages.slice(-MAX_MESSAGES);
 
     const response = await client.messages.create({
-      model: "claude-3-5-haiku-20241022",
+      model: "claude-haiku-4-5",
       max_tokens: 500,
       system: SYSTEM_PROMPT,
       messages: recentMessages.map((m) => ({
@@ -117,7 +117,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error: "Something went wrong. Please try again or call 1-877-879-2531.",
-        debug: process.env.NODE_ENV === "development" ? message : undefined,
+        debug: message,
       },
       { status: 500 }
     );

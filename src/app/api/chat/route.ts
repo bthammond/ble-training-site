@@ -104,8 +104,21 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Chat API error:", error);
+    const message = error instanceof Error ? error.message : "Unknown error";
+
+    // Common error: missing API key
+    if (!process.env.ANTHROPIC_API_KEY) {
+      return NextResponse.json(
+        { error: "Chat is temporarily unavailable. Please call 1-877-879-2531 or use the contact form." },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { error: "Something went wrong. Please try again or contact us directly." },
+      {
+        error: "Something went wrong. Please try again or call 1-877-879-2531.",
+        debug: process.env.NODE_ENV === "development" ? message : undefined,
+      },
       { status: 500 }
     );
   }

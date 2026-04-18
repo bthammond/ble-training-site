@@ -20,7 +20,7 @@ export default function Hero() {
           <div className="flex items-center gap-4 text-crimson">
             <span className="h-px w-12 bg-crimson" />
             <span className="text-xs font-bold uppercase tracking-[0.3em]">
-              Built for Business Owners
+              Built for Business Leaders
             </span>
           </div>
           <h1 className="mt-6 font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight text-white">

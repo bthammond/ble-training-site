@@ -330,7 +330,7 @@ export default async function LocationPage(props: {
                 icon: Compass,
                 title: "Owner Consulting",
                 body:
-                  "Strategic consulting for founders and family businesses.",
+                  "Strategic consulting for business leaders and owners.",
                 cta: "Learn more",
                 href: "/consulting",
               },

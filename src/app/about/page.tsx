@@ -69,9 +69,9 @@ export default function AboutPage() {
           </h1>
           <div className="mt-8 h-1 w-24 bg-crimson" />
           <p className="mt-8 max-w-3xl text-lg md:text-xl text-white/80 leading-relaxed">
-            We are a corporate training and consulting company with deep roots in
-            enterprise performance — and a focused practice built for the
-            owners and families running the businesses that matter most.
+            We are a corporate training and consulting company with deep roots
+            in enterprise performance — built for the mid-market companies
+            and business leaders driving growth today.
           </p>
         </div>
       </section>
@@ -126,10 +126,10 @@ export default function AboutPage() {
               <p>
                 Today, BLE is one company that does three things: we train
                 teams, certify their skills, and provide the strategic
-                consulting that helps owner-led businesses grow. Most firms
-                specialize in one. We connect all three — because training
-                without credentials is incomplete, and strategy without
-                trained people is just a plan on paper.
+                consulting that helps businesses grow. Most firms specialize
+                in one. We connect all three — because training without
+                credentials is incomplete, and strategy without trained
+                people is just a plan on paper.
               </p>
             </div>
           </AnimateOnScroll>
@@ -237,13 +237,16 @@ export default function AboutPage() {
                 into high-performing ones.
               </p>
               <p>
-                At BLE, Brian&apos;s focus is simple: bring that standard to the
-                owners and families who are building businesses worth keeping.
+                At BLE, Brian&apos;s focus is simple: bring that standard to
+                the leaders and businesses building what&apos;s next — with
+                specialty depth for family-run companies that need
+                relationship-aware guidance.
               </p>
               <p>
                 His MBA from Louisiana State University concentrated in
-                entrepreneurship and family business — the same work BLE&apos;s
-                consulting practice is now built around.
+                entrepreneurship and family business — grounding BLE&apos;s
+                consulting practice in both operational rigor and the
+                relational dynamics that make owner-led businesses unique.
               </p>
             </div>
           </AnimateOnScroll>

@@ -3,12 +3,12 @@ import { ArrowRight } from "lucide-react";
 import AnimateOnScroll from "./AnimateOnScroll";
 
 const SERVICES = [
-  "Succession & Governance",
-  "Founder Coaching",
   "Growth Strategy",
+  "Leadership Coaching",
   "Growth Operations",
+  "Succession & Governance",
   "Transaction Advisory",
-  "Legacy Design",
+  "Family Business Specialty",
 ];
 
 export default function ConsultingFeature() {
@@ -25,25 +25,25 @@ export default function ConsultingFeature() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
         <AnimateOnScroll className="lg:col-span-3">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-            Owner &amp; Family Business Consulting
+            Business Consulting
           </span>
           <h2 className="mt-5 font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05]">
-            The businesses that families build<br />
-            <span className="text-crimson">deserve more than a template.</span>
+            Growing a business<br />
+            <span className="text-crimson">deserves more than a template.</span>
           </h2>
           <div className="mt-8 h-px w-24 bg-crimson" />
 
           <p className="mt-8 text-lg text-white/80 leading-relaxed">
             We&apos;ve worked inside organizations that run at the highest levels.
-            We know what a high-functioning team looks like, what succession
-            planning actually requires, and what founders need when business
-            decisions get personal.
+            We know what a high-functioning team looks like, what leadership
+            transitions actually require, and what leaders need when business
+            decisions get complicated.
           </p>
 
           <p className="mt-5 text-lg text-white/80 leading-relaxed">
-            Our consulting practice is built for owner-led and family businesses —
-            the kind that don&apos;t run like corporations, and shouldn&apos;t be
-            coached like one.
+            Our consulting practice is built for mid-market companies and
+            owner-led businesses — with specialty depth for family-run
+            operations that don&apos;t run like corporations.
           </p>
 
           <Link

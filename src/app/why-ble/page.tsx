@@ -28,8 +28,8 @@ const DIFFERENTIATORS = [
   },
   {
     icon: Heart,
-    title: "Family business expertise",
-    description: "Most consultants treat family businesses like small corporations. We understand the dynamics — succession, governance, and the decisions that affect both the business and the family.",
+    title: "Specialty practices when you need them",
+    description: "Beyond core training and consulting, we have deep expertise in leadership transitions, succession planning, and the relationship dynamics of family-run businesses.",
   },
   {
     icon: ShieldCheck,

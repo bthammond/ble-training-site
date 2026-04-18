@@ -12,7 +12,7 @@ const UTILITY_LINKS = [
 
 const NAV_LINKS = [
   { href: "/how-we-work", label: "How We Work" },
-  { href: "/consulting", label: "Owner Consulting" },
+  { href: "/consulting", label: "Business Consulting" },
   { href: "/locations", label: "Testing Centers" },
   { href: "/about", label: "About" },
 ];

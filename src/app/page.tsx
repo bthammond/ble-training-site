@@ -19,24 +19,24 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           <AnimateOnScroll className="lg:col-span-2">
             <blockquote className="font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.15] text-black">
-              &ldquo;Most training companies are built for HR departments.
-              <span className="text-crimson"> We&apos;re built for the owner in the room.</span>&rdquo;
+              &ldquo;Most training companies are built for big HR departments.
+              <span className="text-crimson"> We&apos;re built for the leaders responsible for results.</span>&rdquo;
             </blockquote>
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={120} className="lg:col-span-3 space-y-6">
             <p className="text-lg text-black/80 leading-relaxed">
-              Most business owners hit a ceiling. Revenue stalls. The team
-              isn&apos;t performing the way it should. Family dynamics complicate
-              decisions that should be simple. And the consultants they find
-              either don&apos;t understand small business — or charge like
-              they&apos;re still billing Fortune 500 clients.
+              Most growing businesses hit a ceiling. Revenue stalls. The team
+              isn&apos;t performing the way it should. Leadership transitions
+              complicate decisions that should be simple. And the consultants
+              they find either don&apos;t understand their business — or charge
+              like they&apos;re still billing Fortune 500 clients.
             </p>
             <p className="text-lg text-black/80 leading-relaxed">
               BLE is different. We&apos;ve spent twenty years inside enterprise
               organizations, designing the systems that make teams perform. Now
-              we bring that same rigor to owner-led businesses — without the
-              enterprise price tag or the generic playbook.
+              we bring that same rigor to mid-market companies and owner-led
+              businesses — without the enterprise price tag or the generic playbook.
             </p>
           </AnimateOnScroll>
         </div>
@@ -70,10 +70,10 @@ export default function Home() {
               },
               {
                 icon: Compass,
-                title: "Strategic consulting for owners, founders, and family businesses.",
-                label: "Owner & Family Business Consulting",
+                title: "Strategic consulting for business leaders and owners.",
+                label: "Business Consulting",
                 body:
-                  "Succession planning, founder coaching, and growth strategy — designed for the specific dynamics of owner-led and family businesses.",
+                  "Growth strategy, leadership transitions, and operational consulting — with specialty practices for family-run and owner-led businesses.",
                 href: "/consulting",
                 cta: "Explore Consulting",
               },

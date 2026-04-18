@@ -60,7 +60,7 @@ export default function Footer() {
           <h4 className="font-serif text-lg text-black mb-4">Services</h4>
           <ul className="space-y-2 text-sm text-black/70">
             <li><Link href="/how-we-work" className="hover:text-crimson">Organizational Training</Link></li>
-            <li><Link href="/consulting" className="hover:text-crimson">Owner Consulting</Link></li>
+            <li><Link href="/consulting" className="hover:text-crimson">Business Consulting</Link></li>
             <li><Link href="/testing" className="hover:text-crimson">Proctored Testing</Link></li>
             <li><Link href="/consulting#family" className="hover:text-crimson">Family Business</Link></li>
           </ul>

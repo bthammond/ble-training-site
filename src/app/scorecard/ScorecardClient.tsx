@@ -141,13 +141,13 @@ function getStage(score: number) {
       cta: "A focused conversation could help you prioritize the right next moves.",
     };
   return {
-    label: "Founder-Dependent",
+    label: "Leader-Dependent",
     color: "text-red-600",
     bg: "bg-red-50 border-red-200",
     icon: AlertTriangle,
     summary:
       "Your business depends heavily on you. Key processes aren't documented, succession hasn't been addressed, and the team may not be equipped to operate without your direct involvement. This is common — but it's also a risk.",
-    cta: "We've helped hundreds of owner-led businesses move past this stage. Let's talk.",
+    cta: "We've helped hundreds of businesses move past this stage. Let's talk.",
   };
 }
 
@@ -219,7 +219,7 @@ export default function ScorecardClient() {
               Free Assessment
             </span>
             <h1 className="mt-5 font-serif text-4xl md:text-6xl text-white leading-tight">
-              Family Business<br />
+              Business<br />
               <span className="text-crimson">Health Scorecard</span>
             </h1>
             <div className="mx-auto mt-6 h-1 w-16 bg-crimson" />
@@ -244,7 +244,7 @@ export default function ScorecardClient() {
           <div className="mx-auto max-w-4xl px-6 lg:px-8 py-20">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               {[
-                { emoji: "🎯", title: "10 Questions", desc: "Covering the areas that matter most for owner-led businesses." },
+                { emoji: "🎯", title: "10 Questions", desc: "Covering the areas that matter most for growing businesses." },
                 { emoji: "📊", title: "Instant Score", desc: "See where you stand across succession, team, ops, and growth." },
                 { emoji: "🗺️", title: "Clear Next Steps", desc: "Know exactly what to focus on — before we ever talk." },
               ].map((item) => (
@@ -429,7 +429,7 @@ export default function ScorecardClient() {
               {stage.cta}
             </h2>
             <p className="mt-4 text-white/70 max-w-lg mx-auto">
-              We&apos;ve helped hundreds of owner-led businesses strengthen
+              We&apos;ve helped hundreds of businesses strengthen
               their teams, plan transitions, and grow with confidence. A quick
               conversation is the best next step.
             </p>

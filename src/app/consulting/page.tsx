@@ -5,15 +5,16 @@ import LeadForm from "@/components/LeadForm";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 export const metadata: Metadata = {
-  title: "Owner & Family Business Consulting",
+  title: "Business Consulting",
   description:
-    "Strategic consulting for founders, owners, and family businesses. Succession planning, growth strategy, and founder coaching from BLE Training.",
+    "Strategic consulting for business leaders and owners. Growth strategy, leadership coaching, succession planning, and operational consulting from BLE Training.",
   keywords: [
-    "Owner Consulting",
-    "Family Business Consulting",
-    "Founder Coaching",
+    "Business Consulting",
+    "Growth Strategy",
+    "Leadership Coaching",
     "Succession Planning",
-    "Family Business Governance",
+    "Operational Consulting",
+    "Family Business Consulting",
     "Business Transition Planning",
   ],
   alternates: { canonical: "/consulting" },
@@ -28,9 +29,9 @@ const PRACTICES = [
   },
   {
     icon: Users2,
-    title: "Founder & Family Coaching",
-    outcome: "One-on-one advising for when business decisions become personal ones.",
-    desc: "Confidential coaching for founders and family members navigating difficult decisions.",
+    title: "Leadership Coaching",
+    outcome: "One-on-one advising for executives, owners, and leaders navigating high-stakes decisions.",
+    desc: "Confidential coaching for leaders at every level — from founders to C-suite to next-generation successors.",
   },
   {
     icon: Compass,
@@ -55,19 +56,20 @@ const PRACTICES = [
   },
   {
     icon: Heart,
-    title: "Legacy Design",
+    title: "Family Business Practice",
     outcome:
-      "Plan what comes next — for the business, the family, and the impact you want to leave.",
-    desc: "Helping families think about succession, next generation, and lasting impact.",
+      "Specialty depth for the unique dynamics of family-run and owner-led businesses.",
+    desc: "Succession, governance, and relationship-aware consulting for family-led operations.",
   },
 ];
 
 const FIT_CRITERIA = [
-  "You're an owner or founder who has grown past the startup phase but feels like the business still depends on you for everything",
-  "You're navigating a family dynamic that affects how decisions get made",
-  "You're thinking about succession — selling, transitioning, or bringing in the next generation — and you don't know where to start",
-  "You've tried generic business coaching and it didn't fit",
-  "You want someone who has been inside high-performing organizations and can translate that for your business",
+  "You're leading a growing business and you've hit a ceiling — revenue, team performance, or operations",
+  "You're a business owner whose business still depends too much on you for day-to-day decisions",
+  "You're navigating a leadership transition, a succession, or an ownership change",
+  "You're running a family-led business and need consultants who understand the relationship dynamics",
+  "You've tried generic business coaching and it didn't fit your specific situation",
+  "You want a partner who has been inside high-performing organizations and can translate that for your business",
 ];
 
 export default function ConsultingPage() {
@@ -85,17 +87,18 @@ export default function ConsultingPage() {
         />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-32">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-            Owner &amp; Family Business Consulting
+            Business Consulting
           </span>
           <h1 className="mt-5 font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-5xl text-white">
-            A specialist practice for the businesses that
-            <span className="text-crimson"> owners and families build and keep.</span>
+            Strategic consulting for the leaders
+            <span className="text-crimson"> building what&apos;s next.</span>
           </h1>
           <div className="mt-8 h-1 w-24 bg-crimson" />
           <p className="mt-8 max-w-3xl text-lg md:text-xl text-white/80 leading-relaxed">
-            Most consultants treat owner-led businesses like smaller versions of
-            big corporations. We don&apos;t. We understand the dynamics that come
-            with ownership — and we work with them, not around them.
+            We work with mid-market companies, growing businesses, and
+            owner-led operations — with specialty depth for the family-run
+            businesses that don&apos;t run like big corporations and
+            shouldn&apos;t be coached like one.
           </p>
         </div>
       </section>
@@ -105,7 +108,7 @@ export default function ConsultingPage() {
         <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24 text-center">
           <AnimateOnScroll>
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-              Enterprise-Tested. Owner-Focused.
+              Enterprise-Tested. Built for Your Business.
             </span>
             <h2 className="mt-4 font-serif text-3xl md:text-5xl text-white leading-tight">
               We learned what good looks like at scale.

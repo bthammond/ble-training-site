@@ -18,13 +18,19 @@ Founded in 2007, BLE Training is a corporate training and consulting company. We
 2. **Business Consulting** (/consulting) — Growth strategy, leadership coaching, succession planning, transaction advisory. Specialty depth for family-run businesses.
 3. **Proctored Testing** (/testing) — Six centers deliver computer-based exams for Pearson VUE, Prometric, PSI, Meazure Learning, Kryterion, ETS, Scantron, Examity.
 
-## Six Testing Center Locations
+## Six Testing Center Locations (with hours)
 - **Tyler, TX** — 3200 Troup Hwy, Suite 216, 75701 — Ext 708
+  Hours: Mon–Sat 8:00 AM–5:00 PM. Closed Sunday.
 - **Clarks Summit, PA** — 233 Northern Blvd, Suite 4, 18411 — Ext 704 (BLS available)
+  Hours: Mon, Wed, Fri, Sat 8:00 AM–5:00 PM. Closed Tue, Thu, Sun.
 - **Toledo, OH** — 5151 Monroe Street, Suite 208, 43623 — Ext 706
+  Hours: Mon, Tue, Wed, Thu, Sat 8:00 AM–5:00 PM. Closed Fri, Sun.
 - **Lincoln, NE** — 5715 S 34th St, Suite 300, 68516 — Ext 703
+  Hours: Mon, Tue, Fri, Sat 9:00 AM–6:00 PM. Closed Wed, Thu, Sun.
 - **Omaha, NE** — 14450 W Center Rd, Suite 210, 68144 — Ext 707 (BLS coming soon)
+  Hours: Tue–Sat 8:00 AM–5:00 PM. Closed Sun, Mon.
 - **Topeka, KS** — 2800 S.W. Wanamaker Rd., Ste. 150, 66614 — Ext 713
+  Hours: Mon, Tue, Fri, Sat 9:00 AM–6:00 PM. Closed Wed, Thu, Sun.
 
 **Toll-free:** 1-877-879-2531 (1-877-TRY-BLE-1) | **Email:** info@ble.training
 
@@ -85,10 +91,14 @@ export async function POST(request: Request) {
     const MAX_MESSAGES = 20;
     const recentMessages = messages.slice(-MAX_MESSAGES);
 
+    // Add current day/time context so the bot can answer "who's open now"
+    const now = new Date();
+    const nowContext = `\n\n## Current Date & Time (Eastern Time)\nIt is currently ${now.toLocaleString("en-US", { timeZone: "America/New_York", weekday: "long", month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" })}. When a user asks which centers are open right now, check the hours above and tell them. Note that centers are in different time zones (TX/KS = Central, PA/OH = Eastern, NE = Central).`;
+
     const response = await client.messages.create({
       model: "claude-haiku-4-5",
       max_tokens: 500,
-      system: SYSTEM_PROMPT,
+      system: SYSTEM_PROMPT + nowContext,
       messages: recentMessages.map((m) => ({
         role: m.role,
         content: m.content,
@@ -117,7 +127,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error: "Something went wrong. Please try again or call 1-877-879-2531.",
-        debug: message,
+        debug: process.env.NODE_ENV === "development" ? message : undefined,
       },
       { status: 500 }
     );

@@ -207,9 +207,9 @@ export default function CatalogClient() {
                 {CAT_META[activeCategory]?.emoji || "📚"}
               </span>
               <div>
-                <h1 className="font-serif text-3xl md:text-4xl text-white">
+                <h2 className="font-serif text-3xl md:text-4xl text-white">
                   {activeCategory}
-                </h1>
+                </h2>
                 <p className="mt-1 text-white/60 text-sm">
                   {filteredCourses.length} courses available
                 </p>

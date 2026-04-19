@@ -367,9 +367,13 @@ export default function ScorecardClient() {
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
             Your Results
           </span>
-          <h1 className="mt-4 font-serif text-5xl md:text-7xl text-white">
+          <div
+            role="status"
+            aria-label={`Score ${percentage} percent`}
+            className="mt-4 font-serif text-5xl md:text-7xl text-white"
+          >
             {percentage}<span className="text-crimson">%</span>
-          </h1>
+          </div>
           <div className={`mt-6 inline-flex items-center gap-2 rounded-full px-5 py-2 border ${stage.bg}`}>
             <StageIcon className={`h-5 w-5 ${stage.color}`} />
             <span className={`text-sm font-bold uppercase tracking-wider ${stage.color}`}>

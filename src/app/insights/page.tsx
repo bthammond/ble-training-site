@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Clock, BookOpen } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Insights — Knowledge Hub for Business Owners",
@@ -80,8 +81,31 @@ const ARTICLES = [
 ];
 
 export default function InsightsPage() {
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": "https://www.ble.training/insights#blog",
+    name: "BLE Training Insights",
+    description:
+      "Deep thinking on succession planning, team performance, leadership development, and growing owner-led businesses.",
+    url: "https://www.ble.training/insights",
+    publisher: { "@id": "https://www.ble.training/#organization" },
+  };
+
+  const schema = [
+    blogSchema,
+    breadcrumbSchema([
+      { name: "Home", url: "https://www.ble.training" },
+      { name: "Insights", url: "https://www.ble.training/insights" },
+    ]),
+  ];
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <section className="bg-black text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 md:py-32">
           <div className="flex items-center gap-3 text-crimson mb-5">

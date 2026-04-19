@@ -4,6 +4,7 @@ import { ShieldCheck, Clock, Award, Users, ArrowRight, MapPin } from "lucide-rea
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import PartnerLogos from "@/components/PartnerLogos";
 import { LOCATIONS } from "@/lib/locations";
+import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Proctored Testing Centers",
@@ -44,8 +45,26 @@ const FEATURES = [
 ];
 
 export default function TestingPage() {
+  const schema = [
+    serviceSchema({
+      name: "Proctored Testing",
+      description:
+        "Computer-based proctored exam delivery at six U.S. testing centers. Authorized partner for Pearson VUE, Prometric, PSI, Meazure Learning, Kryterion, ETS, Scantron, and Examity.",
+      url: "https://www.ble.training/testing",
+      serviceType: "Proctored Testing Services",
+    }),
+    breadcrumbSchema([
+      { name: "Home", url: "https://www.ble.training" },
+      { name: "Testing", url: "https://www.ble.training/testing" },
+    ]),
+  ];
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       {/* HERO */}
       <section className="relative bg-black text-white overflow-hidden">
         <div

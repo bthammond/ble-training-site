@@ -13,6 +13,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Organizational Training & Systems",
@@ -79,8 +80,26 @@ const CAPABILITIES = [
 ];
 
 export default function HowWeWorkPage() {
+  const schema = [
+    serviceSchema({
+      name: "Organizational Training & Systems",
+      description:
+        "Custom training programs, onboarding systems, and coaching frameworks for businesses at every stage. Leadership development, team performance, compliance training, and curriculum design.",
+      url: "https://www.ble.training/how-we-work",
+      serviceType: "Corporate Training",
+    }),
+    breadcrumbSchema([
+      { name: "Home", url: "https://www.ble.training" },
+      { name: "How We Work", url: "https://www.ble.training/how-we-work" },
+    ]),
+  ];
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       {/* HERO */}
       <section className="bg-black text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 md:py-32">

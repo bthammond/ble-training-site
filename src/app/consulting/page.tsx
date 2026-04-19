@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Heart, Compass, Shield, TrendingUp, Users2, Handshake, ArrowRight } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Business Consulting",
@@ -73,8 +74,26 @@ const FIT_CRITERIA = [
 ];
 
 export default function ConsultingPage() {
+  const schema = [
+    serviceSchema({
+      name: "Business Consulting",
+      description:
+        "Strategic consulting for business leaders, owners, and family-run companies. Growth strategy, leadership coaching, succession planning, transaction advisory, and operational consulting.",
+      url: "https://www.ble.training/consulting",
+      serviceType: "Business Consulting",
+    }),
+    breadcrumbSchema([
+      { name: "Home", url: "https://www.ble.training" },
+      { name: "Business Consulting", url: "https://www.ble.training/consulting" },
+    ]),
+  ];
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       {/* HERO */}
       <section className="relative bg-black text-white overflow-hidden">
         <div

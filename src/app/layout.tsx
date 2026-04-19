@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import ChatWidget from "@/components/ChatWidget";
+import { ORG_SCHEMA, WEBSITE_SCHEMA } from "@/lib/schema";
 import "./globals.css";
 
 const inter = Inter({
@@ -78,6 +79,13 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${playfair.variable}`}>
       <head>
+        {/* Schema.org structured data — Organization + Website */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([ORG_SCHEMA, WEBSITE_SCHEMA]),
+          }}
+        />
         {/* Google Analytics (GA4) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-1JGH1MD3XZ"

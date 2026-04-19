@@ -10,6 +10,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { personSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "About BLE Training — Twenty Years of Doing the Work",
@@ -55,8 +56,20 @@ const VALUES = [
 ];
 
 export default function AboutPage() {
+  const schema = [
+    personSchema(),
+    breadcrumbSchema([
+      { name: "Home", url: "https://www.ble.training" },
+      { name: "About", url: "https://www.ble.training/about" },
+    ]),
+  ];
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       {/* HERO */}
       <section className="bg-black text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 md:py-32">

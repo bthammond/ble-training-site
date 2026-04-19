@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Heart, Compass, Shield, TrendingUp, Users2, Handshake, ArrowRight } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
@@ -103,13 +104,18 @@ export default function ConsultingPage() {
       />
       {/* HERO */}
       <section className="relative bg-black text-white overflow-hidden">
+        <Image
+          src="/ble-family-business.jpg"
+          alt=""
+          aria-hidden
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-40"
+        />
         <div
           aria-hidden
-          className="absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 80%, #9e1b32, transparent 45%)",
-          }}
+          className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/50"
         />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-32">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">

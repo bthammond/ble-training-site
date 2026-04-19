@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Users, ShieldCheck, Building2, Heart, Award, Clock } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import CompanyValues from "@/components/CompanyValues";
@@ -54,8 +55,21 @@ export default function WhyBLEPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-black text-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 md:py-28 text-center">
+      <section className="relative bg-black text-white overflow-hidden">
+        <Image
+          src="/ble-training-session.jpg"
+          alt=""
+          aria-hidden
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-30"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/60"
+        />
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-20 md:py-28 text-center">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
             Why BLE Training
           </span>

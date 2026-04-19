@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-black text-white min-h-[85vh] flex items-center">
       <Image
-        src="/home-hero.png"
+        src="/ble-hero-main.jpg"
         alt=""
         aria-hidden
         fill

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ChevronRight, Clock, Calendar } from "lucide-react";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import type { Article } from "@/lib/articles";
@@ -21,13 +22,16 @@ export default function ArticleLayout({ article, children }: Props) {
   const url = `https://www.ble.training/insights/${article.slug}`;
 
   const schema = [
-    articleSchema({
-      headline: article.title,
-      description: article.metaDescription,
-      url,
-      datePublished: article.publishDate,
-      author: article.author,
-    }),
+    {
+      ...articleSchema({
+        headline: article.title,
+        description: article.metaDescription,
+        url,
+        datePublished: article.publishDate,
+        author: article.author,
+      }),
+      image: `https://www.ble.training${article.heroImage}`,
+    },
     breadcrumbSchema([
       { name: "Home", url: "https://www.ble.training" },
       { name: "Insights", url: "https://www.ble.training/insights" },
@@ -92,6 +96,22 @@ export default function ArticleLayout({ article, children }: Props) {
               {article.readTime}
             </span>
             <span>By {article.author}</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Hero image */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+          <div className="relative aspect-[3/2] w-full overflow-hidden border-t-4 border-crimson shadow-sm">
+            <Image
+              src={article.heroImage}
+              alt={article.heroAlt}
+              fill
+              priority
+              sizes="(min-width: 768px) 768px, 100vw"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>

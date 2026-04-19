@@ -20,6 +20,8 @@ export type Article = {
   readTime: string;
   publishDate: string; // ISO YYYY-MM-DD
   author: string;
+  heroImage: string; // path relative to /public
+  heroAlt: string;
 };
 
 export const ARTICLES: Article[] = [
@@ -34,6 +36,8 @@ export const ARTICLES: Article[] = [
     readTime: "7 min read",
     publishDate: "2026-03-22",
     author: "The BLE Training Team",
+    heroImage: "/article-onboarding.jpg",
+    heroAlt: "A structured onboarding conversation between a new hire and their manager.",
   },
   {
     slug: "real-cost-of-leadership-gap",
@@ -46,6 +50,8 @@ export const ARTICLES: Article[] = [
     readTime: "8 min read",
     publishDate: "2026-02-18",
     author: "The BLE Training Team",
+    heroImage: "/article-leadership-gap.jpg",
+    heroAlt: "An executive weighing the cost of an undertrained leadership bench.",
   },
   {
     slug: "what-to-expect-pearson-vue-testing-center",
@@ -58,6 +64,8 @@ export const ARTICLES: Article[] = [
     readTime: "6 min read",
     publishDate: "2026-01-15",
     author: "The BLE Training Team",
+    heroImage: "/article-pearson-vue.jpg",
+    heroAlt: "Inside a professional proctored testing center workstation.",
   },
   {
     slug: "why-best-performers-make-worst-managers",
@@ -70,6 +78,8 @@ export const ARTICLES: Article[] = [
     readTime: "8 min read",
     publishDate: "2025-12-09",
     author: "The BLE Training Team",
+    heroImage: "/article-manager-training.jpg",
+    heroAlt: "A first-time manager being coached through a team meeting.",
   },
   {
     slug: "family-business-succession-guide",
@@ -82,6 +92,8 @@ export const ARTICLES: Article[] = [
     readTime: "9 min read",
     publishDate: "2025-11-12",
     author: "The BLE Training Team",
+    heroImage: "/article-succession-plan.jpg",
+    heroAlt: "Two generations of a family business working through a succession plan.",
   },
 ];
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   MessageSquare,
   PenTool,
@@ -108,8 +109,21 @@ export default function HowWeWorkPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       {/* HERO */}
-      <section className="bg-black text-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 md:py-32">
+      <section className="relative bg-black text-white overflow-hidden">
+        <Image
+          src="/ble-training-session.jpg"
+          alt=""
+          aria-hidden
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-40"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/50"
+        />
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 md:py-32">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
             Our Approach
           </span>

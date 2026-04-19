@@ -9,7 +9,7 @@ const INTERESTS = [
   "Proctored Testing",
   "Leadership Coaching",
   "Family Business / Succession",
-  "Other",
+  "General Inquiry",
 ];
 
 export default function LeadForm() {
@@ -35,7 +35,7 @@ export default function LeadForm() {
 
     const subject = encodeURIComponent(`New Lead — ${interest} — ${name}`);
     const body = encodeURIComponent(
-      `New inquiry from bletraining.com:\n\n` +
+      `New inquiry from www.ble.training:\n\n` +
       `Name: ${name}\n` +
       `Company: ${company || "Not provided"}\n` +
       `Email: ${email}\n` +

@@ -8,6 +8,7 @@ import TestimonialSlider from "@/components/TestimonialSlider";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { LOCATIONS } from "@/lib/locations";
 import { PARTNERS } from "@/lib/partners";
+import MidPageScorecardCTA from "@/components/MidPageScorecardCTA";
 
 export default function Home() {
   return (
@@ -192,6 +193,9 @@ export default function Home() {
           </AnimateOnScroll>
         </div>
       </section>
+
+      {/* Mid-page Scorecard CTA band */}
+      <MidPageScorecardCTA />
 
       {/* 4 — STATS: Proof you've done this before */}
       <Stats />

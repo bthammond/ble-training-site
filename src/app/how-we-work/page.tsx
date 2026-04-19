@@ -13,6 +13,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import MidPageScorecardCTA from "@/components/MidPageScorecardCTA";
 import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -208,6 +209,9 @@ export default function HowWeWorkPage() {
           </div>
         </div>
       </section>
+
+      {/* Mid-page Scorecard CTA */}
+      <MidPageScorecardCTA />
 
       {/* TRAIN → CERTIFY → GROW BRIDGE */}
       <section className="bg-black text-white">

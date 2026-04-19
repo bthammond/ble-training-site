@@ -87,7 +87,13 @@ export default function Header() {
             </li>
           </ul>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              href="/scorecard"
+              className="inline-flex items-center justify-center border-2 border-crimson px-5 py-[10px] text-xs font-bold uppercase tracking-wider text-crimson hover:bg-crimson hover:text-white transition-colors"
+            >
+              Free Scorecard
+            </Link>
             <Link
               href="/register"
               className="inline-flex items-center justify-center bg-crimson px-6 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
@@ -108,6 +114,15 @@ export default function Header() {
         {open && (
           <div className="lg:hidden border-t border-slate-200 bg-white">
             <ul className="px-6 py-4 flex flex-col gap-3 text-sm uppercase tracking-wider font-bold">
+              <li>
+                <Link
+                  href="/scorecard"
+                  onClick={() => setOpen(false)}
+                  className="block py-2 text-crimson hover:text-crimson-soft"
+                >
+                  Free Scorecard →
+                </Link>
+              </li>
               {NAV_LINKS.map((l) => (
                 <li key={l.href}>
                   <Link
@@ -126,6 +141,15 @@ export default function Header() {
                   className="block py-2 text-black hover:text-crimson"
                 >
                   Contact
+                </Link>
+              </li>
+              <li className="pt-2">
+                <Link
+                  href="/register"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center w-full bg-crimson px-6 py-3 text-xs font-bold uppercase tracking-wider text-white"
+                >
+                  Schedule a Test
                 </Link>
               </li>
             </ul>

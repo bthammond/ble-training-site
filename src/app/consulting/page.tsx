@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Heart, Compass, Shield, TrendingUp, Users2, Handshake, ArrowRight } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import MidPageScorecardCTA from "@/components/MidPageScorecardCTA";
 import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -217,6 +218,9 @@ export default function ConsultingPage() {
           </div>
         </div>
       </section>
+
+      {/* Mid-page Scorecard CTA */}
+      <MidPageScorecardCTA />
 
       {/* TRAIN → CERTIFY → GROW BRIDGE */}
       <section className="bg-black text-white">

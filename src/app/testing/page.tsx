@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ShieldCheck, Clock, Award, Users, ArrowRight, MapPin } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import PartnerLogos from "@/components/PartnerLogos";
+import MidPageScorecardCTA from "@/components/MidPageScorecardCTA";
 import { LOCATIONS } from "@/lib/locations";
 import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 
@@ -152,6 +153,9 @@ export default function TestingPage() {
           </div>
         </div>
       </section>
+
+      {/* Mid-page Scorecard CTA */}
+      <MidPageScorecardCTA />
 
       {/* TRAIN → CERTIFY → GROW BRIDGE */}
       <section className="bg-black text-white">

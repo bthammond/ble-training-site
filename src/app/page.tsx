@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, Layers, Compass, ClipboardCheck, MapPin } from "lucide-react";
+import {
+  ArrowRight,
+  Layers,
+  Compass,
+  ClipboardCheck,
+  MapPin,
+  ChevronDown,
+} from "lucide-react";
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
@@ -10,11 +17,88 @@ import { LOCATIONS } from "@/lib/locations";
 import { PARTNERS } from "@/lib/partners";
 import MidPageScorecardCTA from "@/components/MidPageScorecardCTA";
 
+const HOME_FAQS = [
+  {
+    q: "What types of businesses does BLE Training work with?",
+    a: "BLE Training specializes in mid-market and owner-led businesses with 25 to 500 employees. We work across industries including manufacturing, healthcare, logistics, professional services, and family-owned businesses — and we have deep specialty practices for family business succession and founder-led operations.",
+  },
+  {
+    q: "How is BLE Training different from other training companies?",
+    a: "We build every program from scratch for each client — we do not resell off-the-shelf curriculum. Our team has led real organizations and brings practitioner experience, not just academic frameworks. We also offer training, consulting, and testing under one roof.",
+  },
+  {
+    q: "Do you offer proctored testing for professional certifications?",
+    a: "Yes. BLE Training operates 6 proctored testing centers across the United States, authorized for 8 major testing providers including Pearson VUE, Prometric, PSI, Meazure Learning, Kryterion, ETS, Scantron, and Examity. Centers are ADA-accessible with private workstations and trained proctors.",
+  },
+  {
+    q: "What is the Business Health Scorecard?",
+    a: "The BLE Training Business Health Scorecard is a free 5-minute assessment that evaluates your organization across 6 dimensions: Leadership, Team, Operations, Culture, Growth, and Succession Readiness. You receive a personalized report with recommendations.",
+  },
+  {
+    q: "Do you work with family-owned businesses?",
+    a: "Yes. Family business succession and governance is one of our specialty practices. Our consulting work covers ownership transitions, next-generation leadership development, board design, and the relationship-aware guidance that family-led operations require.",
+  },
+  {
+    q: "How long does a typical training engagement last?",
+    a: "Engagements range from single-session workshops to multi-year leadership development programs. Most corporate training engagements run 3–12 months. Consulting engagements are scoped around the specific problem — typically 3 to 18 months. We scope every engagement to fit the problem, not a template.",
+  },
+];
+
 export default function Home() {
+  const homeFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: HOME_FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqSchema) }}
+      />
       {/* 1 — HERO: Hook them */}
       <Hero />
+
+      {/* 1.5 — ABOUT (plain-factual block for Google + AI search engines) */}
+      <section className="bg-white border-b border-slate-200">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-12">
+          <p className="text-base md:text-lg text-black/70 leading-relaxed">
+            <strong className="text-black">BLE Training</strong> — operating as{" "}
+            <strong className="text-black">Bedford, Louis &amp; Ellicott, LLC</strong> —
+            is a U.S.-based corporate training, business consulting, and
+            proctored testing company founded in <strong>2007</strong>. We
+            specialize in mid-market and owner-led businesses with 25–500
+            employees, offering custom{" "}
+            <Link href="/how-we-work" className="text-crimson hover:text-crimson-soft underline">
+              organizational training programs
+            </Link>
+            ,{" "}
+            <Link href="/consulting" className="text-crimson hover:text-crimson-soft underline">
+              business consulting
+            </Link>
+            {" "}with specialty depth in{" "}
+            <Link
+              href="/insights/family-business-succession-guide"
+              className="text-crimson hover:text-crimson-soft underline"
+            >
+              family business succession
+            </Link>
+            , and{" "}
+            <Link href="/testing" className="text-crimson hover:text-crimson-soft underline">
+              six nationwide proctored testing centers
+            </Link>
+            {" "}authorized for Pearson VUE, Prometric, PSI, and five other
+            providers. Headquartered in Pennsylvania and serving the
+            continental United States across manufacturing, healthcare,
+            logistics, financial services, and professional services.
+          </p>
+        </div>
+      </section>
 
       {/* 2 — PROBLEM: Show you understand their pain */}
       <section className="bg-white border-b border-slate-200">
@@ -309,6 +393,49 @@ export default function Home() {
               Register with Red Cross <ArrowRight className="h-4 w-4" />
             </a>
           </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* 8.5 — FAQ accordion (collapsed by default, feeds AI search) */}
+      <section className="bg-white border-t border-slate-200">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 py-20">
+          <AnimateOnScroll>
+            <div className="text-center max-w-2xl mx-auto">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+                Common Questions
+              </span>
+              <h2 className="mt-3 font-serif text-3xl md:text-4xl text-black">
+                Quick answers.
+              </h2>
+              <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
+            </div>
+          </AnimateOnScroll>
+
+          <div className="mt-12 space-y-3">
+            {HOME_FAQS.map((faq) => (
+              <details
+                key={faq.q}
+                className="group border border-slate-200 bg-white hover:border-crimson/40 transition-colors"
+              >
+                <summary className="flex items-start justify-between gap-4 cursor-pointer list-none p-5 font-serif text-lg text-black">
+                  <span>{faq.q}</span>
+                  <ChevronDown className="h-5 w-5 shrink-0 mt-0.5 text-crimson transition-transform group-open:rotate-180" />
+                </summary>
+                <p className="px-5 pb-5 text-black/70 leading-relaxed">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/faq"
+              className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors"
+            >
+              See all FAQs <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 

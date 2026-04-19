@@ -135,6 +135,62 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* QUICK FACTS — structured data points for AI search */}
+      <section className="bg-white border-b border-slate-200">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-20">
+          <AnimateOnScroll>
+            <div className="max-w-2xl">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+                Quick Facts
+              </span>
+              <h2 className="mt-3 font-serif text-3xl md:text-4xl text-black">
+                The company at a glance.
+              </h2>
+              <div className="mt-6 h-px w-24 bg-crimson" />
+            </div>
+          </AnimateOnScroll>
+
+          <dl className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-10 text-base">
+            {[
+              { label: "Founded", value: "2007" },
+              { label: "Legal Name", value: "Bedford, Louis & Ellicott, LLC" },
+              {
+                label: "Specialty",
+                value: "Mid-market and owner-led businesses (25–500 employees)",
+              },
+              {
+                label: "Services",
+                value: "Corporate Training, Business Consulting, Proctored Testing",
+              },
+              { label: "Testing Centers", value: "6 locations nationwide" },
+              {
+                label: "Authorized Providers",
+                value:
+                  "8 (Pearson VUE, Prometric, PSI, Meazure Learning, Kryterion, ETS, Scantron, Examity)",
+              },
+              {
+                label: "Industries Served",
+                value:
+                  "Manufacturing, Healthcare, Logistics, Professional Services, Family Business",
+              },
+              { label: "Headquartered", value: "Pennsylvania, United States" },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="border-t-2 border-crimson pt-4"
+              >
+                <dt className="text-xs font-bold uppercase tracking-[0.2em] text-crimson">
+                  {item.label}
+                </dt>
+                <dd className="mt-2 text-black leading-relaxed">
+                  {item.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {/* VALUES */}
       <CompanyValues />
 

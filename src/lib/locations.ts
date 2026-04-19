@@ -203,9 +203,12 @@ export const HOURS_DISCLAIMER =
 
 export const ORG = {
   name: "BLE Training",
-  url: "https://bletraining.com",
-  logo: "https://bletraining.com/BLE-Training---black-letters.png",
-  sameAs: [] as string[],
+  url: "https://www.ble.training",
+  logo: "https://www.ble.training/BLE-Training---black-letters.png",
+  sameAs: [
+    "https://www.linkedin.com/company/bletraining",
+    "https://www.facebook.com/bletraining",
+  ] as string[],
 };
 
 export function directionsUrl(address: string): string {

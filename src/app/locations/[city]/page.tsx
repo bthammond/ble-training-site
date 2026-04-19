@@ -71,7 +71,7 @@ export default async function LocationPage(props: {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${ORG.url}/locations/${loc.slug}#business`,
-    name: `${ORG.name} — ${loc.city}, ${loc.state}`,
+    name: `BLE Training Testing Center — ${loc.city}, ${loc.state}`,
     image: ORG.logo,
     url: `${ORG.url}/locations/${loc.slug}`,
     telephone: phoneE164WithExt(loc.extension),
@@ -84,9 +84,35 @@ export default async function LocationPage(props: {
       postalCode: loc.postalCode,
       addressCountry: "US",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: loc.coordinates.lat,
+      longitude: loc.coordinates.lng,
+    },
     openingHoursSpecification: openingHoursSpec(loc.schedule),
+    priceRange: "$$",
     areaServed: loc.stateName,
-    parentOrganization: { "@id": `${ORG.url}#org` },
+    parentOrganization: {
+      "@type": "Organization",
+      name: "BLE Training",
+      url: "https://www.ble.training",
+    },
+    amenityFeature: [
+      { "@type": "LocationFeatureSpecification", name: "ADA Accessible", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Private Workstations", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Free Parking", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Secure Locker Storage", value: true },
+    ],
+  };
+
+  const breadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.ble.training" },
+      { "@type": "ListItem", position: 2, name: "Testing Centers", item: "https://www.ble.training/locations" },
+      { "@type": "ListItem", position: 3, name: `${loc.city}, ${loc.state}`, item: `https://www.ble.training/locations/${loc.slug}` },
+    ],
   };
 
   const organization = {
@@ -128,6 +154,10 @@ export default async function LocationPage(props: {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
 
       {/* HEADER STRIP */}

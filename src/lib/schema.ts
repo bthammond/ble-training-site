@@ -36,23 +36,66 @@ export const ORG_SCHEMA = {
       "Organizational Development",
     ],
   },
-  sameAs: ["https://www.linkedin.com/company/bletraining"],
+  sameAs: [
+    "https://www.linkedin.com/company/bletraining",
+    "https://www.facebook.com/bletraining",
+  ],
   address: {
     "@type": "PostalAddress",
     addressCountry: "US",
     addressRegion: "PA",
   },
   areaServed: "US",
+  numberOfEmployees: {
+    "@type": "QuantitativeValue",
+    minValue: 10,
+    maxValue: 50,
+  },
   knowsAbout: [
     "Corporate Training",
     "Leadership Development",
-    "Business Consulting",
-    "Succession Planning",
     "Family Business Consulting",
+    "Succession Planning",
     "Proctored Testing",
+    "Pearson VUE Testing",
     "Organizational Development",
+    "Mid-Market Business Consulting",
+    "Business Consulting",
     "Team Performance",
   ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "BLE Training Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Organizational Training",
+          description:
+            "Custom corporate training programs for mid-market businesses",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Business Consulting",
+          description:
+            "Succession planning and leadership consulting for owner-led businesses",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Proctored Testing",
+          description:
+            "Authorized testing centers for Pearson VUE, Prometric, PSI, and other providers",
+        },
+      },
+    ],
+  },
 };
 
 export const WEBSITE_SCHEMA = {

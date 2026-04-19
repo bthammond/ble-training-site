@@ -9,7 +9,8 @@ export const ORG_SCHEMA = {
   "@type": "Organization",
   "@id": "https://www.ble.training/#organization",
   name: "BLE Training",
-  alternateName: "BLE",
+  legalName: "Bedford, Louis & Ellicott, LLC",
+  alternateName: ["BLE", "Bedford Louis Ellicott", "Bedford, Louis & Ellicott, LLC"],
   url: "https://www.ble.training",
   logo: "https://www.ble.training/BLE-Training---black-letters.png",
   description:

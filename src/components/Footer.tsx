@@ -115,7 +115,7 @@ export default function Footer() {
 
       <div className="border-t border-slate-200 bg-white text-black/60">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
-          <p>&copy; {year} BLE Training. All rights reserved.</p>
+          <p>&copy; {year} Bedford, Louis &amp; Ellicott, LLC | BLE Training. All rights reserved.</p>
           <p className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-crimson">Privacy</Link>
             <Link href="/cookies" className="hover:text-crimson">Cookies</Link>

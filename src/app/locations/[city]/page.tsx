@@ -368,17 +368,18 @@ export default async function LocationPage(props: {
           <AnimateOnScroll>
             <div className="max-w-3xl">
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-                BLE In {loc.city}
+                For Business Owners &amp; HR Leaders
               </span>
               <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black leading-tight">
                 We&apos;re more than a testing center in {loc.city}.
               </h2>
               <div className="mt-6 h-px w-24 bg-crimson" />
               <p className="mt-6 text-lg text-black/75 leading-relaxed">
-                Most companies hire one vendor to test, another to train, and
-                a third to consult. In {loc.city}, BLE does all three — because
-                training without credentials is incomplete, and strategy without
-                trained people is just a plan on paper.
+                If your team members are taking certification exams at our
+                {" "}{loc.city} center, BLE Training also offers corporate
+                training and consulting programs designed for mid-market
+                businesses — including yours. We help companies build the
+                skills their people are testing for.
               </p>
               <p className="mt-4 text-lg text-black/75 leading-relaxed">
                 Whether you&apos;re certifying your team, developing their

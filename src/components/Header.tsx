@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { href: "/how-we-work", label: "How We Work" },
   { href: "/consulting", label: "Business Consulting" },
   { href: "/locations", label: "Testing Centers" },
+  { href: "/resources", label: "Resources" },
   { href: "/about", label: "About" },
 ];
 

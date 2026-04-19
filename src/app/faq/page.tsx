@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
@@ -108,7 +109,7 @@ const FAQS = [
 ];
 
 export default function FAQPage() {
-  const schemaData = {
+  const faqPageSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: FAQS.flatMap((cat) =>
@@ -119,6 +120,14 @@ export default function FAQPage() {
       }))
     ),
   };
+
+  const schemaData = [
+    faqPageSchema,
+    breadcrumbSchema([
+      { name: "Home", url: "https://www.ble.training" },
+      { name: "FAQ", url: "https://www.ble.training/faq" },
+    ]),
+  ];
 
   return (
     <>
@@ -151,16 +160,20 @@ export default function FAQPage() {
                 <h2 className="font-serif text-2xl text-black border-b-2 border-crimson pb-3 mb-6">
                   {cat.category}
                 </h2>
-                <div className="space-y-6">
+                <div className="space-y-3">
                   {cat.questions.map((faq) => (
-                    <div key={faq.q} className="border-b border-slate-200 pb-6">
-                      <h3 className="font-serif text-lg text-black">
-                        {faq.q}
-                      </h3>
-                      <p className="mt-2 text-black/70 leading-relaxed">
+                    <details
+                      key={faq.q}
+                      className="group border border-slate-200 bg-white hover:border-crimson/40 transition-colors"
+                    >
+                      <summary className="flex items-start justify-between gap-4 cursor-pointer list-none p-5 font-serif text-lg text-black">
+                        <span>{faq.q}</span>
+                        <ChevronDown className="h-5 w-5 shrink-0 mt-0.5 text-crimson transition-transform group-open:rotate-180" />
+                      </summary>
+                      <p className="px-5 pb-5 text-black/70 leading-relaxed">
                         {faq.a}
                       </p>
-                    </div>
+                    </details>
                   ))}
                 </div>
               </div>

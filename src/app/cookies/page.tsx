@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Cookie Policy | BLE Training",
   description: "How BLE Training uses cookies on our website.",
+  alternates: { canonical: "/cookies" },
 };
 
 export default function CookiePolicyPage() {

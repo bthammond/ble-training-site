@@ -21,7 +21,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bletraining.com"),
+  metadataBase: new URL("https://www.ble.training"),
+  alternates: { canonical: "/" },
   title: {
     default: "BLE Training — Build High-Performing Organizations",
     template: "%s | BLE Training",

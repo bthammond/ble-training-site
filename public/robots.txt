@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://bletraining.com/sitemap.xml
+Sitemap: https://www.ble.training/sitemap.xml

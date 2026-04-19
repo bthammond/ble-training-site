@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Accessibility Statement | BLE Training",
   description: "BLE Training is committed to making our website accessible to all visitors.",
+  alternates: { canonical: "/accessibility-statement" },
 };
 
 export default function AccessibilityPage() {

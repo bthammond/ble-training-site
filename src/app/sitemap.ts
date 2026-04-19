@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { LOCATIONS } from "@/lib/locations";
 
-const BASE = "https://bletraining.com";
+const BASE = "https://www.ble.training";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

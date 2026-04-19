@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "Test Day Requirements",
     "BLE Training Testing Center Tyler TX",
   ],
+  alternates: { canonical: "/register/checklist" },
 };
 
 const CHECKLIST = [

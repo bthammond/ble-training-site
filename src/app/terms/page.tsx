@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service | BLE Training",
   description: "BLE Training terms of service — the terms governing use of our website and services.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {
@@ -17,7 +18,7 @@ export default function TermsPage() {
         <div className="mt-10 space-y-8 text-black/80 leading-relaxed">
           <div>
             <h2 className="font-serif text-2xl text-black">Acceptance of Terms</h2>
-            <p>By accessing and using the BLE Training website (bletraining.com), you agree to be bound by these Terms of Service. If you do not agree, please do not use the site.</p>
+            <p>By accessing and using the BLE Training website (www.ble.training), you agree to be bound by these Terms of Service. If you do not agree, please do not use the site.</p>
           </div>
 
           <div>

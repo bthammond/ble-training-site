@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     description:
       "Select your authorized provider below to access secure registration at a BLE Training test center.",
   },
+  alternates: { canonical: "/register" },
 };
 
 const REQUIREMENTS = [

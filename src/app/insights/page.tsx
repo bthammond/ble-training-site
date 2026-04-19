@@ -7,8 +7,14 @@ import { breadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Insights — Knowledge Hub for Business Owners",
   description:
-    "Deep thinking on succession planning, team performance, leadership development, and growing owner-led businesses. From the BLE Training team.",
+    "Leadership, training, and business strategy insights for mid-market business owners and executives. New articles published monthly.",
   alternates: { canonical: "/insights" },
+  openGraph: {
+    title: "Insights | BLE Training",
+    description:
+      "Leadership, training, and business strategy insights for mid-market business owners and executives. New articles published monthly.",
+    url: "https://www.ble.training/insights",
+  },
 };
 
 const CORNERSTONE = [

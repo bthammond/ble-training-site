@@ -6,8 +6,14 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 export const metadata: Metadata = {
   title: "Why BLE Training — What Makes Us Different",
   description:
-    "Find out why companies and certification candidates choose BLE Training over the competition. 20 years of experience, 6 testing centers, hands-on consulting.",
+    "What makes BLE Training different from other corporate training companies? Practitioners, not professors. Custom programs, not off-the-shelf curriculum.",
   alternates: { canonical: "/why-ble" },
+  openGraph: {
+    title: "Why BLE Training",
+    description:
+      "What makes BLE Training different from other corporate training companies? Practitioners, not professors. Custom programs, not off-the-shelf curriculum.",
+    url: "https://www.ble.training/why-ble",
+  },
 };
 
 const DIFFERENTIATORS = [

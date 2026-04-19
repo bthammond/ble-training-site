@@ -28,7 +28,8 @@ export const metadata: Metadata = {
     template: "%s | BLE Training",
   },
   description:
-    "Enterprise-tested training, organizational design, and consulting services for business leaders and growing companies. Six testing centers nationwide.",
+    "Corporate training, business consulting, and proctored testing for mid-market and owner-led businesses. BLE Training has served 200+ companies since 2007.",
+  authors: [{ name: "BLE Training" }],
   keywords: [
     "Corporate Training",
     "Organizational Design",
@@ -46,8 +47,10 @@ export const metadata: Metadata = {
     type: "website",
     title: "BLE Training — Build High-Performing Organizations",
     description:
-      "Enterprise-tested training, organizational design, and consulting services for business leaders and growing companies.",
+      "Corporate training, business consulting, and proctored testing for mid-market and owner-led businesses. BLE Training has served 200+ companies since 2007.",
     siteName: "BLE Training",
+    url: "https://www.ble.training",
+    locale: "en_US",
     images: [
       {
         url: "/BLE-Training---black-letters.png",
@@ -61,7 +64,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BLE Training — Build High-Performing Organizations",
     description:
-      "Enterprise-tested training, organizational design, and consulting services for business leaders and growing companies.",
+      "Corporate training, business consulting, and proctored testing for mid-market and owner-led businesses. BLE Training has served 200+ companies since 2007.",
     images: ["/BLE-Training---black-letters.png"],
   },
   robots: { index: true, follow: true },

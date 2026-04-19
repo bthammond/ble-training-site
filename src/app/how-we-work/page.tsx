@@ -18,8 +18,14 @@ import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Organizational Training & Systems",
   description:
-    "Custom training programs, onboarding systems, and coaching frameworks for businesses at every stage. Built around your people and goals.",
+    "See how BLE Training designs custom organizational training programs — built around your business, not a generic template. No off-the-shelf curriculum.",
   alternates: { canonical: "/how-we-work" },
+  openGraph: {
+    title: "Organizational Training & Systems | BLE Training",
+    description:
+      "See how BLE Training designs custom organizational training programs — built around your business, not a generic template. No off-the-shelf curriculum.",
+    url: "https://www.ble.training/how-we-work",
+  },
 };
 
 const STEPS = [

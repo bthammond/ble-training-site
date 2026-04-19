@@ -9,7 +9,13 @@ import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Proctored Testing Centers",
   description:
-    "Schedule your proctored exam at one of six BLE Testing Centers. Authorized partner for Pearson VUE, Prometric, PSI, and more.",
+    "BLE Training operates 6 proctored testing centers across the US, authorized for Pearson VUE, Prometric, PSI, and 5 other providers.",
+  openGraph: {
+    title: "Proctored Testing Centers | BLE Training",
+    description:
+      "BLE Training operates 6 proctored testing centers across the US, authorized for Pearson VUE, Prometric, PSI, and 5 other providers.",
+    url: "https://www.ble.training/testing",
+  },
   keywords: [
     "Proctored Testing Centers",
     "Professional Exam Proctoring",

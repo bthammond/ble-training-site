@@ -15,7 +15,13 @@ import { personSchema, breadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "About BLE Training — Twenty Years of Doing the Work",
   description:
-    "BLE Training is a Pennsylvania-based corporate training and consulting company founded in 2007. Six testing centers. Enterprise experience. Owner-focused.",
+    "BLE Training has been building high-performing organizations since 2007. Learn about our team, our story, and why we focus on mid-market businesses.",
+  openGraph: {
+    title: "About BLE Training",
+    description:
+      "BLE Training has been building high-performing organizations since 2007. Learn about our team, our story, and why we focus on mid-market businesses.",
+    url: "https://www.ble.training/about",
+  },
   keywords: [
     "About BLE Training",
     "Brian T. Hammond",

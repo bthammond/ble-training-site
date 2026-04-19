@@ -6,8 +6,14 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 export const metadata: Metadata = {
   title: "Case Studies — Client Results",
   description:
-    "Real results from real clients. See how BLE Training has helped owner-led businesses strengthen teams, plan transitions, and grow.",
+    "Real results from real businesses. Read how BLE Training helped companies solve succession, leadership, and operational challenges.",
   alternates: { canonical: "/case-studies" },
+  openGraph: {
+    title: "Case Studies | BLE Training",
+    description:
+      "Real results from real businesses. Read how BLE Training helped companies solve succession, leadership, and operational challenges.",
+    url: "https://www.ble.training/case-studies",
+  },
 };
 
 const CASES = [

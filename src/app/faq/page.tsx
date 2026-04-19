@@ -6,8 +6,14 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
-    "Answers to common questions about BLE Training's corporate training, proctored testing, consulting services, and testing center locations.",
+    "Answers to the most common questions about BLE Training's corporate training programs, business consulting services, and proctored testing centers.",
   alternates: { canonical: "/faq" },
+  openGraph: {
+    title: "FAQ | BLE Training",
+    description:
+      "Answers to the most common questions about BLE Training's corporate training programs, business consulting services, and proctored testing centers.",
+    url: "https://www.ble.training/faq",
+  },
 };
 
 const FAQS = [

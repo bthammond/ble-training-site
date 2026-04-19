@@ -8,7 +8,13 @@ import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Business Consulting",
   description:
-    "Strategic consulting for business leaders and owners. Growth strategy, leadership coaching, succession planning, and operational consulting from BLE Training.",
+    "BLE Training's business consulting services help owner-led and family businesses solve succession, leadership, and operational challenges.",
+  openGraph: {
+    title: "Business Consulting | BLE Training",
+    description:
+      "BLE Training's business consulting services help owner-led and family businesses solve succession, leadership, and operational challenges.",
+    url: "https://www.ble.training/consulting",
+  },
   keywords: [
     "Business Consulting",
     "Growth Strategy",

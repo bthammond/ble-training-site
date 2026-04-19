@@ -8,7 +8,13 @@ import { LOCATIONS, CONTACT } from "@/lib/locations";
 export const metadata: Metadata = {
   title: "Contact BLE Training",
   description:
-    "Talk to the BLE Training team. Schedule a consultation, book a test, or ask about our consulting and training services.",
+    "Contact BLE Training to schedule a conversation about corporate training, business consulting, or proctored certification testing.",
+  openGraph: {
+    title: "Contact | BLE Training",
+    description:
+      "Contact BLE Training to schedule a conversation about corporate training, business consulting, or proctored certification testing.",
+    url: "https://www.ble.training/contact",
+  },
   keywords: [
     "Contact BLE Training",
     "1-877-TRY-BLE-1",

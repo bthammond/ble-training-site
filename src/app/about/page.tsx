@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Shield,
-  HandHeart,
-  Flame,
-  Scale,
-  Sparkles,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import CompanyValues from "@/components/CompanyValues";
 import { personSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -32,34 +26,6 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/about" },
 };
-
-const VALUES = [
-  {
-    icon: Shield,
-    title: "Integrity",
-    desc: "We do the right thing when it is difficult. Our reputation is built on delivering what we promise, in writing, to every client.",
-  },
-  {
-    icon: HandHeart,
-    title: "Service to Others",
-    desc: "Every engagement is scoped around the outcomes our clients and their employees actually need — not a product we're selling.",
-  },
-  {
-    icon: Flame,
-    title: "Passion",
-    desc: "Great training is felt, not just delivered. Our instructors bring operational experience and genuine enthusiasm for the craft.",
-  },
-  {
-    icon: Scale,
-    title: "Consistency",
-    desc: "The same rigor, protocol, and quality — from our first kickoff call through every proctored exam and classroom hour.",
-  },
-  {
-    icon: Sparkles,
-    title: "Open-Mindedness",
-    desc: "We listen first. Each enterprise, agency, and candidate arrives with its own history, and our curriculum is shaped to match.",
-  },
-];
 
 export default function AboutPage() {
   const schema = [
@@ -170,46 +136,7 @@ export default function AboutPage() {
       </section>
 
       {/* VALUES */}
-      <section className="bg-white border-b border-slate-200">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
-          <AnimateOnScroll>
-            <div className="text-center max-w-3xl mx-auto">
-              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-                Our Values
-              </span>
-              <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black">
-                The principles we operate by.
-              </h2>
-              <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
-            </div>
-          </AnimateOnScroll>
-
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-            {VALUES.map((v, i) => {
-              const Icon = v.icon;
-              return (
-                <AnimateOnScroll key={v.title} delay={i * 70}>
-                  <div className="text-center">
-                    <div className="mx-auto flex h-16 w-16 items-center justify-center">
-                      <Icon
-                        className="h-12 w-12 text-crimson"
-                        strokeWidth={1.75}
-                      />
-                    </div>
-                    <h3 className="mt-5 font-serif text-xl font-bold text-black uppercase tracking-wide">
-                      {v.title}
-                    </h3>
-                    <div className="mx-auto mt-3 h-px w-10 bg-crimson" />
-                    <p className="mt-4 text-sm text-black leading-relaxed">
-                      {v.desc}
-                    </p>
-                  </div>
-                </AnimateOnScroll>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <CompanyValues />
 
       {/* LEADERSHIP — Brian Hammond */}
       <section className="bg-[#F7F7F7] border-b border-slate-200">

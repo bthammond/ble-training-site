@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Users, ShieldCheck, Building2, Heart, Award, Clock } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import CompanyValues from "@/components/CompanyValues";
 
 export const metadata: Metadata = {
   title: "Why BLE Training — What Makes Us Different",
@@ -114,6 +115,9 @@ export default function WhyBLEPage() {
           </div>
         </div>
       </section>
+
+      {/* VALUES */}
+      <CompanyValues />
 
       {/* CTA */}
       <section className="bg-white">

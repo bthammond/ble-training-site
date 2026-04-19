@@ -68,8 +68,8 @@ export default function Home() {
       <section className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-5xl px-6 lg:px-8 py-12">
           <p className="text-base md:text-lg text-black/70 leading-relaxed">
-            <strong className="text-black">BLE Training</strong> — operating as{" "}
             <strong className="text-black">Bedford, Louis &amp; Ellicott, LLC</strong> —
+            operating as <strong className="text-black">BLE Training</strong> —
             is a U.S.-based corporate training, business consulting, and
             proctored testing company founded in <strong>2007</strong>. We
             specialize in mid-market and owner-led businesses with 25–500

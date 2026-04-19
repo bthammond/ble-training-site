@@ -55,19 +55,19 @@ export default function Header() {
           scrolled ? "shadow-md" : ""
         }`}
       >
-        <nav className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center" aria-label="BLE Training home">
+        <nav className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between gap-6 h-20">
+          <Link href="/" className="flex items-center shrink-0" aria-label="BLE Training home">
             <Image
               src="/BLE-Training---black-letters.png"
               alt="BLE Training"
               width={280}
               height={56}
-              className="h-14 w-auto"
+              className="h-11 xl:h-12 w-auto"
               priority
             />
           </Link>
 
-          <ul className="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-wider">
+          <ul className="hidden lg:flex items-center gap-5 xl:gap-7 text-xs xl:text-[13px] font-bold uppercase tracking-wide whitespace-nowrap">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
                 <Link
@@ -78,26 +78,18 @@ export default function Header() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link
-                href="/contact"
-                className="text-black hover:text-crimson transition-colors"
-              >
-                Contact
-              </Link>
-            </li>
           </ul>
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
             <Link
               href="/scorecard"
-              className="inline-flex items-center justify-center border-2 border-crimson px-5 py-[10px] text-xs font-bold uppercase tracking-wider text-crimson hover:bg-crimson hover:text-white transition-colors"
+              className="inline-flex items-center justify-center border-2 border-crimson px-3 xl:px-4 py-2 text-[11px] xl:text-xs font-bold uppercase tracking-wide text-crimson hover:bg-crimson hover:text-white transition-colors whitespace-nowrap"
             >
               Free Scorecard
             </Link>
             <Link
               href="/register"
-              className="inline-flex items-center justify-center bg-crimson px-6 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+              className="inline-flex items-center justify-center bg-crimson px-4 xl:px-5 py-2.5 text-[11px] xl:text-xs font-bold uppercase tracking-wide text-white hover:bg-crimson-soft transition-colors whitespace-nowrap"
             >
               Schedule a Test
             </Link>

@@ -1,16 +1,6 @@
 import Image from "next/image";
 import AnimateOnScroll from "./AnimateOnScroll";
-
-const PARTNERS = [
-  { name: "Pearson VUE", logo: "/pearson-vue-logo.png", w: 200, h: 80 },
-  { name: "Prometric", logo: "/prometric-logo.png", w: 200, h: 80 },
-  { name: "PSI", logo: "/psi-logo.png", w: 200, h: 80 },
-  { name: "Meazure Learning", logo: "/meazure-learning-logo.png", w: 200, h: 80 },
-  { name: "Kryterion", logo: "/kryterion-logo.png", w: 200, h: 80 },
-  { name: "ETS", logo: "/ets-logo.png", w: 200, h: 80 },
-  { name: "Scantron", logo: "/scantron-logo.png", w: 200, h: 80 },
-  { name: "Examity", logo: "/examity-logo.png", w: 200, h: 80 },
-];
+import { PARTNERS } from "@/lib/partners";
 
 export default function PartnerLogos() {
   return (
@@ -22,18 +12,22 @@ export default function PartnerLogos() {
           </p>
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6">
             {PARTNERS.map((p) => (
-              <div
-                key={p.name}
+              <a
+                key={p.slug}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${p.name} — open registration in a new tab`}
                 className="flex items-center justify-center h-20 px-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
               >
                 <Image
-                  src={p.logo}
+                  src={p.logoSrc}
                   alt={p.name}
-                  width={p.w}
-                  height={p.h}
+                  width={200}
+                  height={80}
                   className="max-h-full max-w-full object-contain"
                 />
-              </div>
+              </a>
             ))}
           </div>
         </AnimateOnScroll>

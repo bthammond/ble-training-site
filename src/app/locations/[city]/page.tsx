@@ -25,6 +25,7 @@ import {
   openingHoursSpec,
   phoneE164WithExt,
 } from "@/lib/locations";
+import { PARTNERS } from "@/lib/partners";
 
 type Params = { city: string };
 
@@ -269,6 +270,39 @@ export default async function LocationPage(props: {
               </div>
             </div>
           </aside>
+        </div>
+      </section>
+
+      {/* AUTHORIZED PROVIDERS — pill links */}
+      <section className="bg-[#F7F7F7] border-t border-slate-200">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-14">
+          <div className="max-w-3xl">
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+              Authorized Providers
+            </span>
+            <h2 className="mt-3 font-serif text-2xl md:text-3xl text-black">
+              Register directly with the provider delivering your exam.
+            </h2>
+            <div className="mt-4 h-px w-24 bg-crimson" />
+            <p className="mt-4 text-sm text-black/70 leading-relaxed">
+              Our {loc.city} center is authorized to deliver exams for these
+              providers. Click through to schedule at this location.
+            </p>
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {PARTNERS.map((p) => (
+              <a
+                key={p.slug}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white border border-slate-300 px-4 py-2 text-sm font-semibold text-black hover:border-crimson hover:text-crimson hover:shadow-sm transition-all"
+              >
+                {p.name}
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 

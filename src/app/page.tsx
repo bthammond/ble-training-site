@@ -7,6 +7,7 @@ import ConsultingFeature from "@/components/ConsultingFeature";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { LOCATIONS } from "@/lib/locations";
+import { PARTNERS } from "@/lib/partners";
 
 export default function Home() {
   return (
@@ -248,28 +249,23 @@ export default function Home() {
               Authorized test delivery partner for
             </p>
             <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6">
-              {[
-                { name: "Pearson VUE", logo: "/pearson-vue-logo.png" },
-                { name: "Prometric", logo: "/prometric-logo.png" },
-                { name: "PSI", logo: "/psi-logo.png" },
-                { name: "Meazure Learning", logo: "/meazure-learning-logo.png" },
-                { name: "Kryterion", logo: "/kryterion-logo.png" },
-                { name: "ETS", logo: "/ets-logo.png" },
-                { name: "Scantron", logo: "/scantron-logo.png" },
-                { name: "Examity", logo: "/examity-logo.png" },
-              ].map((p) => (
-                <div
-                  key={p.name}
+              {PARTNERS.map((p) => (
+                <a
+                  key={p.slug}
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${p.name} — open registration in a new tab`}
                   className="flex items-center justify-center h-16 px-3 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                 >
                   <Image
-                    src={p.logo}
+                    src={p.logoSrc}
                     alt={p.name}
                     width={160}
                     height={64}
                     className="max-h-full max-w-full object-contain"
                   />
-                </div>
+                </a>
               ))}
             </div>
           </AnimateOnScroll>

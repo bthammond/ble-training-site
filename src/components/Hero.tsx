@@ -1,17 +1,25 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-black text-white min-h-[85vh] flex items-center">
+      <Image
+        src="/home-hero.png"
+        alt=""
+        aria-hidden
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+      />
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
-          backgroundImage:
-            "linear-gradient(115deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 50%, rgba(158,27,50,0.55) 100%), url('/home-hero.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          background:
+            "linear-gradient(115deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 50%, rgba(158,27,50,0.55) 100%)",
         }}
       />
 

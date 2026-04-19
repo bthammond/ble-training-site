@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { LOCATIONS } from "@/lib/locations";
+import { ARTICLES } from "@/lib/articles";
 
 const BASE = "https://www.ble.training";
 
@@ -36,5 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...locationRoutes];
+  const articleRoutes: MetadataRoute.Sitemap = ARTICLES.map((a) => ({
+    url: `${BASE}/insights/${a.slug}`,
+    lastModified: new Date(a.publishDate + "T12:00:00Z"),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...locationRoutes, ...articleRoutes];
 }

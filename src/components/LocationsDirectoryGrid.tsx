@@ -2,12 +2,12 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
-import { MapPin, ArrowRight, ExternalLink, Navigation } from "lucide-react";
+import { MapPin, ArrowRight, ExternalLink, Navigation, Phone } from "lucide-react";
 import { LOCATIONS, directionsUrl, type Location } from "@/lib/locations";
 import LocationSearchBar from "./LocationSearchBar";
-import LocationContact from "./LocationContact";
 import OpenClosedBadge from "./OpenClosedBadge";
 import ExpandableHours from "./ExpandableHours";
+import ManagerAvatar from "./ManagerAvatar";
 
 export default function LocationsDirectoryGrid() {
   const [displayed, setDisplayed] = useState<Location[]>(LOCATIONS);
@@ -71,8 +71,31 @@ export default function LocationsDirectoryGrid() {
                     <span>{loc.address}</span>
                   </address>
 
-                  <LocationContact extension={loc.extension} />
+                  <a
+                    href={`tel:${loc.localPhoneE164}`}
+                    className="mt-3 flex items-center gap-2 text-sm text-black hover:text-crimson transition-colors"
+                  >
+                    <Phone className="h-4 w-4 shrink-0 text-crimson" />
+                    <span className="font-semibold">{loc.localPhoneDisplay}</span>
+                    <span className="text-[10px] tracking-wide text-black/45 uppercase">
+                      Direct
+                    </span>
+                  </a>
+
                   <ExpandableHours schedule={loc.schedule} />
+
+                  {/* Manager preview */}
+                  <div className="mt-5 pt-4 border-t border-slate-200 flex items-center gap-3">
+                    <ManagerAvatar manager={loc.manager} size="sm" />
+                    <div className="min-w-0">
+                      <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-crimson">
+                        Center Manager
+                      </p>
+                      <p className="mt-0.5 font-serif text-base text-black truncate">
+                        {loc.manager.name}
+                      </p>
+                    </div>
+                  </div>
 
                   <div className="mt-6 flex flex-col sm:flex-row gap-3 mt-auto pt-4">
                     <Link

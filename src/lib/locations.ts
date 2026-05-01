@@ -13,6 +13,16 @@ export type Schedule = {
   display: string;
 };
 
+export type Manager = {
+  name: string;
+  /** 2-letter initials for headshot placeholder, e.g. "CM" */
+  initials: string;
+  title: string;
+  email: string;
+  /** Optional headshot in /public; falls back to initials avatar when omitted */
+  photo?: string;
+};
+
 export type Location = {
   slug: string;
   city: string;
@@ -24,6 +34,13 @@ export type Location = {
   region: string;
   postalCode: string;
   extension: string;
+  /** Local center phone, e.g. "(570) 319-5504" */
+  localPhoneDisplay: string;
+  /** Local center phone in E.164, e.g. "+15703195504" */
+  localPhoneE164: string;
+  /** Local center email, e.g. "scranton@ble.training" */
+  centerEmail: string;
+  manager: Manager;
   schedule: Schedule;
   mapQuery: string;
   description: string;
@@ -68,6 +85,15 @@ export const LOCATIONS: Location[] = [
     },
     mapQuery: "3200 Troup Hwy, Suite 216, Tyler, TX 75701",
     coordinates: { lat: 32.3113, lng: -95.2753 },
+    localPhoneDisplay: "(903) 747-8098",
+    localPhoneE164: "+19037478098",
+    centerEmail: "tyler@ble.training",
+    manager: {
+      name: "Kesha Gee",
+      initials: "KG",
+      title: "Center Manager",
+      email: "tyler@ble.training",
+    },
     description:
       "Our Tyler center serves East Texas and the ArkLaTex region from a facility on Troup Highway. We deliver certification and licensure exams across IT, healthcare, skilled trades, insurance, and more. Plenty of parking right out front, wheelchair accessible, and staff on-site during all appointments.",
   },
@@ -90,6 +116,15 @@ export const LOCATIONS: Location[] = [
     },
     mapQuery: "233 Northern Blvd, Suite 4, Clarks Summit, PA 18411",
     coordinates: { lat: 41.4870, lng: -75.7088 },
+    localPhoneDisplay: "(570) 319-5504",
+    localPhoneE164: "+15703195504",
+    centerEmail: "scranton@ble.training",
+    manager: {
+      name: "Cathy McCracken",
+      initials: "CM",
+      title: "Center Manager",
+      email: "scranton@ble.training",
+    },
     bls: {
       registrationUrl:
         "https://www.redcross.org/take-a-class/bls?latitude=41.3117471&longitude=-75.83741739999999&searchtype=class&zip=Wyoming%2C%20PA%2018644%2C%20USA&zipcode=18644",
@@ -116,6 +151,15 @@ export const LOCATIONS: Location[] = [
     },
     mapQuery: "5151 Monroe Street, Suite 208, Toledo, OH 43623",
     coordinates: { lat: 41.6874, lng: -83.6244 },
+    localPhoneDisplay: "(419) 517-2160",
+    localPhoneE164: "+14195172160",
+    centerEmail: "toledo@ble.training",
+    manager: {
+      name: "Ina Jones",
+      initials: "IJ",
+      title: "Center Manager",
+      email: "toledo@ble.training",
+    },
     description:
       "Our Toledo center on Monroe Street is a convenient stop for candidates from Northwest Ohio, Southeast Michigan, and anywhere along the Detroit-to-Cleveland corridor. We handle IT certs, nursing licensure, insurance exams, trade credentials, and more. ADA-accessible with plenty of parking.",
   },
@@ -138,6 +182,15 @@ export const LOCATIONS: Location[] = [
     },
     mapQuery: "5715 S 34th St, Suite 300, Lincoln, NE 68516",
     coordinates: { lat: 40.7788, lng: -96.6680 },
+    localPhoneDisplay: "(402) 261-4778",
+    localPhoneE164: "+14022614778",
+    centerEmail: "lincoln@ble.training",
+    manager: {
+      name: "Kathi Ojeda",
+      initials: "KO",
+      title: "Center Manager",
+      email: "lincoln@ble.training",
+    },
     description:
       "Our Lincoln center on South 34th Street serves the state capital, the University of Nebraska community, and candidates from western Iowa and northern Kansas. We deliver graduate admissions exams, IT and healthcare certifications, language proficiency tests, and professional licensure. On-site parking, fully ADA-accessible.",
   },
@@ -160,6 +213,15 @@ export const LOCATIONS: Location[] = [
     },
     mapQuery: "14450 W Center Rd, Suite 210, Omaha, NE 68144",
     coordinates: { lat: 41.2362, lng: -96.1273 },
+    localPhoneDisplay: "(531) 466-7509",
+    localPhoneE164: "+15314667509",
+    centerEmail: "omaha@ble.training",
+    manager: {
+      name: "Nic Carlson",
+      initials: "NC",
+      title: "Center Manager",
+      email: "omaha@ble.training",
+    },
     bls: {
       comingSoon: true,
     },
@@ -185,6 +247,15 @@ export const LOCATIONS: Location[] = [
     },
     mapQuery: "2800 SW Wanamaker Rd, Ste 150, Topeka, KS 66614",
     coordinates: { lat: 39.0134, lng: -95.7622 },
+    localPhoneDisplay: "(785) 272-7500",
+    localPhoneE164: "+17852727500",
+    centerEmail: "topeka@ble.training",
+    manager: {
+      name: "Christina Cortez",
+      initials: "CC",
+      title: "Center Manager",
+      email: "topeka@ble.training",
+    },
     description:
       "Our Topeka center on S.W. Wanamaker Road serves the Kansas capital region, Manhattan, Lawrence, and candidates from northern Oklahoma and western Missouri. We deliver professional certification, state licensure, healthcare, and trade exams. On-site parking, ADA-accessible.",
   },

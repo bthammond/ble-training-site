@@ -11,9 +11,12 @@ import {
   Compass,
   Users,
   CalendarDays,
+  Phone,
+  Mail,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import LocationContact from "@/components/LocationContact";
+import ManagerAvatar from "@/components/ManagerAvatar";
 import OpenClosedBadge from "@/components/OpenClosedBadge";
 import ExpandableHours from "@/components/ExpandableHours";
 import {
@@ -75,8 +78,15 @@ export default async function LocationPage(props: {
     name: `BLE Training Testing Center — ${loc.city}, ${loc.state}`,
     image: ORG.logo,
     url: `${ORG.url}/locations/${loc.slug}`,
-    telephone: phoneE164WithExt(loc.extension),
-    email: CONTACT.email,
+    telephone: loc.localPhoneE164,
+    email: loc.centerEmail,
+    employee: {
+      "@type": "Person",
+      name: loc.manager.name,
+      jobTitle: loc.manager.title,
+      email: loc.manager.email,
+      worksFor: { "@id": `${ORG.url}#org` },
+    },
     address: {
       "@type": "PostalAddress",
       streetAddress: loc.street,
@@ -130,7 +140,8 @@ export default async function LocationPage(props: {
       "@type": "LocalBusiness",
       "@id": `${ORG.url}/locations/${l.slug}#business`,
       name: `${ORG.name} — ${l.city}, ${l.state}`,
-      telephone: phoneE164WithExt(l.extension),
+      telephone: l.localPhoneE164,
+      email: l.centerEmail,
       address: {
         "@type": "PostalAddress",
         streetAddress: l.street,
@@ -246,7 +257,58 @@ export default async function LocationPage(props: {
                   <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-crimson" />
                   <span>{loc.address}</span>
                 </address>
-                <LocationContact extension={loc.extension} />
+
+                {/* Local phone + email — primary, with toll-free fallback below */}
+                <div className="mt-4 space-y-2 text-sm">
+                  <a
+                    href={`tel:${loc.localPhoneE164}`}
+                    className="flex items-start gap-2 text-black hover:text-crimson transition-colors"
+                  >
+                    <Phone className="h-4 w-4 shrink-0 mt-0.5 text-crimson" />
+                    <span>
+                      <span className="block font-semibold">
+                        {loc.localPhoneDisplay}
+                      </span>
+                      <span className="block text-[11px] text-black/55 tracking-wide">
+                        Direct line
+                      </span>
+                    </span>
+                  </a>
+                  <a
+                    href={`mailto:${loc.centerEmail}`}
+                    className="flex items-start gap-2 text-black hover:text-crimson transition-colors"
+                  >
+                    <Mail className="h-4 w-4 shrink-0 mt-0.5 text-crimson" />
+                    <span className="font-semibold break-all">
+                      {loc.centerEmail}
+                    </span>
+                  </a>
+                </div>
+
+                <p className="mt-3 text-[11px] text-black/55 tracking-wide">
+                  Or call our toll-free line:{" "}
+                  <a
+                    href={CONTACT.tollFreeHref}
+                    className="font-semibold text-black hover:text-crimson"
+                  >
+                    {CONTACT.tollFreeDisplay}
+                  </a>{" "}
+                  ext. {loc.extension}
+                </p>
+
+                {/* Compact manager block in sidebar */}
+                <div className="mt-5 pt-5 border-t border-slate-200 flex items-center gap-3">
+                  <ManagerAvatar manager={loc.manager} size="sm" />
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-crimson">
+                      Your Local Manager
+                    </p>
+                    <p className="mt-0.5 font-serif text-base text-black truncate">
+                      {loc.manager.name}
+                    </p>
+                  </div>
+                </div>
+
                 <ExpandableHours schedule={loc.schedule} />
 
                 <div className="mt-6 flex flex-col gap-3">
@@ -270,6 +332,62 @@ export default async function LocationPage(props: {
               </div>
             </div>
           </aside>
+        </div>
+      </section>
+
+      {/* YOUR LOCAL TEAM — dedicated trust moment */}
+      <section className="bg-white border-t border-slate-200">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-16">
+          <AnimateOnScroll>
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+                Your Local Team
+              </span>
+              <h2 className="mt-3 font-serif text-3xl md:text-4xl text-black leading-tight">
+                Meet the {loc.city} center manager.
+              </h2>
+              <div className="mt-6 h-px w-24 bg-crimson" />
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={100}>
+            <div className="mt-12 bg-[#F7F7F7] border-t-4 border-crimson p-8 md:p-10 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-center">
+              <ManagerAvatar manager={loc.manager} size="lg" />
+
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-crimson">
+                  {loc.manager.title}
+                </p>
+                <h3 className="mt-2 font-serif text-3xl md:text-4xl text-black leading-tight">
+                  {loc.manager.name}
+                </h3>
+                <p className="mt-3 text-black/70 leading-relaxed max-w-xl">
+                  {loc.manager.name.split(" ")[0]} runs day-to-day operations
+                  at our {loc.city}, {loc.state} testing center — handling
+                  scheduling, candidate check-in, and partner coordination.
+                  Reach out directly with any questions about your appointment,
+                  the facility, or hosting an exam at this location.
+                </p>
+
+                <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={`tel:${loc.localPhoneE164}`}
+                    className="inline-flex items-center justify-center gap-2 bg-crimson px-6 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+                  >
+                    <Phone className="h-4 w-4" />
+                    Call {loc.localPhoneDisplay}
+                  </a>
+                  <a
+                    href={`mailto:${loc.manager.email}`}
+                    className="inline-flex items-center justify-center gap-2 border-2 border-black bg-white px-6 py-3 text-xs font-bold uppercase tracking-wider text-black hover:bg-crimson hover:text-white hover:border-crimson transition-colors"
+                  >
+                    <Mail className="h-4 w-4" />
+                    Email {loc.manager.name.split(" ")[0]}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </AnimateOnScroll>
         </div>
       </section>
 

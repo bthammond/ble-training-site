@@ -233,6 +233,53 @@ export default async function LocationPage(props: {
             <p className="mt-6 text-black leading-relaxed">
               {loc.description}
             </p>
+
+            {/* MANAGER CARD — fills the dead space below short descriptions */}
+            <div className="mt-10">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+                Your Local Team
+              </span>
+              <h3 className="mt-2 font-serif text-2xl md:text-3xl text-black leading-tight">
+                Meet the {loc.city} center manager.
+              </h3>
+              <div className="mt-4 h-px w-24 bg-crimson" />
+
+              <div className="mt-6 bg-[#F7F7F7] border-t-4 border-crimson p-6 md:p-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+                <ManagerAvatar manager={loc.manager} size="md" />
+
+                <div className="flex-1">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-crimson">
+                    {loc.manager.title}
+                  </p>
+                  <p className="mt-1 font-serif text-2xl md:text-3xl text-black leading-tight">
+                    {loc.manager.name}
+                  </p>
+                  <p className="mt-3 text-sm text-black/70 leading-relaxed">
+                    {loc.manager.name.split(" ")[0]} runs day-to-day operations
+                    at our {loc.city}, {loc.state} center. Reach out with any
+                    question about your appointment, the facility, or hosting
+                    an exam.
+                  </p>
+
+                  <div className="mt-5 flex flex-col sm:flex-row gap-2.5">
+                    <a
+                      href={`tel:${loc.localPhoneE164}`}
+                      className="inline-flex items-center justify-center gap-2 bg-crimson px-5 py-2.5 text-[11px] font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+                    >
+                      <Phone className="h-3.5 w-3.5" />
+                      Call {loc.localPhoneDisplay}
+                    </a>
+                    <a
+                      href={`mailto:${loc.manager.email}`}
+                      className="inline-flex items-center justify-center gap-2 border-2 border-black bg-white px-5 py-2.5 text-[11px] font-bold uppercase tracking-wider text-black hover:bg-crimson hover:text-white hover:border-crimson transition-colors"
+                    >
+                      <Mail className="h-3.5 w-3.5" />
+                      Email {loc.manager.name.split(" ")[0]}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <aside className="lg:col-span-2">
@@ -330,62 +377,6 @@ export default async function LocationPage(props: {
               </div>
             </div>
           </aside>
-        </div>
-      </section>
-
-      {/* YOUR LOCAL TEAM — dedicated trust moment */}
-      <section className="bg-white border-t border-slate-200">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-16">
-          <AnimateOnScroll>
-            <div className="max-w-3xl">
-              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-                Your Local Team
-              </span>
-              <h2 className="mt-3 font-serif text-3xl md:text-4xl text-black leading-tight">
-                Meet the {loc.city} center manager.
-              </h2>
-              <div className="mt-6 h-px w-24 bg-crimson" />
-            </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={100}>
-            <div className="mt-12 bg-[#F7F7F7] border-t-4 border-crimson p-8 md:p-10 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-center">
-              <ManagerAvatar manager={loc.manager} size="lg" />
-
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-crimson">
-                  {loc.manager.title}
-                </p>
-                <h3 className="mt-2 font-serif text-3xl md:text-4xl text-black leading-tight">
-                  {loc.manager.name}
-                </h3>
-                <p className="mt-3 text-black/70 leading-relaxed max-w-xl">
-                  {loc.manager.name.split(" ")[0]} runs day-to-day operations
-                  at our {loc.city}, {loc.state} testing center — handling
-                  scheduling, candidate check-in, and partner coordination.
-                  Reach out directly with any questions about your appointment,
-                  the facility, or hosting an exam at this location.
-                </p>
-
-                <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={`tel:${loc.localPhoneE164}`}
-                    className="inline-flex items-center justify-center gap-2 bg-crimson px-6 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
-                  >
-                    <Phone className="h-4 w-4" />
-                    Call {loc.localPhoneDisplay}
-                  </a>
-                  <a
-                    href={`mailto:${loc.manager.email}`}
-                    className="inline-flex items-center justify-center gap-2 border-2 border-black bg-white px-6 py-3 text-xs font-bold uppercase tracking-wider text-black hover:bg-crimson hover:text-white hover:border-crimson transition-colors"
-                  >
-                    <Mail className="h-4 w-4" />
-                    Email {loc.manager.name.split(" ")[0]}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </AnimateOnScroll>
         </div>
       </section>
 

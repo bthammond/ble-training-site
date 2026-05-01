@@ -15,7 +15,6 @@ import {
   Mail,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-import LocationContact from "@/components/LocationContact";
 import ManagerAvatar from "@/components/ManagerAvatar";
 import OpenClosedBadge from "@/components/OpenClosedBadge";
 import ExpandableHours from "@/components/ExpandableHours";
@@ -26,7 +25,6 @@ import {
   directionsUrl,
   getLocation,
   openingHoursSpec,
-  phoneE164WithExt,
 } from "@/lib/locations";
 import { PARTNERS } from "@/lib/partners";
 

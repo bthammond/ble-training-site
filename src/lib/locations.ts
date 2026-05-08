@@ -186,8 +186,8 @@ export const LOCATIONS: Location[] = [
     localPhoneE164: "+14022614778",
     centerEmail: "lincoln@ble.training",
     manager: {
-      name: "Kathi Ojeda",
-      initials: "KO",
+      name: "Nic Carlson",
+      initials: "NC",
       title: "Center Manager",
       email: "lincoln@ble.training",
     },
@@ -217,8 +217,8 @@ export const LOCATIONS: Location[] = [
     localPhoneE164: "+15314667509",
     centerEmail: "omaha@ble.training",
     manager: {
-      name: "Nic Carlson",
-      initials: "NC",
+      name: "Kathi Ojeda",
+      initials: "KO",
       title: "Center Manager",
       email: "omaha@ble.training",
     },

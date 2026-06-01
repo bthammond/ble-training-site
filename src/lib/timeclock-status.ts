@@ -38,6 +38,121 @@ export type LiveLocationStatus = {
   week: LiveLocationDay[];
 };
 
+// ── Public-hours clamp ─────────────────────────────────────────────
+// The schedule in BLE TimeClock reflects when employees are on-site
+// (proctors arrive early to set up the testing rooms, stay late to
+// reset). Visitors should never see hours that imply the doors are
+// open during prep/breakdown time. The static schedule in
+// lib/locations.ts encodes the public-facing window per location
+// (8 AM – 5 PM most centers, 9 AM – 6 PM for Lincoln + Topeka). We
+// clamp the live day's start/end to that window before rendering.
+
+function parseHM12(label: string): number {
+  // "7:15 AM" or "5:00 PM" → minutes since local midnight.
+  const m = label.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!m) return Number.NaN;
+  let h = Number(m[1]);
+  const min = Number(m[2]);
+  const isPm = m[3].toUpperCase() === "PM";
+  if (h === 12) h = 0;
+  if (isPm) h += 12;
+  return h * 60 + min;
+}
+
+function parseHM24(hhmm: string): number {
+  const [h, m] = hhmm.split(":").map(Number);
+  return h * 60 + m;
+}
+
+function formatHM12(mins: number): string {
+  const h24 = Math.floor(mins / 60);
+  const m = mins % 60;
+  const period = h24 >= 12 ? "PM" : "AM";
+  const displayH = h24 % 12 === 0 ? 12 : h24 % 12;
+  return `${displayH}:${m.toString().padStart(2, "0")} ${period}`;
+}
+
+function clampDay(
+  day: LiveLocationDay,
+  publicOpenMin: number,
+  publicCloseMin: number,
+): LiveLocationDay {
+  if (
+    day.is_closed_date ||
+    !day.hours_label ||
+    !day.open_at_utc ||
+    !day.close_at_utc
+  ) {
+    return day;
+  }
+  const parts = day.hours_label.split(/\s*[–—-]\s*/); // –, —, or -
+  if (parts.length !== 2) return day;
+  const liveStart = parseHM12(parts[0]);
+  const liveEnd = parseHM12(parts[1]);
+  if (Number.isNaN(liveStart) || Number.isNaN(liveEnd)) return day;
+
+  const effectiveStart = Math.max(liveStart, publicOpenMin);
+  const effectiveEnd = Math.min(liveEnd, publicCloseMin);
+
+  if (effectiveEnd <= effectiveStart) {
+    return {
+      ...day,
+      hours_label: null,
+      open_at_utc: null,
+      close_at_utc: null,
+    };
+  }
+  // Shift the UTC instants by the same number of minutes we clamped
+  // off the local window. Safe within a single day — no DST edges
+  // are crossed by a sub-day shift.
+  const startShiftMs = (effectiveStart - liveStart) * 60_000;
+  const endShiftMs = (effectiveEnd - liveEnd) * 60_000;
+  return {
+    ...day,
+    hours_label: `${formatHM12(effectiveStart)} – ${formatHM12(effectiveEnd)}`,
+    open_at_utc: new Date(
+      Date.parse(day.open_at_utc) + startShiftMs,
+    ).toISOString(),
+    close_at_utc: new Date(
+      Date.parse(day.close_at_utc) + endShiftMs,
+    ).toISOString(),
+  };
+}
+
+/**
+ * Clamp a live status against the public-facing schedule from
+ * lib/locations.ts. Hides employee-only prep/breakdown time from
+ * visitors. Returns the input unchanged if the location has no
+ * non-trivial public window.
+ */
+export function clampToPublicHours(
+  live: LiveLocationStatus,
+  publicSchedule: { opens: string; closes: string },
+): LiveLocationStatus {
+  const publicOpenMin = parseHM24(publicSchedule.opens);
+  const publicCloseMin = parseHM24(publicSchedule.closes);
+  if (
+    Number.isNaN(publicOpenMin) ||
+    Number.isNaN(publicCloseMin) ||
+    publicCloseMin <= publicOpenMin
+  ) {
+    return live;
+  }
+  const clampedToday = clampDay(live.today, publicOpenMin, publicCloseMin);
+  const nowMs = Date.now();
+  const isOpenNow =
+    !!clampedToday.open_at_utc &&
+    !!clampedToday.close_at_utc &&
+    !clampedToday.is_closed_date &&
+    nowMs >= Date.parse(clampedToday.open_at_utc) &&
+    nowMs < Date.parse(clampedToday.close_at_utc);
+  return {
+    ...live,
+    today: { ...clampedToday, is_open_now: isOpenNow },
+    week: live.week.map((d) => clampDay(d, publicOpenMin, publicCloseMin)),
+  };
+}
+
 type ApiResponse = {
   generated_at: string;
   locations: LiveLocationStatus[];

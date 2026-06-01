@@ -4,7 +4,7 @@ import { useMemo, useState, useCallback } from "react";
 import Link from "next/link";
 import { MapPin, ArrowRight, ExternalLink, Navigation, Phone } from "lucide-react";
 import { LOCATIONS, directionsUrl, type Location } from "@/lib/locations";
-import type { LiveLocationStatus } from "@/lib/timeclock-status";
+import { clampToPublicHours, type LiveLocationStatus } from "@/lib/timeclock-status";
 import LocationSearchBar from "./LocationSearchBar";
 import OpenClosedBadge from "./OpenClosedBadge";
 import ExpandableHours from "./ExpandableHours";
@@ -51,6 +51,13 @@ export default function LocationsDirectoryGrid({
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayed.map((loc) => {
             const dist = distances.get(loc.slug);
+            // Clamp live data to the public-facing window once per
+            // location so OpenClosedBadge and ExpandableHours see the
+            // same numbers (no employee prep/breakdown time leaks).
+            const rawLive = liveStatus.get(loc.slug);
+            const live = rawLive
+              ? clampToPublicHours(rawLive, loc.schedule)
+              : undefined;
             return (
               <article
                 key={loc.slug}
@@ -64,7 +71,7 @@ export default function LocationsDirectoryGrid({
                     </span>
                     <OpenClosedBadge
                       schedule={loc.schedule}
-                      live={liveStatus.get(loc.slug)}
+                      live={live}
                     />
                   </div>
 
@@ -99,7 +106,7 @@ export default function LocationsDirectoryGrid({
 
                   <ExpandableHours
                     schedule={loc.schedule}
-                    live={liveStatus.get(loc.slug)}
+                    live={live}
                   />
 
                   {/* Manager preview */}

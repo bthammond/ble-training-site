@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LocationsDirectoryGrid from "@/components/LocationsDirectoryGrid";
+import { getLiveStatusMap } from "@/lib/timeclock-status";
 
 export const metadata: Metadata = {
   title: "Testing Center Locations — 6 U.S. Centers",
@@ -17,7 +18,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/locations" },
 };
 
-export default function LocationsDirectoryPage() {
+export default async function LocationsDirectoryPage() {
+  // Pull live "Open Now / today's hours" from BLE TimeClock. The map is
+  // keyed by training-site slug ("tyler-tx", …) and falls back to an
+  // empty map if upstream is unreachable, so cards still render with
+  // the static schedule.
+  const liveStatus = await getLiveStatusMap();
+  const liveStatusEntries = Array.from(liveStatus.entries());
   return (
     <>
       {/* HERO */}
@@ -50,7 +57,7 @@ export default function LocationsDirectoryPage() {
       {/* SEARCH + CARD GRID */}
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
-          <LocationsDirectoryGrid />
+          <LocationsDirectoryGrid liveStatusEntries={liveStatusEntries} />
         </div>
       </section>
     </>

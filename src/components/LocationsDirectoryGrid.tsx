@@ -1,15 +1,27 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useMemo, useState, useCallback } from "react";
 import Link from "next/link";
 import { MapPin, ArrowRight, ExternalLink, Navigation, Phone } from "lucide-react";
 import { LOCATIONS, directionsUrl, type Location } from "@/lib/locations";
+import type { LiveLocationStatus } from "@/lib/timeclock-status";
 import LocationSearchBar from "./LocationSearchBar";
 import OpenClosedBadge from "./OpenClosedBadge";
 import ExpandableHours from "./ExpandableHours";
 import ManagerAvatar from "./ManagerAvatar";
 
-export default function LocationsDirectoryGrid() {
+export default function LocationsDirectoryGrid({
+  liveStatusEntries = [],
+}: {
+  /** Server-fetched live status keyed by training-site slug. Passed as
+   *  entries (instead of a Map) because Maps don't survive the
+   *  server-component → client-component serialization boundary. */
+  liveStatusEntries?: Array<[string, LiveLocationStatus]>;
+}) {
+  const liveStatus = useMemo(
+    () => new Map(liveStatusEntries),
+    [liveStatusEntries],
+  );
   const [displayed, setDisplayed] = useState<Location[]>(LOCATIONS);
   const [distances, setDistances] = useState<Map<string, number>>(new Map());
   const [noResults, setNoResults] = useState(false);
@@ -50,7 +62,10 @@ export default function LocationsDirectoryGrid() {
                       <MapPin className="h-3.5 w-3.5" />
                       BLE Training Testing Center
                     </span>
-                    <OpenClosedBadge schedule={loc.schedule} />
+                    <OpenClosedBadge
+                      schedule={loc.schedule}
+                      live={liveStatus.get(loc.slug)}
+                    />
                   </div>
 
                   <h2 className="mt-3 font-serif text-3xl text-black leading-tight">
@@ -82,7 +97,10 @@ export default function LocationsDirectoryGrid() {
                     </span>
                   </a>
 
-                  <ExpandableHours schedule={loc.schedule} />
+                  <ExpandableHours
+                    schedule={loc.schedule}
+                    live={liveStatus.get(loc.slug)}
+                  />
 
                   {/* Manager preview */}
                   <div className="mt-5 pt-4 border-t border-slate-200 flex items-center gap-3">

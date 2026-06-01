@@ -47,9 +47,70 @@ const REVALIDATE_SECONDS = 300; // 5 min
 const FETCH_TIMEOUT_MS = 3000;
 
 /**
+ * US state name → 2-letter postal code. Covers every state TimeClock
+ * stores. The training-site slug convention uses the 2-letter code
+ * ("toledo-oh"), but TimeClock stores the full state name ("Ohio"), so
+ * we translate before building the lookup key.
+ */
+const STATE_CODE: Record<string, string> = {
+  alabama: "AL",
+  alaska: "AK",
+  arizona: "AZ",
+  arkansas: "AR",
+  california: "CA",
+  colorado: "CO",
+  connecticut: "CT",
+  delaware: "DE",
+  florida: "FL",
+  georgia: "GA",
+  hawaii: "HI",
+  idaho: "ID",
+  illinois: "IL",
+  indiana: "IN",
+  iowa: "IA",
+  kansas: "KS",
+  kentucky: "KY",
+  louisiana: "LA",
+  maine: "ME",
+  maryland: "MD",
+  massachusetts: "MA",
+  michigan: "MI",
+  minnesota: "MN",
+  mississippi: "MS",
+  missouri: "MO",
+  montana: "MT",
+  nebraska: "NE",
+  nevada: "NV",
+  "new hampshire": "NH",
+  "new jersey": "NJ",
+  "new mexico": "NM",
+  "new york": "NY",
+  "north carolina": "NC",
+  "north dakota": "ND",
+  ohio: "OH",
+  oklahoma: "OK",
+  oregon: "OR",
+  pennsylvania: "PA",
+  "rhode island": "RI",
+  "south carolina": "SC",
+  "south dakota": "SD",
+  tennessee: "TN",
+  texas: "TX",
+  utah: "UT",
+  vermont: "VT",
+  virginia: "VA",
+  washington: "WA",
+  "west virginia": "WV",
+  wisconsin: "WI",
+  wyoming: "WY",
+};
+
+/**
  * Convert a TimeClock {city, state} pair to the training-site slug
- * convention ("Clarks Summit" + "PA" → "clarks-summit-pa") so the
- * caller can look up by slug.
+ * convention ("Clarks Summit" + "Pennsylvania" → "clarks-summit-pa")
+ * so the caller can look up by slug. Accepts both full state names
+ * (which is what TimeClock currently stores) and 2-letter codes
+ * (defensive — if the DB ever migrates).
  */
 function toSlug(city: string, state: string): string {
   const slugCity = city
@@ -57,7 +118,9 @@ function toSlug(city: string, state: string): string {
     .trim()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
-  return `${slugCity}-${state.toLowerCase().trim()}`;
+  const raw = state.toLowerCase().trim();
+  const code = raw.length === 2 ? raw : (STATE_CODE[raw] ?? raw);
+  return `${slugCity}-${code.toLowerCase()}`;
 }
 
 export async function getLiveStatusMap(): Promise<Map<string, LiveLocationStatus>> {

@@ -33,6 +33,31 @@ export default function LeadForm() {
     const interest = clean(data.get("interest") as string);
     const message = (data.get("message") as string || "").trim();
 
+    // Capture the lead in Mailchimp first so we don't lose it if the
+    // user closes the mailto tab without hitting Send. Fire-and-forget —
+    // the mailto + localStorage are independent fallbacks, so we don't
+    // want a Mailchimp hiccup to block the submission UX. Names split on
+    // the first space; everything after becomes LNAME.
+    const [first, ...rest] = name.split(/\s+/);
+    fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        tag: "lead",
+        mergeFields: {
+          FNAME: first || "",
+          LNAME: rest.join(" "),
+          COMPANY: company,
+          PHONE: phone,
+          INTEREST: interest,
+          MESSAGE: message,
+        },
+      }),
+    }).catch(() => {
+      /* silent — mailto + localStorage already cover the failure case */
+    });
+
     const subject = encodeURIComponent(`New Lead — ${interest} — ${name}`);
     const body = encodeURIComponent(
       `New inquiry from www.ble.training:\n\n` +
@@ -45,7 +70,9 @@ export default function LeadForm() {
       `Submitted: ${new Date().toLocaleString()}`
     );
 
-    // Open mailto
+    // Open mailto so Brian still gets the inbox notification path he
+    // expects today. The Mailchimp call above is the CRM capture layer
+    // that ensures the lead lands even if the user closes this tab.
     window.open(`mailto:info@ble.training?subject=${subject}&body=${body}`, "_blank");
 
     // Store lead locally as backup

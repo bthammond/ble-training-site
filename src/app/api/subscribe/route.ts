@@ -6,7 +6,7 @@ const SERVER = process.env.MAILCHIMP_SERVER!;
 
 export async function POST(request: Request) {
   try {
-    const { email, tag } = await request.json();
+    const { email, tag, mergeFields } = await request.json();
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
       return NextResponse.json(
@@ -19,8 +19,22 @@ export async function POST(request: Request) {
       pdf: "PDF Request",
       scorecard: "Scorecard Lead",
       applicant: "Proctor Applicant",
+      lead: "Lead",
     };
     const tagName = tagMap[tag] || "Catalog Lead";
+
+    // Sanitize merge field values — only forward string values, trim, cap
+    // at 255 chars so a pasted novel can't break the Mailchimp payload.
+    // Unknown merge-field keys are silently ignored by Mailchimp, so we
+    // can send the full set without coordinating with the audience config.
+    const cleanMerge: Record<string, string> = {};
+    if (mergeFields && typeof mergeFields === "object") {
+      for (const [k, v] of Object.entries(mergeFields)) {
+        if (typeof v === "string" && v.trim().length > 0) {
+          cleanMerge[k] = v.trim().slice(0, 255);
+        }
+      }
+    }
 
     // Subscribe with "pending" status (triggers double opt-in)
     const response = await fetch(
@@ -35,6 +49,9 @@ export async function POST(request: Request) {
           email_address: email,
           status: "pending",
           tags: [tagName],
+          ...(Object.keys(cleanMerge).length > 0 && {
+            merge_fields: cleanMerge,
+          }),
         }),
       }
     );
@@ -49,10 +66,12 @@ export async function POST(request: Request) {
     }
 
     if (data.title === "Member Exists") {
-      // Already subscribed — add the new tag via the tags endpoint
+      // Already subscribed — add the new tag via the tags endpoint, and
+      // patch the member record so the latest LeadForm submission
+      // overwrites whatever name/company/phone/etc. we had on file.
       const subscriberHash = await getSubscriberHash(email);
       if (subscriberHash) {
-        await fetch(
+        const tagsCall = fetch(
           `https://${SERVER}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members/${subscriberHash}/tags`,
           {
             method: "POST",
@@ -65,6 +84,21 @@ export async function POST(request: Request) {
             }),
           }
         );
+        const mergeCall =
+          Object.keys(cleanMerge).length > 0
+            ? fetch(
+                `https://${SERVER}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members/${subscriberHash}`,
+                {
+                  method: "PATCH",
+                  headers: {
+                    Authorization: `apikey ${API_KEY}`,
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ merge_fields: cleanMerge }),
+                }
+              )
+            : Promise.resolve(null);
+        await Promise.all([tagsCall, mergeCall]);
       }
 
       return NextResponse.json({

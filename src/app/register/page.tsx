@@ -99,6 +99,36 @@ export default function RegisterPage() {
             </div>
           </AnimateOnScroll>
 
+          {/* How to choose BLE guidance */}
+          <AnimateOnScroll>
+            <div className="mt-10 bg-white border-l-4 border-crimson p-6 max-w-3xl mx-auto">
+              <p className="text-xs font-bold uppercase tracking-wider text-crimson mb-2">
+                How to choose a BLE Testing Center
+              </p>
+              <p className="text-sm text-black/80 leading-relaxed">
+                When registering through Pearson VUE, Prometric, PSI, or another
+                provider, <strong className="text-black">search for the BLE Training location in your city</strong> during
+                test center selection. Our centers appear by name in the
+                provider&apos;s scheduling portal.
+              </p>
+              <ol className="mt-4 space-y-2">
+                {[
+                  "Visit the provider registration site below.",
+                  "Choose your exam program.",
+                  "Search for your preferred BLE Training location.",
+                  "Confirm your appointment and review exam-day requirements.",
+                ].map((step, i) => (
+                  <li key={step} className="flex items-start gap-3 text-sm text-black/70">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-crimson text-white text-[10px] font-bold">
+                      {i + 1}
+                    </span>
+                    {step}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </AnimateOnScroll>
+
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {PARTNERS.map((p, i) => (
               <AnimateOnScroll key={p.slug} delay={i * 60}>
@@ -107,10 +137,18 @@ export default function RegisterPage() {
             ))}
           </div>
 
-          <p className="mt-10 text-xs text-black/70 text-center max-w-3xl mx-auto leading-relaxed">
-            Registration opens in a new tab. A BLE Training reminder appears
-            here so you have the center details on hand when you return.
-          </p>
+          <div className="mt-10 text-center space-y-3">
+            <p className="text-xs text-black/70 max-w-3xl mx-auto leading-relaxed">
+              Registration opens in a new tab. A BLE Training reminder appears
+              here so you have the center details on hand when you return.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 text-sm font-bold text-crimson hover:text-crimson-soft transition-colors"
+            >
+              Need help choosing a provider? Contact BLE. <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 

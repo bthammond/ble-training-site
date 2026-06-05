@@ -24,11 +24,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.ble.training"),
   alternates: { canonical: "/" },
   title: {
-    default: "BLE Training — Build High-Performing Organizations",
+    default: "BLE Training — Train Managers. Improve Teams. Prepare for Growth.",
     template: "%s | BLE Training",
   },
   description:
-    "Corporate training, business consulting, and proctored testing for mid-market and owner-led businesses. BLE Training has served 200+ companies since 2007.",
+    "BLE Training helps owner-led and mid-market businesses train managers, improve team performance, prepare for succession, and certify skills through professional testing centers.",
   authors: [{ name: "BLE Training" }],
   keywords: [
     "Corporate Training",
@@ -45,9 +45,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    title: "BLE Training — Build High-Performing Organizations",
+    title: "BLE Training — Train Managers. Improve Teams. Prepare for Growth.",
     description:
-      "Corporate training, business consulting, and proctored testing for mid-market and owner-led businesses. BLE Training has served 200+ companies since 2007.",
+      "BLE Training helps owner-led and mid-market businesses train managers, improve team performance, prepare for succession, and certify skills through professional testing centers.",
     siteName: "BLE Training",
     url: "https://www.ble.training",
     locale: "en_US",
@@ -62,9 +62,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BLE Training — Build High-Performing Organizations",
+    title: "BLE Training — Train Managers. Improve Teams. Prepare for Growth.",
     description:
-      "Corporate training, business consulting, and proctored testing for mid-market and owner-led businesses. BLE Training has served 200+ companies since 2007.",
+      "BLE Training helps owner-led and mid-market businesses train managers, improve team performance, prepare for succession, and certify skills through professional testing centers.",
     images: ["/BLE-Training---black-letters.png"],
   },
   robots: { index: true, follow: true },

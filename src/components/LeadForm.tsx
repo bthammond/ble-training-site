@@ -4,12 +4,28 @@ import { useState } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
 
 const INTERESTS = [
-  "Corporate Training",
-  "Business Consulting",
-  "Proctored Testing",
-  "Leadership Coaching",
-  "Family Business / Succession",
-  "General Inquiry",
+  "Train managers / leadership team",
+  "Improve team performance",
+  "Prepare for succession / transition",
+  "Fix operations / accountability",
+  "Business Health Diagnostic",
+  "Schedule certification testing",
+  "Not sure yet — I have questions",
+];
+
+const COMPANY_SIZES = [
+  "1–24 employees",
+  "25–99 employees",
+  "100–249 employees",
+  "250–500 employees",
+  "500+ employees",
+];
+
+const TIMELINES = [
+  "Immediately",
+  "30–60 days",
+  "This quarter",
+  "Exploring options",
 ];
 
 export default function LeadForm() {
@@ -24,20 +40,16 @@ export default function LeadForm() {
 
     const form = e.currentTarget;
     const data = new FormData(form);
-    // Strip newlines/carriage returns to prevent mailto header injection
     const clean = (v: string) => v.replace(/[\r\n]/g, " ").trim();
     const name = clean(data.get("name") as string);
     const company = clean(data.get("company") as string);
     const email = clean(data.get("email") as string);
     const phone = clean(data.get("phone") as string);
     const interest = clean(data.get("interest") as string);
+    const companySize = clean(data.get("companySize") as string);
+    const timeline = clean(data.get("timeline") as string);
     const message = (data.get("message") as string || "").trim();
 
-    // Capture the lead in Mailchimp first so we don't lose it if the
-    // user closes the mailto tab without hitting Send. Fire-and-forget —
-    // the mailto + localStorage are independent fallbacks, so we don't
-    // want a Mailchimp hiccup to block the submission UX. Names split on
-    // the first space; everything after becomes LNAME.
     const [first, ...rest] = name.split(/\s+/);
     fetch("/api/subscribe", {
       method: "POST",
@@ -51,12 +63,12 @@ export default function LeadForm() {
           COMPANY: company,
           PHONE: phone,
           INTEREST: interest,
+          COMPSIZE: companySize,
+          TIMELINE: timeline,
           MESSAGE: message,
         },
       }),
-    }).catch(() => {
-      /* silent — mailto + localStorage already cover the failure case */
-    });
+    }).catch(() => {});
 
     const subject = encodeURIComponent(`New Lead — ${interest} — ${name}`);
     const body = encodeURIComponent(
@@ -65,20 +77,18 @@ export default function LeadForm() {
       `Company: ${company || "Not provided"}\n` +
       `Email: ${email}\n` +
       `Phone: ${phone || "Not provided"}\n` +
-      `Interest: ${interest}\n` +
+      `Primary Need: ${interest}\n` +
+      `Company Size: ${companySize || "Not provided"}\n` +
+      `Timeline: ${timeline || "Not provided"}\n` +
       `Message: ${message || "None"}\n\n` +
       `Submitted: ${new Date().toLocaleString()}`
     );
 
-    // Open mailto so Brian still gets the inbox notification path he
-    // expects today. The Mailchimp call above is the CRM capture layer
-    // that ensures the lead lands even if the user closes this tab.
     window.open(`mailto:info@ble.training?subject=${subject}&body=${body}`, "_blank");
 
-    // Store lead locally as backup
     try {
       const leads = JSON.parse(localStorage.getItem("ble_leads") || "[]");
-      leads.push({ name, company, email, phone, interest, message, date: new Date().toISOString() });
+      leads.push({ name, company, email, phone, interest, companySize, timeline, message, date: new Date().toISOString() });
       localStorage.setItem("ble_leads", JSON.stringify(leads));
     } catch { /* silent */ }
 
@@ -130,7 +140,7 @@ export default function LeadForm() {
 
       <div className="mt-5">
         <label className="block text-sm font-medium text-black mb-2">
-          I&apos;m interested in
+          Primary need <span className="text-crimson">*</span>
         </label>
         <select
           name="interest"
@@ -139,12 +149,50 @@ export default function LeadForm() {
           required
         >
           <option value="" disabled>
-            Select a service
+            What are you trying to solve?
           </option>
           {INTERESTS.map((i) => (
             <option key={i}>{i}</option>
           ))}
         </select>
+      </div>
+
+      <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label className="block text-sm font-medium text-black mb-2">
+            Company size
+          </label>
+          <select
+            name="companySize"
+            className="w-full rounded-md border border-[color:var(--border)] bg-white px-4 py-3 text-sm focus:border-crimson focus:outline-none focus:ring-2 focus:ring-crimson/30 transition"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select range
+            </option>
+            {COMPANY_SIZES.map((s) => (
+              <option key={s}>{s}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-black mb-2">
+            Timeline
+          </label>
+          <select
+            name="timeline"
+            className="w-full rounded-md border border-[color:var(--border)] bg-white px-4 py-3 text-sm focus:border-crimson focus:outline-none focus:ring-2 focus:ring-crimson/30 transition"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              When are you looking to start?
+            </option>
+            {TIMELINES.map((t) => (
+              <option key={t}>{t}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="mt-5">
@@ -153,7 +201,7 @@ export default function LeadForm() {
         </label>
         <textarea
           name="message"
-          rows={5}
+          rows={4}
           className="w-full rounded-md border border-[color:var(--border)] bg-white px-4 py-3 text-sm focus:border-crimson focus:outline-none focus:ring-2 focus:ring-crimson/30 transition"
           placeholder="What challenges are you facing? What outcomes matter most?"
         />

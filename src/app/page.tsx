@@ -7,6 +7,11 @@ import {
   GraduationCap,
   MapPin,
   ChevronDown,
+  CheckCircle2,
+  BarChart3,
+  Users2,
+  Settings,
+  Workflow,
 } from "lucide-react";
 
 const LMS_BASE = "https://learning.ble.training";
@@ -47,6 +52,52 @@ const HOME_FAQS = [
   },
 ];
 
+const PAIN_POINTS = [
+  "Your best employees were promoted into management, but no one trained them to manage.",
+  "The business depends too much on the owner for daily decisions.",
+  "Growth has created complexity your team is struggling to handle.",
+  "Succession conversations are overdue or unclear.",
+  "You need practical training and operating systems, not generic workshops.",
+];
+
+const OFFERS = [
+  {
+    icon: BarChart3,
+    label: "Business Health Diagnostic",
+    body: "A focused assessment of leadership, team performance, operations, growth constraints, and succession risk — ending with a practical action roadmap.",
+    cta: "Request a Diagnostic",
+    href: "/contact",
+  },
+  {
+    icon: Users2,
+    label: "Custom Team Training",
+    body: "Role-specific training paths for managers, frontline leaders, and high-potential employees, built around the work your team actually does.",
+    cta: "Request a Team Training Plan",
+    href: "/contact",
+  },
+  {
+    icon: Workflow,
+    label: "Leadership Operating System Sprint",
+    body: "Clarify roles, meeting rhythms, scorecards, accountability habits, and decision rights so the business does not depend on one person.",
+    cta: "Build Your Leadership System",
+    href: "/consulting",
+  },
+  {
+    icon: Settings,
+    label: "Succession Readiness Assessment",
+    body: "A confidential readiness review for family-run and owner-led companies preparing for leadership, governance, or ownership transition.",
+    cta: "Start Succession Assessment",
+    href: "/consulting",
+  },
+  {
+    icon: ClipboardCheck,
+    label: "Testing Centers",
+    body: "Professional proctored testing centers for major certification providers, with trained staff and clear exam-day guidance.",
+    cta: "Schedule Your Exam",
+    href: "/register",
+  },
+];
+
 export default function Home() {
   const homeFaqSchema = {
     "@context": "https://schema.org",
@@ -64,10 +115,100 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqSchema) }}
       />
-      {/* 1 — HERO: Hook them */}
+      {/* 1 — HERO */}
       <Hero />
 
-      {/* 2 — PROBLEM: Show you understand their pain */}
+      {/* 2 — PAIN POINTS: You may be in the right place if… */}
+      <section className="bg-black text-white border-b border-white/10">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <AnimateOnScroll>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+              Is This You?
+            </span>
+            <h2 className="mt-4 font-serif text-3xl md:text-5xl text-white leading-tight">
+              You may be in the right place if&hellip;
+            </h2>
+            <div className="mt-6 h-px w-24 bg-crimson" />
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={100}>
+            <ul className="space-y-4">
+              {PAIN_POINTS.map((point) => (
+                <li key={point} className="flex items-start gap-4">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-crimson" />
+                  <p className="text-base md:text-lg text-white/80 leading-relaxed">
+                    {point}
+                  </p>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+              >
+                Schedule a Growth Call <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/scorecard"
+                className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
+              >
+                Take the Free Scorecard
+              </Link>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* 3 — PROOF: Numbers that matter */}
+      <Stats />
+
+      {/* 4 — PRODUCTIZED OFFERS */}
+      <section className="bg-[#F7F7F7] border-b border-slate-200">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+          <AnimateOnScroll>
+            <div className="max-w-2xl">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+                Where to Start
+              </span>
+              <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black">
+                Choose the starting point that fits your situation.
+              </h2>
+              <div className="mt-6 h-px w-24 bg-crimson" />
+            </div>
+          </AnimateOnScroll>
+
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {OFFERS.map((offer, i) => {
+              const Icon = offer.icon;
+              return (
+                <AnimateOnScroll key={offer.label} delay={i * 70}>
+                  <article className="h-full flex flex-col bg-white border-t-4 border-crimson shadow-sm p-8 lg:p-10">
+                    <div className="flex h-12 w-12 items-center justify-center bg-black">
+                      <Icon className="h-6 w-6 text-white" strokeWidth={1.75} />
+                    </div>
+                    <span className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-crimson">
+                      {offer.label}
+                    </span>
+                    <p className="mt-3 text-black/70 leading-relaxed flex-1">
+                      {offer.body}
+                    </p>
+                    <Link
+                      href={offer.href}
+                      className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors"
+                    >
+                      {offer.cta}
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </article>
+                </AnimateOnScroll>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 5 — PROBLEM: Show you understand their pain */}
       <section className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           <AnimateOnScroll className="lg:col-span-2">
@@ -95,7 +236,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3 — THREE PILLARS: Here's how we help */}
+      {/* 6 — THREE PILLARS */}
       <section className="bg-[#F7F7F7] border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
           <AnimateOnScroll>
@@ -114,10 +255,10 @@ export default function Home() {
             {[
               {
                 icon: GraduationCap,
-                title: "Learn at your pace, on your schedule.",
+                title: "Self-paced starter courses for individuals and teams.",
                 label: "Self-Paced Learning",
                 body:
-                  "150+ practitioner-built courses across leadership, communication, sales, HR, and compliance. Earn verifiable certificates. Start in minutes.",
+                  "A growing catalog of practitioner-built courses, with custom team programs available now. Earn verifiable certificates. Start in minutes.",
                 href: `${LMS_BASE}/store`,
                 cta: "Browse Courses",
                 external: true,
@@ -129,7 +270,7 @@ export default function Home() {
                 body:
                   "We design training programs, onboarding systems, and coaching frameworks that create high-functioning organizations. Tested in enterprise environments. Built for your business.",
                 href: "/how-we-work",
-                cta: "Learn More",
+                cta: "Request a Team Training Plan",
                 external: false,
               },
               {
@@ -266,21 +407,81 @@ export default function Home() {
       {/* Mid-page Scorecard CTA band */}
       <MidPageScorecardCTA />
 
-      {/* 4 — STATS: Proof you've done this before */}
-      <Stats />
+      {/* OUTCOME PROOF */}
+      <section className="bg-[#F7F7F7] border-b border-slate-200">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20">
+          <AnimateOnScroll>
+            <div className="text-center max-w-2xl mx-auto">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+                Client Outcomes
+              </span>
+              <h2 className="mt-3 font-serif text-3xl md:text-4xl text-black">
+                Real businesses. Measurable results.
+              </h2>
+              <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
+            </div>
+          </AnimateOnScroll>
 
-      {/* 5 — CONSULTING DEEP DIVE: Your differentiator */}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                stat: "28-point",
+                label: "engagement improvement",
+                context: "After a 12-week leadership program for a logistics company with 400+ employees.",
+              },
+              {
+                stat: "15%",
+                label: "reduction in voluntary turnover",
+                context: "Frontline managers reported higher confidence and operated more independently.",
+              },
+              {
+                stat: "18-month",
+                label: "family business transition",
+                context: "Third-generation manufacturing company completed succession without growth disruption.",
+              },
+              {
+                stat: "5,000+",
+                label: "professionals trained",
+                context: "Across 40+ industries, from frontline managers to C-suite executives.",
+              },
+            ].map((item, i) => (
+              <AnimateOnScroll key={item.label} delay={i * 60}>
+                <div className="bg-white border-t-4 border-crimson shadow-sm p-8">
+                  <div className="font-serif text-4xl text-black">
+                    {item.stat}
+                    <span className="text-crimson">.</span>
+                  </div>
+                  <div className="mt-2 text-sm font-bold uppercase tracking-wider text-crimson">
+                    {item.label}
+                  </div>
+                  <p className="mt-3 text-sm text-black/60 leading-relaxed">
+                    {item.context}
+                  </p>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+
+          <AnimateOnScroll delay={200}>
+            <div className="mt-10 text-center">
+              <Link
+                href="/case-studies"
+                className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors"
+              >
+                Read the full case studies <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* CONSULTING DEEP DIVE */}
       <ConsultingFeature />
 
-      {/* 6 — TESTIMONIAL: Social proof */}
+      {/* TESTIMONIAL */}
       <TestimonialSlider />
 
-      {/* 6.5 — ABOUT: Now-that-you-trust-us-here's-who-we-are credibility
-            block. Plain-factual prose remains crawler-friendly for Google
-            and AI search engines, and Hero/Problem still appear well above
-            this in the DOM so SEO priority isn't lost. Moved from slot 1.5
-            because leading with company history right after the hero
-            interrupted the customer-first story arc. */}
+      {/* ABOUT */}
       <section className="bg-white border-y border-slate-200">
         <div className="mx-auto max-w-5xl px-6 lg:px-8 py-12">
           <p className="text-base md:text-lg text-black/70 leading-relaxed">
@@ -316,7 +517,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7 — TESTING CENTERS + PARTNER LOGOS (combined): Your other business */}
+      {/* TESTING CENTERS + PARTNER LOGOS */}
       <section className="bg-white border-y border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
           <AnimateOnScroll>
@@ -336,7 +537,6 @@ export default function Home() {
             </div>
           </AnimateOnScroll>
 
-          {/* Location pins */}
           <AnimateOnScroll delay={100}>
             <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {LOCATIONS.map((loc) => (
@@ -357,7 +557,6 @@ export default function Home() {
             </div>
           </AnimateOnScroll>
 
-          {/* Partner logos */}
           <AnimateOnScroll delay={200}>
             <p className="mt-14 text-center text-xs font-bold uppercase tracking-[0.3em] text-black/40">
               Authorized test delivery partner for
@@ -386,16 +585,16 @@ export default function Home() {
 
           <div className="mt-10 text-center">
             <Link
-              href="/testing"
+              href="/register"
               className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
             >
-              Learn More About Testing <ArrowRight className="h-4 w-4" />
+              Schedule Your Exam <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 8 — RED CROSS: Additional service */}
+      {/* RED CROSS */}
       <section className="bg-[#F7F7F7]">
         <div className="mx-auto max-w-5xl px-6 lg:px-8 py-16 text-center">
           <AnimateOnScroll>
@@ -422,7 +621,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8.5 — FAQ accordion (collapsed by default, feeds AI search) */}
+      {/* FAQ */}
       <section className="bg-white border-t border-slate-200">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 py-20">
           <AnimateOnScroll>
@@ -465,29 +664,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 9 — CLOSING CTA: Ask */}
+      {/* CLOSING CTA */}
       <section className="bg-black text-white">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24 text-center">
           <AnimateOnScroll>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
-              Let&apos;s talk about your team.
+              Tell us what you&apos;re trying to solve.
             </h2>
             <p className="mt-6 text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
-              No pitch deck. No pressure. Just an honest conversation about
-              what&apos;s working, what isn&apos;t, and whether we can help.
+              It starts with a 30-minute conversation. No pitch deck. No
+              pressure. Just a practical conversation about what is going on
+              and whether BLE can help.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-crimson px-10 py-4 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
               >
-                Talk to Us <ArrowRight className="h-4 w-4" />
+                Schedule a 30-Minute Growth Call <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/scorecard"
                 className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
               >
-                Not ready? Take the free scorecard
+                Take the Free Business Health Scorecard
               </Link>
             </div>
           </AnimateOnScroll>

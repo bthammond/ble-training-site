@@ -8,17 +8,18 @@ import { LOCATIONS, CONTACT } from "@/lib/locations";
 export const metadata: Metadata = {
   title: "Contact BLE Training",
   description:
-    "Contact BLE Training to schedule a conversation about corporate training, business consulting, or proctored certification testing.",
+    "Tell us what you are trying to solve. Schedule a 30-minute conversation about corporate training, business consulting, leadership systems, or proctored certification testing.",
   openGraph: {
     title: "Contact | BLE Training",
     description:
-      "Contact BLE Training to schedule a conversation about corporate training, business consulting, or proctored certification testing.",
+      "Tell us what you are trying to solve. Schedule a 30-minute conversation about corporate training, business consulting, or proctored certification testing.",
     url: "https://www.ble.training/contact",
   },
   keywords: [
     "Contact BLE Training",
-    "1-877-TRY-BLE-1",
+    "Schedule a Growth Call",
     "Corporate Training Inquiry",
+    "Business Health Diagnostic",
     "Proctored Testing Appointment",
     "Owner Consulting Inquiry",
   ],
@@ -32,16 +33,16 @@ export default function ContactPage() {
       <section className="bg-black text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 md:py-28 text-center">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
-            Get in Touch
+            Start the Conversation
           </span>
           <h1 className="mt-5 font-serif text-5xl md:text-7xl text-white leading-[1.05]">
-            Let&apos;s talk.
+            Tell us what you&apos;re trying to solve.
           </h1>
           <div className="mx-auto mt-6 h-1 w-24 bg-crimson" />
           <p className="mt-8 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Whether you&apos;re ready to get started or still figuring out
-            whether we&apos;re the right fit — a 30-minute conversation is
-            always the right first step.
+            It starts with a 30-minute conversation. No pitch deck. No pressure.
+            Just a practical conversation about what is going on and whether
+            BLE can help.
           </p>
         </div>
       </section>
@@ -88,12 +89,13 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-3 gap-10">
           <AnimateOnScroll className="lg:col-span-2">
             <h2 className="font-serif text-3xl md:text-4xl text-black">
-              What are you working on?
+              Tell us what you&apos;re trying to solve.
             </h2>
             <div className="mt-4 h-px w-24 bg-crimson" />
             <p className="mt-4 text-black/70 leading-relaxed">
-              Tell us a bit about your situation and we&apos;ll be in touch
-              within one business day.
+              It starts with a 30-minute conversation. No pitch deck. No
+              pressure. Just a practical conversation about what is going on
+              and whether BLE can help.
             </p>
             <div className="mt-8">
               <LeadForm />

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, TrendingUp } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 export const metadata: Metadata = {
@@ -26,8 +26,14 @@ const CASES = [
       "BLE facilitated a multi-month engagement covering governance design, family role definition, and a phased transition plan. We worked with both generations privately before bringing the full family together.",
     result:
       "The family agreed on a governance structure, defined clear operational roles, and executed a transition plan over 18 months. The business continued to grow through the transition.",
+    outcomes: [
+      "18-month succession completed without growth disruption",
+      "Governance structure agreed and documented by all parties",
+      "Clear operational roles for next-generation leadership",
+    ],
     quote: "They are the reason this business is still in the family.",
     attribution: "Margaret R. — Third-generation Owner",
+    cta: { label: "Discuss Succession Planning", href: "/consulting" },
   },
   {
     tag: "Corporate Training",
@@ -38,8 +44,14 @@ const CASES = [
       "BLE designed a 12-week leadership development program delivered on-site across four locations. The curriculum was customized to the company's operating cadence and industry-specific challenges.",
     result:
       "Engagement scores increased 28 points within two quarters. Frontline managers reported higher confidence in decision-making, and voluntary turnover dropped by 15%.",
+    outcomes: [
+      "28-point engagement improvement within two quarters",
+      "15% reduction in voluntary turnover",
+      "Higher manager confidence across four regional offices",
+    ],
     quote: "The frontline managers are finally operating like owners.",
     attribution: "David O. — VP People & Culture",
+    cta: { label: "Request a Team Training Plan", href: "/contact" },
   },
   {
     tag: "Proctored Testing",
@@ -50,8 +62,14 @@ const CASES = [
       "At a BLE Testing Center, the candidate experienced a standardized process: 30-minute early arrival, secure locker storage, ID verification, and a quiet, private workstation with trained proctors on-site.",
     result:
       "The candidate passed their certification exam and subsequently recommended BLE to colleagues in their professional network.",
+    outcomes: [
+      "Passed certification exam on first attempt",
+      "Consistently quiet, private workstations",
+      "Word-of-mouth referrals to professional network",
+    ],
     quote: "Frankly calmer than any center I'd sat in before.",
     attribution: "Priya S. — Certification Candidate, Healthcare",
+    cta: { label: "Find a Testing Center", href: "/register" },
   },
 ];
 
@@ -71,6 +89,25 @@ export default function CaseStudiesPage() {
             Every engagement is different. Here are a few examples of the
             problems we&apos;ve solved and the outcomes we&apos;ve delivered.
           </p>
+        </div>
+      </section>
+
+      {/* Proof bar */}
+      <section className="bg-crimson text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {[
+              { stat: "28-point", label: "engagement improvement" },
+              { stat: "15%", label: "reduction in turnover" },
+              { stat: "18-month", label: "succession completed" },
+              { stat: "5,000+", label: "professionals trained" },
+            ].map((item) => (
+              <div key={item.label}>
+                <div className="font-serif text-3xl font-bold text-white">{item.stat}</div>
+                <div className="mt-1 text-xs font-bold uppercase tracking-wider text-white/70">{item.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -108,6 +145,24 @@ export default function CaseStudiesPage() {
                     </div>
                   </div>
 
+                  {/* Outcome highlights */}
+                  <div className="mt-6 bg-[#F7F7F7] border-l-4 border-crimson p-5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <TrendingUp className="h-4 w-4 text-crimson" />
+                      <span className="text-xs font-bold uppercase tracking-wider text-crimson">
+                        Outcomes
+                      </span>
+                    </div>
+                    <ul className="space-y-1.5">
+                      {c.outcomes.map((o) => (
+                        <li key={o} className="flex items-start gap-2 text-sm text-black font-medium">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-crimson" />
+                          {o}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
                   {c.quote && (
                     <div className="mt-8 border-l-4 border-crimson pl-6">
                       <p className="font-serif text-lg text-black italic">
@@ -118,6 +173,15 @@ export default function CaseStudiesPage() {
                       </p>
                     </div>
                   )}
+
+                  <div className="mt-8">
+                    <Link
+                      href={c.cta.href}
+                      className="inline-flex items-center gap-2 bg-crimson px-6 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+                    >
+                      {c.cta.label} <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
                 </article>
               </AnimateOnScroll>
             ))}
@@ -136,7 +200,7 @@ export default function CaseStudiesPage() {
                   href="/contact"
                   className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
                 >
-                  Talk to Us <ArrowRight className="h-4 w-4" />
+                  Schedule a 30-Minute Growth Call <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/scorecard"

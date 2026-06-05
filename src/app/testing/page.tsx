@@ -11,7 +11,7 @@ import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Proctored Testing Centers",
   description:
-    "BLE Training operates 6 proctored testing centers across the US, authorized for Pearson VUE, Prometric, PSI, and 5 other providers.",
+    "Schedule certification exams through BLE Training's authorized testing centers for Pearson VUE, Prometric, PSI, Meazure Learning, Kryterion, ETS, Scantron, and Examity.",
   openGraph: {
     title: "Proctored Testing Centers | BLE Training",
     description:
@@ -250,12 +250,20 @@ export default function TestingPage() {
               confirm your exam details, and walk you through what to expect
               on test day.
             </p>
-            <Link
-              href="/contact"
-              className="mt-8 inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
-            >
-              Talk to a Proctor <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/register"
+                className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+              >
+                Find Your BLE Testing Center <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
+              >
+                Need help choosing a provider?
+              </Link>
+            </div>
           </AnimateOnScroll>
         </div>
       </section>

@@ -64,7 +64,7 @@ export default function NewsletterSignup() {
         disabled={status === "loading"}
         className="shrink-0 bg-crimson px-4 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors disabled:opacity-60"
       >
-        {status === "loading" ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : "Subscribe"}
+        {status === "loading" ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : "Get the Guides"}
       </button>
       {status === "error" && (
         <p className="absolute mt-10 text-[10px] text-red-600">{errorMsg}</p>

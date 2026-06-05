@@ -14,70 +14,88 @@ import {
   GraduationCap,
 } from "lucide-react";
 
-const LMS_BASE = "https://learning.ble.training";
-
-/* Map each scorecard category to 1–2 LMS category pages plus an
-   optional consulting cross-link, surfaced when the score is below 70%.
-   The pairing is opinionated — Succession + Team both lean on
-   Leadership and HR talent; Operations is about process + decision
-   communication; Growth is sales + strategic leadership; Family is its
-   own consulting practice rather than a self-paced course. The
-   "Overall" rollup intentionally has no recommendations — the
-   per-category cards already cover it. */
+/* Map each scorecard category to a recommended BLE commercial offer
+   and next step, surfaced when the score is below 70%. */
 const RECOMMENDATIONS: Record<
   string,
   {
     headline: string;
-    blurb: string;
-    courses: { label: string; href: string }[];
-    consultingHref?: string;
+    diagnosis: string;
+    whyItMatters: string;
+    nextSteps: string[];
+    offer: string;
+    offerHref: string;
+    offerCta: string;
+    learnMoreHref?: string;
   }
 > = {
   Succession: {
-    headline: "Strengthen Succession",
-    blurb:
-      "Build the leadership bench and talent pipeline that lets the business run — and grow — beyond you.",
-    courses: [
-      { label: "Leadership & Management", href: `${LMS_BASE}/store/categories/leadership-management` },
-      { label: "HR & Talent", href: `${LMS_BASE}/store/categories/hr-talent` },
+    headline: "Your score suggests a succession risk.",
+    diagnosis: "The business relies on key individuals without a documented path forward. Leadership and ownership transitions are one of the most common causes of value loss in growing businesses.",
+    whyItMatters: "Without a plan, leadership transitions become crises. The earlier you build a succession roadmap, the more options you have.",
+    nextSteps: [
+      "Document what the business depends on you for, specifically.",
+      "Identify potential successors and their readiness gaps.",
+      "Begin a confidential succession readiness review.",
     ],
-    consultingHref: "/consulting#family",
+    offer: "Family Business Succession Readiness Assessment",
+    offerHref: "/consulting",
+    offerCta: "Start Succession Assessment",
+    learnMoreHref: "/consulting#family",
   },
   Team: {
-    headline: "Strengthen your Team",
-    blurb:
-      "Help your managers coach, delegate, and lead — so the business doesn't run through you.",
-    courses: [
-      { label: "Leadership & Management", href: `${LMS_BASE}/store/categories/leadership-management` },
-      { label: "HR & Talent", href: `${LMS_BASE}/store/categories/hr-talent` },
+    headline: "Your score suggests a team performance gap.",
+    diagnosis: "Managers were likely promoted from strong individual contributors without formal leadership development. The business is running on personal relationships rather than systems.",
+    whyItMatters: "A team that can't lead without direct supervision puts a ceiling on every growth initiative.",
+    nextSteps: [
+      "Identify which managers need the most development.",
+      "Build a role-specific training path for frontline leaders.",
+      "Create a coaching rhythm to reinforce new behaviors.",
     ],
+    offer: "Custom Team Training Plan",
+    offerHref: "/contact",
+    offerCta: "Request a Team Training Plan",
+    learnMoreHref: "/how-we-work",
   },
   Operations: {
-    headline: "Tighten Operations",
-    blurb:
-      "Document the work, sharpen decision-making, and remove the bottlenecks that flow back to your desk.",
-    courses: [
-      { label: "Project Management", href: `${LMS_BASE}/store/categories/project-management` },
-      { label: "Communication", href: `${LMS_BASE}/store/categories/communication` },
+    headline: "Your score suggests operational drag.",
+    diagnosis: "Key processes live in people's heads. Decisions escalate to the owner. The business can't scale because it can't operate consistently without the people who built it.",
+    whyItMatters: "Operational drag compounds — it's the hidden tax on every growth initiative.",
+    nextSteps: [
+      "Document your three most critical business processes.",
+      "Identify where decisions regularly get stuck.",
+      "Clarify accountability for recurring operational problems.",
     ],
+    offer: "Business Health Diagnostic",
+    offerHref: "/contact",
+    offerCta: "Request a Diagnostic",
   },
   Growth: {
-    headline: "Accelerate Growth",
-    blurb:
-      "Develop the sales discipline and strategic-leadership habits that turn a plan into pipeline.",
-    courses: [
-      { label: "Sales & Marketing", href: `${LMS_BASE}/store/categories/sales-marketing` },
-      { label: "Leadership & Management", href: `${LMS_BASE}/store/categories/leadership-management` },
+    headline: "Your score suggests a growth readiness gap.",
+    diagnosis: "The business may have goals but lacks the leadership systems and operating discipline to execute them consistently. Growth without structure usually creates more chaos.",
+    whyItMatters: "Unmanaged growth can damage the culture and margins you've already built.",
+    nextSteps: [
+      "Write a one-page growth plan with owners for each major goal.",
+      "Review whether your current team has the capacity to execute.",
+      "Identify the one constraint most holding back your growth.",
     ],
+    offer: "Business Health Diagnostic",
+    offerHref: "/contact",
+    offerCta: "Request a Diagnostic",
   },
   "Family/Ownership": {
-    headline: "Clarify Family & Ownership",
-    blurb:
-      "Family-led decisions need governance and a shared language. Self-paced leadership courses help, but this is also where our consulting practice goes deepest.",
-    courses: [
-      { label: "Leadership & Management", href: `${LMS_BASE}/store/categories/leadership-management` },
+    headline: "Your score suggests a leadership bottleneck.",
+    diagnosis: "The business is relying on a few key people to make too many decisions, while managers lack the structure or training to lead consistently.",
+    whyItMatters: "Owner dependency is the most common growth ceiling in mid-market companies.",
+    nextSteps: [
+      "Clarify which decisions can be delegated immediately.",
+      "Define roles and meeting rhythms that support independent management.",
+      "Build a leadership system your team can run.",
     ],
-    consultingHref: "/consulting#family",
+    offer: "Leadership Operating System Sprint",
+    offerHref: "/consulting",
+    offerCta: "Build Your Leadership System",
+    learnMoreHref: "/consulting",
   },
 };
 
@@ -224,6 +242,7 @@ export default function ScorecardClient() {
   const [step, setStep] = useState(0); // 0 = intro, 1-10 = questions, 11 = email, 12 = results
   const [answers, setAnswers] = useState<number[]>([]);
   const [email, setEmail] = useState("");
+  const [captureFields, setCaptureFields] = useState({ name: "", company: "", companySize: "" });
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
 
@@ -258,6 +277,7 @@ export default function ScorecardClient() {
     setSending(true);
     setError("");
 
+    const [first, ...rest] = (captureFields.name || "").split(/\s+/);
     try {
       await fetch("/api/subscribe", {
         method: "POST",
@@ -265,9 +285,14 @@ export default function ScorecardClient() {
         body: JSON.stringify({
           email: cleanEmail,
           tag: "scorecard",
+          mergeFields: {
+            FNAME: first || "",
+            LNAME: rest.join(" "),
+            COMPANY: captureFields.company || "",
+            COMPSIZE: captureFields.companySize || "",
+          },
         }),
       });
-      // Show results regardless of subscribe outcome
       setStep(12);
     } catch {
       setError("Connection error. Showing results anyway.");
@@ -388,25 +413,49 @@ export default function ScorecardClient() {
   if (step === 11) {
     return (
       <section className="bg-black text-white min-h-[80vh] flex items-center">
-        <div className="mx-auto max-w-lg px-6 lg:px-8 py-20 text-center w-full">
+        <div className="mx-auto max-w-lg px-6 lg:px-8 py-20 w-full">
           <ClipboardCheck className="mx-auto h-12 w-12 text-crimson" />
-          <h2 className="mt-6 font-serif text-3xl md:text-4xl text-white">
+          <h2 className="mt-6 font-serif text-3xl md:text-4xl text-white text-center">
             Your scorecard is ready.
           </h2>
-          <p className="mt-4 text-white/70 leading-relaxed">
-            Enter your email to see your results and get a personalized
+          <p className="mt-4 text-white/70 leading-relaxed text-center">
+            Enter your details to see your results and get a personalized
             summary of where your business stands.
           </p>
 
           <form onSubmit={handleEmailSubmit} className="mt-8 space-y-4">
             <input
+              type="text"
+              value={captureFields.name}
+              onChange={(e) => setCaptureFields({ ...captureFields, name: e.target.value })}
+              placeholder="Your name"
+              className="w-full border border-white/20 bg-white/10 px-4 py-4 text-sm text-white placeholder-white/40 focus:border-crimson focus:outline-none focus:ring-2 focus:ring-crimson/30"
+            />
+            <input
+              type="text"
+              value={captureFields.company}
+              onChange={(e) => setCaptureFields({ ...captureFields, company: e.target.value })}
+              placeholder="Company name"
+              className="w-full border border-white/20 bg-white/10 px-4 py-4 text-sm text-white placeholder-white/40 focus:border-crimson focus:outline-none focus:ring-2 focus:ring-crimson/30"
+            />
+            <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@company.com"
+              placeholder="Work email"
               required
               className="w-full border border-white/20 bg-white/10 px-4 py-4 text-sm text-white placeholder-white/40 focus:border-crimson focus:outline-none focus:ring-2 focus:ring-crimson/30"
             />
+            <select
+              value={captureFields.companySize}
+              onChange={(e) => setCaptureFields({ ...captureFields, companySize: e.target.value })}
+              className="w-full border border-white/20 bg-black/80 px-4 py-4 text-sm text-white placeholder-white/40 focus:border-crimson focus:outline-none focus:ring-2 focus:ring-crimson/30"
+            >
+              <option value="">Company size (optional)</option>
+              {["1–24 employees", "25–99 employees", "100–249 employees", "250–500 employees", "500+ employees"].map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
             {error && <p className="text-xs text-red-400">{error}</p>}
             <button
               type="submit"
@@ -417,7 +466,7 @@ export default function ScorecardClient() {
             </button>
           </form>
 
-          <p className="mt-4 text-[11px] text-white/30">
+          <p className="mt-4 text-[11px] text-white/30 text-center">
             No spam. Your results are private.
           </p>
         </div>
@@ -496,9 +545,7 @@ export default function ScorecardClient() {
           </div>
 
           {/* Recommended next steps — only show cards for categories that
-              scored below 70%. If every category cleared 70 the scorecard
-              already says "Growth-Ready" and the bottom CTA is the right
-              next step. */}
+              scored below 70%. Route to BLE commercial offers. */}
           {(() => {
             const weakCats = ["Succession", "Team", "Operations", "Growth", "Family/Ownership"]
               .filter((cat) => RECOMMENDATIONS[cat])
@@ -516,6 +563,10 @@ export default function ScorecardClient() {
 
             if (weakCats.length === 0) return null;
 
+            // Show only the lowest-scoring (most critical) recommendation
+            const primary = weakCats[0];
+            const rec = RECOMMENDATIONS[primary.cat];
+
             return (
               <div className="mb-12">
                 <div className="flex items-center gap-2 mb-2">
@@ -524,53 +575,79 @@ export default function ScorecardClient() {
                     Recommended next steps
                   </h3>
                 </div>
-                <p className="text-sm text-black/60 mb-6">
-                  Start strengthening your weakest areas today with self-paced
-                  courses from the BLE Learning Hub.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {weakCats.map(({ cat }) => {
-                    const rec = RECOMMENDATIONS[cat];
-                    return (
-                      <div
-                        key={cat}
-                        className="bg-slate-50 border border-slate-200 rounded p-5"
+
+                <div className="bg-slate-50 border-t-4 border-crimson p-6 md:p-8">
+                  <h4 className="font-serif text-xl text-black">
+                    {rec.headline}
+                  </h4>
+                  <p className="mt-3 text-base text-black/80 leading-relaxed">
+                    {rec.diagnosis}
+                  </p>
+                  <p className="mt-2 text-sm text-black/60 italic">
+                    {rec.whyItMatters}
+                  </p>
+
+                  <div className="mt-5">
+                    <p className="text-xs font-bold uppercase tracking-wider text-crimson mb-2">
+                      3 practical next steps
+                    </p>
+                    <ol className="space-y-2">
+                      {rec.nextSteps.map((step, i) => (
+                        <li key={step} className="flex items-start gap-3 text-sm text-black/70">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-crimson text-white text-[10px] font-bold">
+                            {i + 1}
+                          </span>
+                          {step}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+
+                  <div className="mt-5 pt-5 border-t border-slate-200">
+                    <p className="text-xs font-bold uppercase tracking-wider text-black/50 mb-1">
+                      Recommended BLE offer
+                    </p>
+                    <p className="text-base font-serif font-semibold text-black mb-3">
+                      {rec.offer}
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <Link
+                        href={rec.offerHref}
+                        className="inline-flex items-center gap-2 bg-crimson px-6 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
                       >
-                        <h4 className="font-serif text-lg text-black">
-                          {rec.headline}
-                        </h4>
-                        <p className="mt-1.5 text-sm text-black/70 leading-relaxed">
-                          {rec.blurb}
-                        </p>
-                        <ul className="mt-3 space-y-1.5">
-                          {rec.courses.map((c) => (
-                            <li key={c.href}>
-                              <a
-                                href={c.href}
-                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-crimson hover:text-crimson-soft"
-                              >
-                                Browse {c.label} courses
-                                <span className="sr-only"> (opens in Learning Hub)</span>
-                                <ArrowRight className="h-3.5 w-3.5" />
-                              </a>
-                            </li>
-                          ))}
-                          {rec.consultingHref && (
-                            <li>
-                              <Link
-                                href={rec.consultingHref}
-                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-black hover:text-crimson"
-                              >
-                                Or talk to our consulting practice
-                                <ArrowRight className="h-3.5 w-3.5" />
-                              </Link>
-                            </li>
-                          )}
-                        </ul>
-                      </div>
-                    );
-                  })}
+                        {rec.offerCta} <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                      {rec.learnMoreHref && (
+                        <Link
+                          href={rec.learnMoreHref}
+                          className="inline-flex items-center gap-2 border border-black/20 px-6 py-3 text-xs font-bold uppercase tracking-wider text-black hover:border-crimson hover:text-crimson transition-colors"
+                        >
+                          Learn More <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      )}
+                    </div>
+                  </div>
                 </div>
+
+                {/* Additional weak areas */}
+                {weakCats.length > 1 && (
+                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {weakCats.slice(1).map(({ cat }) => {
+                      const r = RECOMMENDATIONS[cat];
+                      return (
+                        <div key={cat} className="bg-white border border-slate-200 p-4 flex items-start gap-3">
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-black">{r.headline}</p>
+                            <p className="mt-1 text-xs text-black/60 leading-relaxed">{r.diagnosis.split(".")[0]}.</p>
+                          </div>
+                          <Link href={r.offerHref} className="shrink-0 text-xs font-bold text-crimson hover:text-crimson-soft">
+                            <ArrowRight className="h-4 w-4" />
+                          </Link>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             );
           })()}
@@ -582,21 +659,21 @@ export default function ScorecardClient() {
             </h2>
             <p className="mt-4 text-white/70 max-w-lg mx-auto">
               We&apos;ve helped hundreds of businesses strengthen
-              their teams, plan transitions, and grow with confidence. A quick
-              conversation is the best next step.
+              their teams, plan transitions, and grow with confidence.
+              It starts with a 30-minute conversation — no pitch deck, no pressure.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
               >
-                Talk to Us <ArrowRight className="h-4 w-4" />
+                Schedule a 30-Minute Growth Call <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/consulting"
                 className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
               >
-                Explore Our Consulting Practice
+                Request Your Scorecard Report
               </Link>
             </div>
           </div>

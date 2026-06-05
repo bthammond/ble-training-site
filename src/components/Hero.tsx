@@ -31,34 +31,35 @@ export default function Hero() {
               Built for Business Leaders
             </span>
           </div>
-          <h1 className="mt-6 font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight text-white">
-            Train Your Team.<br />
-            <span className="text-crimson">Grow Your Business.</span>
+          <h1 className="mt-6 font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.06] tracking-tight text-white">
+            Build the team and operating system<br />
+            <span className="text-crimson">your growing business needs.</span>
           </h1>
           <p className="mt-8 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed">
-            You built the business. Let us build the team.
+            BLE helps owner-led and mid-market companies train managers,
+            improve team performance, and prepare for growth or succession.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Link
-              href="/scorecard"
+              href="/contact"
               className="group inline-flex items-center justify-center gap-2 bg-crimson px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-xl hover:bg-crimson-soft transition-colors"
             >
-              Take the Free Scorecard
+              Schedule a 30-Minute Growth Call
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
-              href="/how-we-work"
+              href="/scorecard"
               className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
             >
-              See How We Work
+              Take the Free Business Health Scorecard
             </Link>
           </div>
 
           {/* Trust bar */}
           <div className="mt-12 pt-8 border-t border-white/15 max-w-2xl">
             <p className="text-sm text-white/60 leading-relaxed">
-              Trusted by enterprise clients across 40+ industries —
-              now focused on the owners building what&apos;s next.
+              Enterprise-tested training, consulting, and testing expertise —
+              built for growing businesses. Trusted across 40+ industries since 2007.
             </p>
           </div>
         </div>

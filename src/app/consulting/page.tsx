@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, Compass, Shield, TrendingUp, Users2, Handshake, ArrowRight } from "lucide-react";
+import { Heart, Compass, Shield, TrendingUp, Users2, Handshake, ArrowRight, BarChart3, Workflow, Settings } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import MidPageScorecardCTA from "@/components/MidPageScorecardCTA";
@@ -10,21 +10,21 @@ import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Business Consulting",
   description:
-    "BLE Training's business consulting services help owner-led and family businesses solve succession, leadership, and operational challenges.",
+    "Business consulting for owner-led and mid-market companies, including leadership systems, team performance, growth operations, and family business succession readiness.",
   openGraph: {
     title: "Business Consulting | BLE Training",
     description:
-      "BLE Training's business consulting services help owner-led and family businesses solve succession, leadership, and operational challenges.",
+      "Business consulting for owner-led and mid-market companies, including leadership systems, team performance, growth operations, and family business succession readiness.",
     url: "https://www.ble.training/consulting",
   },
   keywords: [
     "Business Consulting",
-    "Growth Strategy",
-    "Leadership Coaching",
+    "Business Health Diagnostic",
+    "Leadership Operating System",
     "Succession Planning",
-    "Operational Consulting",
     "Family Business Consulting",
-    "Business Transition Planning",
+    "Custom Team Training",
+    "Growth Strategy",
   ],
   alternates: { canonical: "/consulting" },
 };
@@ -217,6 +217,95 @@ export default function ConsultingPage() {
                     <p className="mt-3 text-sm text-black/70 leading-relaxed">
                       {p.desc}
                     </p>
+                  </article>
+                </AnimateOnScroll>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCTIZED STARTING POINTS */}
+      <section className="bg-white border-b border-slate-200">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+          <AnimateOnScroll>
+            <div className="max-w-2xl">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+                Choose Your Starting Point
+              </span>
+              <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black">
+                Choose the starting point that fits your situation.
+              </h2>
+              <div className="mt-6 h-px w-24 bg-crimson" />
+            </div>
+          </AnimateOnScroll>
+
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                icon: BarChart3,
+                label: "Business Health Diagnostic",
+                for: "Owners and executive teams who know something is holding the business back but need a clear outside view.",
+                includes: "Leadership, team, operations, growth, and succession review.",
+                outcome: "A practical action roadmap and executive debrief.",
+                cta: "Request a Diagnostic",
+              },
+              {
+                icon: Workflow,
+                label: "Leadership Operating System Sprint",
+                for: "Companies where managers are busy, decisions are inconsistent, or accountability depends too heavily on the owner.",
+                includes: "Role clarity, meeting cadence, operating scorecards, decision rights, and management habits.",
+                outcome: "A leadership system your team can actually run.",
+                cta: "Build Your Leadership System",
+              },
+              {
+                icon: Settings,
+                label: "Family Business Succession Readiness Assessment",
+                for: "Family-run and owner-led businesses preparing for leadership, governance, or ownership transition.",
+                includes: "Confidential readiness review, role alignment, governance considerations, and transition risk mapping.",
+                outcome: "A clearer path for succession conversations and next steps.",
+                cta: "Start Succession Assessment",
+              },
+              {
+                icon: Users2,
+                label: "Custom Team Training Plan",
+                for: "HR, operations, and executive leaders who need managers or frontline teams to perform more consistently.",
+                includes: "Role-specific curriculum, delivery plan, and manager reinforcement approach.",
+                outcome: "A practical training path tied to business outcomes.",
+                cta: "Request a Team Training Plan",
+              },
+            ].map((offer, i) => {
+              const Icon = offer.icon;
+              return (
+                <AnimateOnScroll key={offer.label} delay={i * 70}>
+                  <article className="h-full flex flex-col bg-[#F7F7F7] border-t-4 border-crimson p-8">
+                    <div className="flex h-12 w-12 items-center justify-center bg-black">
+                      <Icon className="h-6 w-6 text-white" strokeWidth={1.75} />
+                    </div>
+                    <h3 className="mt-5 font-serif text-xl text-black">
+                      {offer.label}
+                    </h3>
+                    <div className="mt-5 space-y-3 flex-1">
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-crimson">Who it&apos;s for</span>
+                        <p className="mt-1 text-sm text-black/70 leading-relaxed">{offer.for}</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-crimson">What it includes</span>
+                        <p className="mt-1 text-sm text-black/70 leading-relaxed">{offer.includes}</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-crimson">Outcome</span>
+                        <p className="mt-1 text-sm text-black font-medium leading-relaxed">{offer.outcome}</p>
+                      </div>
+                    </div>
+                    <Link
+                      href="/contact"
+                      className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors"
+                    >
+                      {offer.cta}
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
                   </article>
                 </AnimateOnScroll>
               );

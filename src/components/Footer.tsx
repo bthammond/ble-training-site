@@ -49,8 +49,12 @@ export default function Footer() {
             </p>
           </div>
           <div className="mt-6">
-            <p className="text-xs font-bold uppercase tracking-wider text-black/50 mb-2">
-              Stay in the loop
+            <p className="text-xs font-bold uppercase tracking-wider text-black/50 mb-1">
+              Get practical growth and training tools.
+            </p>
+            <p className="text-xs text-black/50 mb-2 leading-relaxed">
+              Checklists and short guides on leadership, team performance,
+              succession readiness, and workforce training.
             </p>
             <NewsletterSignup />
           </div>

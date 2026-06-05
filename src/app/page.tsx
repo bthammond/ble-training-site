@@ -174,7 +174,11 @@ export default function Home() {
                       href={pillar.href}
                       className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors"
                     >
-                      {pillar.cta} <ArrowRight className="h-4 w-4" />
+                      {pillar.cta}
+                      {pillar.external && (
+                        <span className="sr-only"> (opens in Learning Hub)</span>
+                      )}
+                      <ArrowRight className="h-4 w-4" />
                     </CtaTag>
                   </article>
                 </AnimateOnScroll>

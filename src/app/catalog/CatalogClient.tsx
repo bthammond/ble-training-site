@@ -298,6 +298,7 @@ export default function CatalogClient() {
           className="font-bold underline underline-offset-2 hover:no-underline"
         >
           Browse self-paced courses in the Learning Hub →
+          <span className="sr-only"> (opens in Learning Hub)</span>
         </a>
       </div>
 

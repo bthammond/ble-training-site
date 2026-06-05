@@ -302,7 +302,7 @@ export default function ScorecardClient() {
             >
               Start the Assessment <ArrowRight className="h-4 w-4" />
             </button>
-            <p className="mt-6 text-sm text-white/40">
+            <p className="mt-6 text-sm text-white/70">
               No cost. No obligation. Your results are private.
             </p>
           </div>
@@ -550,6 +550,7 @@ export default function ScorecardClient() {
                                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-crimson hover:text-crimson-soft"
                               >
                                 Browse {c.label} courses
+                                <span className="sr-only"> (opens in Learning Hub)</span>
                                 <ArrowRight className="h-3.5 w-3.5" />
                               </a>
                             </li>

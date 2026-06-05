@@ -283,7 +283,9 @@ export default function HowWeWorkPage() {
                 href="https://learning.ble.training/store"
                 className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
               >
-                Browse Self-Paced Courses <ArrowRight className="h-4 w-4" />
+                Browse Self-Paced Courses
+                <span className="sr-only"> (opens in Learning Hub)</span>
+                <ArrowRight className="h-4 w-4" />
               </a>
               <Link
                 href="/catalog"

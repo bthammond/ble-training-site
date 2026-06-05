@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 // External LMS subdomain. Same-tab navigation — visitors should feel
@@ -29,6 +29,7 @@ const NAV_LINKS: NavLink[] = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -36,6 +37,21 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // When the mobile menu is open, Escape closes it and returns focus to
+  // the toggle button so keyboard users don't lose their place in the
+  // tab order.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 w-full">
@@ -51,6 +67,7 @@ export default function Header() {
                     className="text-white font-semibold hover:underline underline-offset-2"
                   >
                     {l.label}
+                    <span className="sr-only"> (opens in Learning Hub)</span>
                   </a>
                 </li>
               ) : (
@@ -95,6 +112,7 @@ export default function Header() {
                     className="text-black hover:text-crimson transition-colors"
                   >
                     {l.label}
+                    <span className="sr-only"> (opens in Learning Hub)</span>
                   </a>
                 </li>
               ) : (
@@ -126,7 +144,11 @@ export default function Header() {
           </div>
 
           <button
-            aria-label="Toggle menu"
+            ref={menuButtonRef}
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
             className="lg:hidden text-black p-2"
             onClick={() => setOpen((v) => !v)}
           >
@@ -135,7 +157,7 @@ export default function Header() {
         </nav>
 
         {open && (
-          <div className="lg:hidden border-t border-slate-200 bg-white">
+          <div id="mobile-nav" className="lg:hidden border-t border-slate-200 bg-white">
             <ul className="px-6 py-4 flex flex-col gap-3 text-sm uppercase tracking-wider font-bold">
               <li>
                 <Link
@@ -155,6 +177,7 @@ export default function Header() {
                       className="block py-2 text-black hover:text-crimson"
                     >
                       {l.label}
+                      <span className="sr-only"> (opens in Learning Hub)</span>
                     </a>
                   </li>
                 ) : (
@@ -185,6 +208,7 @@ export default function Header() {
                   className="block py-2 text-black hover:text-crimson"
                 >
                   Sign In
+                  <span className="sr-only"> (opens in Learning Hub)</span>
                 </a>
               </li>
               <li className="pt-2">

@@ -12,9 +12,21 @@ export default function AnimateOnScroll({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
+  // Initialize as visible when the user prefers reduced motion — that
+  // way the content is on-screen immediately without ever applying the
+  // fade-up transform, instead of relying on the observer to "skip" the
+  // animation on first paint. Same pattern as Stats.tsx.
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    const reduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setVisible(true);
+      return;
+    }
+
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(

@@ -65,6 +65,7 @@ export default function Footer() {
                 className="hover:text-crimson"
               >
                 Self-Paced Courses
+                <span className="sr-only"> (opens in Learning Hub)</span>
               </a>
             </li>
             <li><Link href="/how-we-work" className="hover:text-crimson">Organizational Training</Link></li>
@@ -83,6 +84,7 @@ export default function Footer() {
                   className="hover:text-crimson"
                 >
                   Sign In
+                  <span className="sr-only"> (opens in Learning Hub)</span>
                 </a>
               </li>
               <li>
@@ -91,6 +93,7 @@ export default function Footer() {
                   className="hover:text-crimson"
                 >
                   Create Account
+                  <span className="sr-only"> (opens in Learning Hub)</span>
                 </a>
               </li>
             </ul>

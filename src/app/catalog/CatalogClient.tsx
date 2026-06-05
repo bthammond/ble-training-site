@@ -287,6 +287,20 @@ export default function CatalogClient() {
   /* ── LANDING VIEW ────────────────────────────────────────── */
   return (
     <>
+      {/* Self-serve cross-link — this catalog is the enterprise lead-gen
+          flow. Visitors who just want to take a course on their own should
+          land in the Learning Hub instead of being funneled into the
+          "Request Full Catalog" enterprise path. */}
+      <div className="bg-crimson text-white text-center py-2.5 text-xs tracking-wider">
+        Looking to take a course right now?{" "}
+        <a
+          href="https://learning.ble.training/store"
+          className="font-bold underline underline-offset-2 hover:no-underline"
+        >
+          Browse self-paced courses in the Learning Hub →
+        </a>
+      </div>
+
       {/* Hero */}
       <section className="relative bg-black text-white overflow-hidden">
         <div

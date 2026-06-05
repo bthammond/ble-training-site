@@ -59,11 +59,42 @@ export default function Footer() {
         <div>
           <h4 className="font-serif text-lg text-black mb-4">Services</h4>
           <ul className="space-y-2 text-sm text-black/70">
+            <li>
+              <a
+                href="https://learning.ble.training/store"
+                className="hover:text-crimson"
+              >
+                Self-Paced Courses
+              </a>
+            </li>
             <li><Link href="/how-we-work" className="hover:text-crimson">Organizational Training</Link></li>
             <li><Link href="/consulting" className="hover:text-crimson">Business Consulting</Link></li>
             <li><Link href="/testing" className="hover:text-crimson">Proctored Testing</Link></li>
             <li><Link href="/consulting#family" className="hover:text-crimson">Family Business</Link></li>
           </ul>
+          <div className="mt-4 pt-4 border-t border-slate-200">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-black/50 mb-2">
+              Learning Hub
+            </p>
+            <ul className="space-y-1.5 text-sm text-black/70">
+              <li>
+                <a
+                  href="https://learning.ble.training/login"
+                  className="hover:text-crimson"
+                >
+                  Sign In
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://learning.ble.training/register"
+                  className="hover:text-crimson"
+                >
+                  Create Account
+                </a>
+              </li>
+            </ul>
+          </div>
           <a
             href="https://www.redcross.org/take-a-class/bls?latitude=41.3117471&longitude=-75.83741739999999&searchtype=class&zip=Wyoming%2C%20PA%2018644%2C%20USA&zipcode=18644"
             target="_blank"

@@ -4,9 +4,12 @@ import {
   Layers,
   Compass,
   ClipboardCheck,
+  GraduationCap,
   MapPin,
   ChevronDown,
 } from "lucide-react";
+
+const LMS_BASE = "https://learning.ble.training";
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
@@ -137,14 +140,24 @@ export default function Home() {
                 Our Practice
               </span>
               <h2 className="mt-3 font-serif text-4xl md:text-5xl text-black">
-                Three ways we work with you.
+                Four ways we work with you.
               </h2>
               <div className="mt-6 h-px w-24 bg-crimson" />
             </div>
           </AnimateOnScroll>
 
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
+              {
+                icon: GraduationCap,
+                title: "Learn at your pace, on your schedule.",
+                label: "Self-Paced Learning",
+                body:
+                  "150+ practitioner-built courses across leadership, communication, sales, HR, and compliance. Earn verifiable certificates. Start in minutes.",
+                href: `${LMS_BASE}/store`,
+                cta: "Browse Courses",
+                external: true,
+              },
               {
                 icon: Layers,
                 title: "Build a team that performs without you managing every detail.",
@@ -153,6 +166,7 @@ export default function Home() {
                   "We design training programs, onboarding systems, and coaching frameworks that create high-functioning organizations. Tested in enterprise environments. Built for your business.",
                 href: "/how-we-work",
                 cta: "Learn More",
+                external: false,
               },
               {
                 icon: Compass,
@@ -162,6 +176,7 @@ export default function Home() {
                   "Growth strategy, leadership transitions, and operational consulting — with specialty practices for family-run and owner-led businesses.",
                 href: "/consulting",
                 cta: "Explore Consulting",
+                external: false,
               },
               {
                 icon: ClipboardCheck,
@@ -171,9 +186,11 @@ export default function Home() {
                   "Six professional testing centers across the U.S. Computer-based proctored exams through Pearson VUE, Prometric, PSI, and more.",
                 href: "/locations",
                 cta: "Find a Center",
+                external: false,
               },
             ].map((pillar, i) => {
               const Icon = pillar.icon;
+              const CtaTag = pillar.external ? "a" : Link;
               return (
                 <AnimateOnScroll key={pillar.label} delay={i * 90}>
                   <article className="h-full flex flex-col bg-white border-t-4 border-crimson shadow-sm p-8 lg:p-10">
@@ -189,12 +206,12 @@ export default function Home() {
                     <p className="mt-4 text-black/70 leading-relaxed flex-1">
                       {pillar.body}
                     </p>
-                    <Link
+                    <CtaTag
                       href={pillar.href}
                       className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-crimson hover:text-crimson-soft transition-colors"
                     >
                       {pillar.cta} <ArrowRight className="h-4 w-4" />
-                    </Link>
+                    </CtaTag>
                   </article>
                 </AnimateOnScroll>
               );

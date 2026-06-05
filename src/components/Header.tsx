@@ -5,15 +5,23 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
-const UTILITY_LINKS = [
+// External LMS subdomain. Same-tab navigation — visitors should feel
+// the Learning Hub is part of BLE Training, not a third-party redirect.
+const LMS_BASE = "https://learning.ble.training";
+
+type NavLink = { href: string; label: string; external?: boolean };
+
+const UTILITY_LINKS: NavLink[] = [
+  { href: `${LMS_BASE}/login`, label: "Sign In", external: true },
   { href: "/contact", label: "Contact" },
   { href: "/locations", label: "Locations" },
 ];
 
-const NAV_LINKS = [
+const NAV_LINKS: NavLink[] = [
   { href: "/how-we-work", label: "How We Work" },
   { href: "/consulting", label: "Business Consulting" },
   { href: "/locations", label: "Testing Centers" },
+  { href: `${LMS_BASE}/store`, label: "Courses", external: true },
   { href: "/resources", label: "Resources" },
   { href: "/about", label: "About" },
 ];
@@ -35,16 +43,27 @@ export default function Header() {
       <div className="bg-crimson text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-end h-8 text-xs">
           <ul className="flex items-center gap-6">
-            {UTILITY_LINKS.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="text-white font-semibold hover:underline underline-offset-2"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
+            {UTILITY_LINKS.map((l) =>
+              l.external ? (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="text-white font-semibold hover:underline underline-offset-2"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ) : (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-white font-semibold hover:underline underline-offset-2"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ),
+            )}
           </ul>
         </div>
       </div>
@@ -68,16 +87,27 @@ export default function Header() {
           </Link>
 
           <ul className="hidden lg:flex items-center gap-5 xl:gap-7 text-xs xl:text-[13px] font-bold uppercase tracking-wide whitespace-nowrap">
-            {NAV_LINKS.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="text-black hover:text-crimson transition-colors"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
+            {NAV_LINKS.map((l) =>
+              l.external ? (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="text-black hover:text-crimson transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ) : (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-black hover:text-crimson transition-colors"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ),
+            )}
           </ul>
 
           <div className="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
@@ -116,17 +146,29 @@ export default function Header() {
                   Free Scorecard →
                 </Link>
               </li>
-              {NAV_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="block py-2 text-black hover:text-crimson"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
+              {NAV_LINKS.map((l) =>
+                l.external ? (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      onClick={() => setOpen(false)}
+                      className="block py-2 text-black hover:text-crimson"
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ) : (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      onClick={() => setOpen(false)}
+                      className="block py-2 text-black hover:text-crimson"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ),
+              )}
               <li>
                 <Link
                   href="/contact"
@@ -135,6 +177,15 @@ export default function Header() {
                 >
                   Contact
                 </Link>
+              </li>
+              <li>
+                <a
+                  href={`${LMS_BASE}/login`}
+                  onClick={() => setOpen(false)}
+                  className="block py-2 text-black hover:text-crimson"
+                >
+                  Sign In
+                </a>
               </li>
               <li className="pt-2">
                 <Link

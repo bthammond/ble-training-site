@@ -3,8 +3,7 @@
 ## Phase 1: First 30 Days After Launch
 
 ### Content & SEO
-- [ ] Write and publish 3 blog articles (drafts are staged on /blog)
-- [ ] Add 5 more blog articles targeting SEO keywords
+- [ ] Add 5 more articles to /insights targeting SEO keywords
 - [ ] Submit sitemap to Google Search Console
 - [ ] Set up Google Search Console and verify domain
 - [ ] Register site with Bing Webmaster Tools

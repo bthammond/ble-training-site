@@ -40,6 +40,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // /blog was a stub route nobody linked to internally. Everything
+      // ships under /insights now. 308 preserves any external links and
+      // cached search results pointing at the old path.
+      { source: "/blog", destination: "/insights", permanent: true },
+      { source: "/blog/:path*", destination: "/insights", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

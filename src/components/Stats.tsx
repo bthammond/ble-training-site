@@ -11,10 +11,23 @@ const STATS: Stat[] = [
   { label: "Years in Practice", value: 20, suffix: "+" },
 ];
 
+// Initialize at `target` so server-rendered HTML (and any reader before
+// the IntersectionObserver fires — Googlebot, link unfurlers, screen
+// readers, reduced-motion users) sees the real number instead of 0.
+// When the section scrolls into view we briefly reset to 0 and animate
+// up; reduced-motion users skip the animation entirely.
 function useCountUp(target: number, start: boolean, duration = 1600) {
-  const [n, setN] = useState(0);
+  const [n, setN] = useState(target);
   useEffect(() => {
     if (!start) return;
+    const reduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setN(target);
+      return;
+    }
+    setN(0);
     let raf = 0;
     const t0 = performance.now();
     const tick = (now: number) => {

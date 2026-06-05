@@ -67,42 +67,6 @@ export default function Home() {
       {/* 1 — HERO: Hook them */}
       <Hero />
 
-      {/* 1.5 — ABOUT (plain-factual block for Google + AI search engines) */}
-      <section className="bg-white border-b border-slate-200">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-12">
-          <p className="text-base md:text-lg text-black/70 leading-relaxed">
-            <strong className="text-black">Bedford, Louis &amp; Ellicott, LLC</strong> —
-            operating as <strong className="text-black">BLE Training</strong> —
-            is a U.S.-based corporate training, business consulting, and
-            proctored testing company founded in <strong>2007</strong>. We
-            specialize in mid-market and owner-led businesses with 25–500
-            employees, offering custom{" "}
-            <Link href="/how-we-work" className="text-crimson hover:text-crimson-soft underline">
-              organizational training programs
-            </Link>
-            ,{" "}
-            <Link href="/consulting" className="text-crimson hover:text-crimson-soft underline">
-              business consulting
-            </Link>
-            {" "}with specialty depth in{" "}
-            <Link
-              href="/insights/family-business-succession-guide"
-              className="text-crimson hover:text-crimson-soft underline"
-            >
-              family business succession
-            </Link>
-            , and{" "}
-            <Link href="/testing" className="text-crimson hover:text-crimson-soft underline">
-              six nationwide proctored testing centers
-            </Link>
-            {" "}authorized for Pearson VUE, Prometric, PSI, and five other
-            providers. Headquartered in Pennsylvania and serving the
-            continental United States across manufacturing, healthcare,
-            logistics, financial services, and professional services.
-          </p>
-        </div>
-      </section>
-
       {/* 2 — PROBLEM: Show you understand their pain */}
       <section className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
@@ -306,6 +270,47 @@ export default function Home() {
 
       {/* 6 — TESTIMONIAL: Social proof */}
       <TestimonialSlider />
+
+      {/* 6.5 — ABOUT: Now-that-you-trust-us-here's-who-we-are credibility
+            block. Plain-factual prose remains crawler-friendly for Google
+            and AI search engines, and Hero/Problem still appear well above
+            this in the DOM so SEO priority isn't lost. Moved from slot 1.5
+            because leading with company history right after the hero
+            interrupted the customer-first story arc. */}
+      <section className="bg-white border-y border-slate-200">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8 py-12">
+          <p className="text-base md:text-lg text-black/70 leading-relaxed">
+            <strong className="text-black">Bedford, Louis &amp; Ellicott, LLC</strong> —
+            operating as <strong className="text-black">BLE Training</strong> —
+            is a U.S.-based corporate training, business consulting, and
+            proctored testing company founded in <strong>2007</strong>. We
+            specialize in mid-market and owner-led businesses with 25–500
+            employees, offering custom{" "}
+            <Link href="/how-we-work" className="text-crimson hover:text-crimson-soft underline">
+              organizational training programs
+            </Link>
+            ,{" "}
+            <Link href="/consulting" className="text-crimson hover:text-crimson-soft underline">
+              business consulting
+            </Link>
+            {" "}with specialty depth in{" "}
+            <Link
+              href="/insights/family-business-succession-guide"
+              className="text-crimson hover:text-crimson-soft underline"
+            >
+              family business succession
+            </Link>
+            , and{" "}
+            <Link href="/testing" className="text-crimson hover:text-crimson-soft underline">
+              six nationwide proctored testing centers
+            </Link>
+            {" "}authorized for Pearson VUE, Prometric, PSI, and five other
+            providers. Headquartered in Pennsylvania and serving the
+            continental United States across manufacturing, healthcare,
+            logistics, financial services, and professional services.
+          </p>
+        </div>
+      </section>
 
       {/* 7 — TESTING CENTERS + PARTNER LOGOS (combined): Your other business */}
       <section className="bg-white border-y border-slate-200">

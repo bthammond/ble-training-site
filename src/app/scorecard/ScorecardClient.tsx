@@ -11,7 +11,75 @@ import {
   Send,
   Loader2,
   ClipboardCheck,
+  GraduationCap,
 } from "lucide-react";
+
+const LMS_BASE = "https://learning.ble.training";
+
+/* Map each scorecard category to 1–2 LMS category pages plus an
+   optional consulting cross-link, surfaced when the score is below 70%.
+   The pairing is opinionated — Succession + Team both lean on
+   Leadership and HR talent; Operations is about process + decision
+   communication; Growth is sales + strategic leadership; Family is its
+   own consulting practice rather than a self-paced course. The
+   "Overall" rollup intentionally has no recommendations — the
+   per-category cards already cover it. */
+const RECOMMENDATIONS: Record<
+  string,
+  {
+    headline: string;
+    blurb: string;
+    courses: { label: string; href: string }[];
+    consultingHref?: string;
+  }
+> = {
+  Succession: {
+    headline: "Strengthen Succession",
+    blurb:
+      "Build the leadership bench and talent pipeline that lets the business run — and grow — beyond you.",
+    courses: [
+      { label: "Leadership & Management", href: `${LMS_BASE}/store/categories/leadership-management` },
+      { label: "HR & Talent", href: `${LMS_BASE}/store/categories/hr-talent` },
+    ],
+    consultingHref: "/consulting#family",
+  },
+  Team: {
+    headline: "Strengthen your Team",
+    blurb:
+      "Help your managers coach, delegate, and lead — so the business doesn't run through you.",
+    courses: [
+      { label: "Leadership & Management", href: `${LMS_BASE}/store/categories/leadership-management` },
+      { label: "HR & Talent", href: `${LMS_BASE}/store/categories/hr-talent` },
+    ],
+  },
+  Operations: {
+    headline: "Tighten Operations",
+    blurb:
+      "Document the work, sharpen decision-making, and remove the bottlenecks that flow back to your desk.",
+    courses: [
+      { label: "Project Management", href: `${LMS_BASE}/store/categories/project-management` },
+      { label: "Communication", href: `${LMS_BASE}/store/categories/communication` },
+    ],
+  },
+  Growth: {
+    headline: "Accelerate Growth",
+    blurb:
+      "Develop the sales discipline and strategic-leadership habits that turn a plan into pipeline.",
+    courses: [
+      { label: "Sales & Marketing", href: `${LMS_BASE}/store/categories/sales-marketing` },
+      { label: "Leadership & Management", href: `${LMS_BASE}/store/categories/leadership-management` },
+    ],
+  },
+  "Family/Ownership": {
+    headline: "Clarify Family & Ownership",
+    blurb:
+      "Family-led decisions need governance and a shared language. Self-paced leadership courses help, but this is also where our consulting practice goes deepest.",
+    courses: [
+      { label: "Leadership & Management", href: `${LMS_BASE}/store/categories/leadership-management` },
+    ],
+    consultingHref: "/consulting#family",
+  },
+};
 
 /* ── Questions ────────────────────────────────────────────── */
 const QUESTIONS = [
@@ -426,6 +494,85 @@ export default function ScorecardClient() {
               );
             })}
           </div>
+
+          {/* Recommended next steps — only show cards for categories that
+              scored below 70%. If every category cleared 70 the scorecard
+              already says "Growth-Ready" and the bottom CTA is the right
+              next step. */}
+          {(() => {
+            const weakCats = ["Succession", "Team", "Operations", "Growth", "Family/Ownership"]
+              .filter((cat) => RECOMMENDATIONS[cat])
+              .map((cat) => {
+                const catQuestions = QUESTIONS.filter((q) => q.category === cat);
+                if (catQuestions.length === 0) return null;
+                const catScore = catQuestions.reduce((sum, q) => {
+                  const qIndex = QUESTIONS.indexOf(q);
+                  return sum + (answers[qIndex] || 0);
+                }, 0);
+                const catPct = Math.round((catScore / (catQuestions.length * 10)) * 100);
+                return catPct < 70 ? { cat, catPct } : null;
+              })
+              .filter((x): x is { cat: string; catPct: number } => x !== null);
+
+            if (weakCats.length === 0) return null;
+
+            return (
+              <div className="mb-12">
+                <div className="flex items-center gap-2 mb-2">
+                  <GraduationCap className="h-5 w-5 text-crimson" />
+                  <h3 className="font-serif text-2xl text-black">
+                    Recommended next steps
+                  </h3>
+                </div>
+                <p className="text-sm text-black/60 mb-6">
+                  Start strengthening your weakest areas today with self-paced
+                  courses from the BLE Learning Hub.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {weakCats.map(({ cat }) => {
+                    const rec = RECOMMENDATIONS[cat];
+                    return (
+                      <div
+                        key={cat}
+                        className="bg-slate-50 border border-slate-200 rounded p-5"
+                      >
+                        <h4 className="font-serif text-lg text-black">
+                          {rec.headline}
+                        </h4>
+                        <p className="mt-1.5 text-sm text-black/70 leading-relaxed">
+                          {rec.blurb}
+                        </p>
+                        <ul className="mt-3 space-y-1.5">
+                          {rec.courses.map((c) => (
+                            <li key={c.href}>
+                              <a
+                                href={c.href}
+                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-crimson hover:text-crimson-soft"
+                              >
+                                Browse {c.label} courses
+                                <ArrowRight className="h-3.5 w-3.5" />
+                              </a>
+                            </li>
+                          ))}
+                          {rec.consultingHref && (
+                            <li>
+                              <Link
+                                href={rec.consultingHref}
+                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-black hover:text-crimson"
+                              >
+                                Or talk to our consulting practice
+                                <ArrowRight className="h-3.5 w-3.5" />
+                              </Link>
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })()}
 
           {/* CTA */}
           <div className="bg-black text-white p-10 md:p-14 text-center border-t-4 border-crimson">

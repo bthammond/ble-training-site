@@ -257,7 +257,11 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      {/* COURSE CATALOG CTA */}
+      {/* COURSE CATALOG CTA — two paths: self-paced (LMS) for the
+          individual learner and enterprise catalog for the team buyer.
+          Mirrors the cross-link banner on /catalog so visitors who landed
+          here looking for "I want a course today" don't have to read past
+          enterprise-only language to find the Learning Hub. */}
       <section className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 py-20 text-center">
           <AnimateOnScroll>
@@ -269,16 +273,25 @@ export default function HowWeWorkPage() {
             </h2>
             <div className="mx-auto mt-6 h-px w-24 bg-crimson" />
             <p className="mt-6 text-lg text-black/70 max-w-2xl mx-auto leading-relaxed">
-              Looking for something specific? Browse our full Professional
-              Development Catalog — leadership, communication, sales, HR,
-              compliance, and more. Available for onsite or virtual delivery.
+              Leadership, communication, sales, HR, compliance, and more —
+              available two ways. Take any course on your own through our
+              self-paced Learning Hub, or bring the full Professional
+              Development Catalog to your team onsite or virtually.
             </p>
-            <Link
-              href="/catalog"
-              className="mt-8 inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
-            >
-              Browse the Catalog <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="https://learning.ble.training/store"
+                className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
+              >
+                Browse Self-Paced Courses <ArrowRight className="h-4 w-4" />
+              </a>
+              <Link
+                href="/catalog"
+                className="inline-flex items-center gap-2 border-2 border-crimson px-8 py-4 text-xs font-bold uppercase tracking-wider text-crimson hover:bg-crimson hover:text-white transition-colors"
+              >
+                Bring it to Your Team <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </AnimateOnScroll>
         </div>
       </section>

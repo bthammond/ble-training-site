@@ -144,16 +144,16 @@ export default function Home() {
             </ul>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <Link
-                href="/contact"
+                href="/scorecard"
                 className="inline-flex items-center gap-2 bg-crimson px-8 py-4 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
               >
-                Schedule a Growth Call <ArrowRight className="h-4 w-4" />
+                Take the Free Scorecard <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/scorecard"
+                href="/contact"
                 className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
               >
-                Take the Free Scorecard
+                Schedule a Growth Call
               </Link>
             </div>
           </AnimateOnScroll>
@@ -664,6 +664,60 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ECOSYSTEM EXPLAINER — same three-step narrative rendered on
+          coursebldr.ai and learning.ble.training so buyers landing
+          anywhere in the trio see the same map. */}
+      <section className="bg-[#F7F7F7] border-t border-slate-200">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+          <AnimateOnScroll>
+            <div className="mx-auto max-w-2xl text-center">
+              <div className="flex items-center justify-center gap-4 text-crimson">
+                <span className="h-px w-8 bg-crimson" />
+                <span className="text-xs font-bold uppercase tracking-[0.3em]">
+                  One Company. Three Steps.
+                </span>
+                <span className="h-px w-8 bg-crimson" />
+              </div>
+              <h2 className="mt-5 font-serif text-3xl md:text-4xl lg:text-5xl text-black leading-tight">
+                Make it. Host it. Scale it.
+              </h2>
+              <p className="mt-4 text-base md:text-lg text-black/70 leading-relaxed">
+                CourseBldr makes the training. BLE Academy hosts it,
+                tracks completion, and proves it. BLE Training scales
+                the business behind it.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-5 md:grid-cols-3">
+              <EcosystemStep
+                step="01"
+                eyebrow="CourseBldr"
+                title="Make the training."
+                body="AI-built training kits — student manual, instructor guide, slide deck, knowledge checks, evaluation, SCORM — branded, editable, ready in minutes."
+                cta="Try CourseBldr"
+                href="https://coursebldr.ai"
+              />
+              <EcosystemStep
+                step="02"
+                eyebrow="BLE Academy"
+                title="Host it for your team."
+                body="One-click publish to a learner-ready LMS. Invite your team, set due dates, track completion, and auto-issue verifiable certificates."
+                cta="See team hosting plans"
+                href="https://learning.ble.training/for/teams/pricing"
+              />
+              <EcosystemStep
+                step="03"
+                eyebrow="BLE Training"
+                title="Scale the results."
+                body="Consulting, custom training, and proctored testing for owner-led and mid-market organizations. The team behind it all."
+                cta="See how we work"
+                href="/how-we-work"
+                active
+              />
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* CLOSING CTA */}
       <section className="bg-black text-white">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24 text-center">
@@ -678,21 +732,79 @@ export default function Home() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/contact"
+                href="/scorecard"
                 className="inline-flex items-center gap-2 bg-crimson px-10 py-4 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
               >
-                Schedule a 30-Minute Growth Call <ArrowRight className="h-4 w-4" />
+                Take the Free Business Health Scorecard <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/scorecard"
+                href="/contact"
                 className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
               >
-                Take the Free Business Health Scorecard
+                Schedule a 30-Minute Growth Call
               </Link>
             </div>
           </AnimateOnScroll>
         </div>
       </section>
     </>
+  );
+}
+
+function EcosystemStep({
+  step,
+  eyebrow,
+  title,
+  body,
+  cta,
+  href,
+  active,
+}: {
+  step: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+  cta: string;
+  href: string;
+  active?: boolean;
+}) {
+  const external = href.startsWith("http");
+  const wrapperClass = `group relative flex h-full flex-col border-t-4 p-7 transition-colors ${
+    active
+      ? "border-crimson bg-white shadow-sm"
+      : "border-slate-300 bg-white hover:border-crimson"
+  }`;
+  const content = (
+    <>
+      <div className="flex items-center justify-between">
+        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-crimson">
+          {step} · {eyebrow}
+        </p>
+        {active && (
+          <span className="bg-crimson px-2 py-0.5 text-[8px] font-bold uppercase tracking-widest text-white">
+            You are here
+          </span>
+        )}
+      </div>
+      <h3 className="mt-4 font-serif text-2xl leading-snug text-black">
+        {title}
+      </h3>
+      <p className="mt-3 text-sm leading-relaxed text-black/70 flex-1">
+        {body}
+      </p>
+      <p className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-crimson">
+        {cta}
+        <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+      </p>
+    </>
+  );
+  return external ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={wrapperClass}>
+      {content}
+    </a>
+  ) : (
+    <Link href={href} className={wrapperClass}>
+      {content}
+    </Link>
   );
 }

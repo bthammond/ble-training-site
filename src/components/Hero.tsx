@@ -41,17 +41,17 @@ export default function Hero() {
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Link
-              href="/contact"
+              href="/scorecard"
               className="group inline-flex items-center justify-center gap-2 bg-crimson px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-xl hover:bg-crimson-soft transition-colors"
             >
-              Schedule a 30-Minute Growth Call
+              Take the Free Business Health Scorecard
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
-              href="/scorecard"
+              href="/contact"
               className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
             >
-              Take the Free Business Health Scorecard
+              Schedule a 30-Minute Growth Call
             </Link>
           </div>
 

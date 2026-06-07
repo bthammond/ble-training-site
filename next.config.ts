@@ -94,6 +94,11 @@ const nextConfig: NextConfig = {
       // cached search results pointing at the old path.
       { source: "/blog", destination: "/insights", permanent: true },
       { source: "/blog/:path*", destination: "/insights", permanent: true },
+      // Intuitive alternative paths
+      { source: "/business-consulting", destination: "/consulting", permanent: true },
+      { source: "/testing-centers", destination: "/locations", permanent: true },
+      { source: "/testing", destination: "/locations", permanent: true },
+      { source: "/courses", destination: "https://learning.ble.training/store", permanent: true },
     ];
   },
 };

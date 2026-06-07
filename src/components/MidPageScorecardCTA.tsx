@@ -34,7 +34,7 @@ export default function MidPageScorecardCTA() {
               href="/contact"
               className="inline-flex items-center gap-2 border-2 border-white/40 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
             >
-              Schedule a Conversation
+              Request a Conversation
             </Link>
           </div>
         </AnimateOnScroll>

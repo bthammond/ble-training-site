@@ -342,7 +342,10 @@ export default function ScorecardClient() {
             >
               Start the Assessment <ArrowRight className="h-4 w-4" />
             </button>
-            <p className="mt-6 text-sm text-white/70">
+            <p className="mt-4 text-sm text-white/60">
+              Answer 10 questions, then enter your email to view and save your personalized scorecard.
+            </p>
+            <p className="mt-3 text-sm text-white/50">
               No cost. No obligation. Your results are private.
             </p>
           </div>
@@ -362,6 +365,27 @@ export default function ScorecardClient() {
                   <p className="mt-2 text-sm text-black/60">{item.desc}</p>
                 </div>
               ))}
+            </div>
+            <div className="mt-16 border-t border-slate-100 pt-14">
+              <h2 className="font-serif text-2xl text-black text-center mb-8">What happens after you start</h2>
+              <ol className="max-w-xl mx-auto space-y-5">
+                {[
+                  ["Complete the 10 questions", "Each question covers one of six business health dimensions — takes about 2 minutes."],
+                  ["Enter your email to unlock results", "Your score and personalized report are sent to your inbox and displayed immediately."],
+                  ["Receive your Business Health Report", "See your score by category, where you rank, and what the gaps mean for your business."],
+                  ["We follow up with matched resources", "Based on your lowest scores, we surface the specific BLE resources that address your gaps."],
+                ].map(([step, detail], i) => (
+                  <li key={i} className="flex items-start gap-4">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-crimson text-white text-xs font-bold mt-0.5">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <p className="font-semibold text-black text-sm">{step}</p>
+                      <p className="text-sm text-black/60 mt-0.5">{detail}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         </section>

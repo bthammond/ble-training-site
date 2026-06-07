@@ -35,7 +35,7 @@ export default function LeadForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -53,53 +53,52 @@ export default function LeadForm() {
     const message = (data.get("message") as string || "").trim();
     const website = clean(data.get("website") as string || "");
 
-    const [first, ...rest] = name.split(/\s+/);
-    fetch("/api/subscribe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        tag: "lead",
-        website,
-        mergeFields: {
-          FNAME: first || "",
-          LNAME: rest.join(" "),
-          COMPANY: company,
-          PHONE: phone,
-          INTEREST: interest,
-          COMPSIZE: companySize,
-          TIMELINE: timeline,
-          MESSAGE: message,
-        },
-      }),
-    }).catch(() => {});
-
-    const subject = encodeURIComponent(`New Lead — ${interest} — ${name}`);
-    const body = encodeURIComponent(
-      `New inquiry from www.ble.training:\n\n` +
-      `Name: ${name}\n` +
-      `Company: ${company || "Not provided"}\n` +
-      `Email: ${email}\n` +
-      `Phone: ${phone || "Not provided"}\n` +
-      `Primary Need: ${interest}\n` +
-      `Company Size: ${companySize || "Not provided"}\n` +
-      `Timeline: ${timeline || "Not provided"}\n` +
-      `Message: ${message || "None"}\n\n` +
-      `Submitted: ${new Date().toLocaleString()}`
-    );
-
-    window.open(`mailto:info@ble.training?subject=${subject}&body=${body}`, "_blank");
-
+    // localStorage backup — keeps a local trail even if the network
+    // request to /api/lead fails. Cleared once the server confirms
+    // the lead landed in Mailchimp.
     try {
       const leads = JSON.parse(localStorage.getItem("ble_leads") || "[]");
       leads.push({ name, company, email, phone, interest, companySize, timeline, message, date: new Date().toISOString() });
       localStorage.setItem("ble_leads", JSON.stringify(leads));
     } catch { /* silent */ }
 
-    setTimeout(() => {
+    // Real server-side intake. Lands in Mailchimp + sends notification
+    // email via Resend. Replaces the prior flow which depended on a
+    // working mailto: handler — mobile browsers routinely fail to
+    // launch the mailto, dropping the lead notification entirely.
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          company,
+          email,
+          phone,
+          interest,
+          companySize,
+          timeline,
+          message,
+          website,
+        }),
+      });
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => null);
+        setError(
+          errBody?.error ??
+            "We hit an issue saving your inquiry. Please email info@ble.training directly.",
+        );
+        setLoading(false);
+        return;
+      }
       setLoading(false);
       setSubmitted(true);
-    }, 500);
+    } catch {
+      setError(
+        "Couldn't reach the server. Please email info@ble.training directly.",
+      );
+      setLoading(false);
+    }
   };
 
   if (submitted) {

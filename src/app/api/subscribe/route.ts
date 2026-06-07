@@ -1,12 +1,40 @@
 import { NextResponse } from "next/server";
 
+import { checkRateLimit, clientIpFromHeaders } from "@/lib/rate-limit";
+
 const API_KEY = process.env.MAILCHIMP_API_KEY!;
 const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID!;
 const SERVER = process.env.MAILCHIMP_SERVER!;
 
+// Per-IP cap. Newsletter/lead capture should never need more than a
+// handful of submissions per hour from a single IP — anything higher
+// is bot abuse or a stuck form.
+const SUBSCRIBE_MAX_PER_HOUR = 8;
+
 export async function POST(request: Request) {
   try {
-    const { email, tag, mergeFields } = await request.json();
+    const body = await request.json();
+    const { email, tag, mergeFields, website } = body ?? {};
+
+    // Honeypot. The `website` field is rendered invisibly in our forms
+    // (tabindex=-1, autocomplete=off). Real humans never fill it; bots
+    // do. Silently return a success-shaped 200 so abusers don't learn
+    // they were flagged.
+    if (typeof website === "string" && website.trim().length > 0) {
+      return NextResponse.json({ success: true, message: "Check your email to confirm." });
+    }
+
+    const ip = clientIpFromHeaders(request.headers);
+    const rl = await checkRateLimit(`subscribe:${ip}`, {
+      max: SUBSCRIBE_MAX_PER_HOUR,
+      windowMs: 60 * 60 * 1000,
+    });
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429, headers: { "Retry-After": String(rl.retryAfterSec) } }
+      );
+    }
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
       return NextResponse.json(

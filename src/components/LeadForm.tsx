@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
 
+import HoneypotField from "@/components/HoneypotField";
+
 const INTERESTS = [
   "Train managers / leadership team",
   "Improve team performance",
@@ -49,6 +51,7 @@ export default function LeadForm() {
     const companySize = clean(data.get("companySize") as string);
     const timeline = clean(data.get("timeline") as string);
     const message = (data.get("message") as string || "").trim();
+    const website = clean(data.get("website") as string || "");
 
     const [first, ...rest] = name.split(/\s+/);
     fetch("/api/subscribe", {
@@ -57,6 +60,7 @@ export default function LeadForm() {
       body: JSON.stringify({
         email,
         tag: "lead",
+        website,
         mergeFields: {
           FNAME: first || "",
           LNAME: rest.join(" "),
@@ -131,6 +135,7 @@ export default function LeadForm() {
       onSubmit={onSubmit}
       className="rounded-2xl border border-[color:var(--border)] bg-white p-8 md:p-10 shadow-sm"
     >
+      <HoneypotField controlled={false} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <Field label="Full name" name="name" required />
         <Field label="Company" name="company" />

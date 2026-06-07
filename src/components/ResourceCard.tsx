@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Mail, CheckCircle2 } from "lucide-react";
 
+import HoneypotField from "@/components/HoneypotField";
+
 type Props = {
   icon: React.ReactNode;
   title: string;
@@ -12,6 +14,7 @@ type Props = {
 
 export default function ResourceCard({ icon, title, description, tag }: Props) {
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
   const [expanded, setExpanded] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -24,7 +27,7 @@ export default function ResourceCard({ icon, title, description, tag }: Props) {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, tag }),
+        body: JSON.stringify({ email, tag, website }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong.");
@@ -54,6 +57,7 @@ export default function ResourceCard({ icon, title, description, tag }: Props) {
         </div>
       ) : expanded ? (
         <form onSubmit={handleSubmit} className="mt-6 space-y-3">
+          <HoneypotField value={website} onChange={setWebsite} />
           <input
             type="email"
             value={email}

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { BookOpen, Send, Loader2, Mail, CheckCircle2 } from "lucide-react";
 
+import HoneypotField from "@/components/HoneypotField";
+
 interface Props {
   onRegistered: () => void;
   previewsRemaining: number;
@@ -10,6 +12,7 @@ interface Props {
 
 export default function CatalogGate({ onRegistered, previewsRemaining }: Props) {
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const [stage, setStage] = useState<"form" | "check-email" | "granted">("form");
@@ -30,7 +33,7 @@ export default function CatalogGate({ onRegistered, previewsRemaining }: Props) 
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: cleanEmail }),
+        body: JSON.stringify({ email: cleanEmail, website }),
       });
 
       const data = await res.json();
@@ -133,6 +136,7 @@ export default function CatalogGate({ onRegistered, previewsRemaining }: Props) 
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-8 space-y-4">
+          <HoneypotField value={website} onChange={setWebsite} />
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-black/50 mb-1">
               Work Email

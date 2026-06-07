@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Download, CheckCircle2 } from "lucide-react";
+import { Mail, CheckCircle2 } from "lucide-react";
 
 type Props = {
   icon: React.ReactNode;
@@ -79,7 +79,7 @@ export default function ResourceCard({ icon, title, description, tag }: Props) {
           onClick={() => setExpanded(true)}
           className="mt-6 inline-flex items-center gap-2 bg-crimson px-6 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
         >
-          <Download className="h-4 w-4" /> Download Free
+          <Mail className="h-4 w-4" /> Notify Me When Published
         </button>
       )}
     </article>

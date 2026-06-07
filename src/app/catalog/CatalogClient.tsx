@@ -18,6 +18,7 @@ import {
 import { COURSES, CATEGORIES, type Course } from "@/data/courses";
 import CourseModal from "@/components/CourseModal";
 import CatalogGate from "@/components/CatalogGate";
+import HoneypotField from "@/components/HoneypotField";
 
 /* ── Category metadata ──────────────────────────────────────── */
 const CAT_META: Record<
@@ -501,6 +502,7 @@ export default function CatalogClient() {
 /* ── PDF Request Gate ──────────────────────────────────────── */
 function PdfRequestGate({ onClose }: { onClose: () => void }) {
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const [stage, setStage] = useState<"form" | "check-email" | "done">("form");
@@ -520,7 +522,7 @@ function PdfRequestGate({ onClose }: { onClose: () => void }) {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: cleanEmail, tag: "pdf" }),
+        body: JSON.stringify({ email: cleanEmail, tag: "pdf", website }),
       });
       const data = await res.json();
 
@@ -613,6 +615,7 @@ function PdfRequestGate({ onClose }: { onClose: () => void }) {
           </p>
         </div>
         <form onSubmit={handleSubmit} className="p-8 space-y-4">
+          <HoneypotField value={website} onChange={setWebsite} />
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-black/50 mb-1">
               Work Email

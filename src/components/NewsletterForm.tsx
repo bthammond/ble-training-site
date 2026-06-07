@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
+import HoneypotField from "@/components/HoneypotField";
+
 type Variant = "light" | "dark";
 
 type Props = {
@@ -18,6 +20,7 @@ export default function NewsletterForm({
 }: Props) {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -30,7 +33,7 @@ export default function NewsletterForm({
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, tag: "newsletter", firstName }),
+        body: JSON.stringify({ email, tag: "newsletter", firstName, website }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong.");
@@ -72,6 +75,7 @@ export default function NewsletterForm({
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="mt-5 flex flex-col sm:flex-row gap-3">
+          <HoneypotField value={website} onChange={setWebsite} />
           <input
             type="text"
             value={firstName}

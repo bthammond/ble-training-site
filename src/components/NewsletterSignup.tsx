@@ -3,8 +3,11 @@
 import { useState } from "react";
 import { Mail, CheckCircle2, Loader2 } from "lucide-react";
 
+import HoneypotField from "@/components/HoneypotField";
+
 export default function NewsletterSignup() {
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -20,7 +23,7 @@ export default function NewsletterSignup() {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: cleanEmail }),
+        body: JSON.stringify({ email: cleanEmail, website }),
       });
 
       const data = await res.json();
@@ -48,6 +51,7 @@ export default function NewsletterSignup() {
 
   return (
     <form onSubmit={handleSubmit} className="flex gap-2">
+      <HoneypotField value={website} onChange={setWebsite} />
       <div className="relative flex-1">
         <Mail className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-black/30" />
         <input

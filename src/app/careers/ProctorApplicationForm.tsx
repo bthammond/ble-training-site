@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Send, CheckCircle2, Loader2 } from "lucide-react";
 
+import HoneypotField from "@/components/HoneypotField";
+
 interface Props {
   locations: string[];
 }
@@ -23,6 +25,7 @@ export default function ProctorApplicationForm({ locations }: Props) {
     const phone = clean(data.get("phone") as string);
     const location = clean(data.get("location") as string);
     const message = (data.get("message") as string || "").trim();
+    const website = clean(data.get("website") as string || "");
 
     const subject = encodeURIComponent(`Proctor Application — ${name} — ${location}`);
     const body = encodeURIComponent(
@@ -41,7 +44,7 @@ export default function ProctorApplicationForm({ locations }: Props) {
     fetch("/api/subscribe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, tag: "applicant" }),
+      body: JSON.stringify({ email, tag: "applicant", website }),
     }).catch(() => { /* silent */ });
 
     setTimeout(() => {
@@ -70,6 +73,7 @@ export default function ProctorApplicationForm({ locations }: Props) {
       onSubmit={onSubmit}
       className="rounded-2xl border border-[color:var(--border)] bg-white p-8 md:p-10 shadow-sm"
     >
+      <HoneypotField controlled={false} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-black mb-2">

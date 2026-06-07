@@ -1,9 +1,17 @@
 import { NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 
+import { checkRateLimit, clientIpFromHeaders } from "@/lib/rate-limit";
+
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY!,
 });
+
+// Per-IP cap on the chat bot. Every request burns Anthropic tokens, so
+// fail-closed: if Upstash is unreachable in production we refuse rather
+// than open an unmetered token-spend window. A legit visitor sending 30
+// messages in an hour is well above any realistic chat session.
+const CHAT_MAX_PER_HOUR = 30;
 
 const SYSTEM_PROMPT = `You are the BLE Training website assistant. Your job is to help visitors understand BLE Training's services and route them to the right next step. Be warm, concise, and professional — never pushy.
 
@@ -78,6 +86,22 @@ interface Message {
 
 export async function POST(request: Request) {
   try {
+    const ip = clientIpFromHeaders(request.headers);
+    const rl = await checkRateLimit(`chat:${ip}`, {
+      max: CHAT_MAX_PER_HOUR,
+      windowMs: 60 * 60 * 1000,
+      failClosed: true,
+    });
+    if (!rl.allowed) {
+      return NextResponse.json(
+        {
+          error:
+            "You've reached the chat rate limit. Please try again later or call 1-877-879-2531.",
+        },
+        { status: 429, headers: { "Retry-After": String(rl.retryAfterSec) } }
+      );
+    }
+
     const { messages }: { messages: Message[] } = await request.json();
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {

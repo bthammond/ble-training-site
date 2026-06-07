@@ -14,6 +14,8 @@ import {
   GraduationCap,
 } from "lucide-react";
 
+import HoneypotField from "@/components/HoneypotField";
+
 /* Map each scorecard category to a recommended BLE commercial offer
    and next step, surfaced when the score is below 70%. */
 const RECOMMENDATIONS: Record<
@@ -242,6 +244,7 @@ export default function ScorecardClient() {
   const [step, setStep] = useState(0); // 0 = intro, 1-10 = questions, 11 = email, 12 = results
   const [answers, setAnswers] = useState<number[]>([]);
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
   const [captureFields, setCaptureFields] = useState({ name: "", company: "", companySize: "" });
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -285,6 +288,7 @@ export default function ScorecardClient() {
         body: JSON.stringify({
           email: cleanEmail,
           tag: "scorecard",
+          website,
           mergeFields: {
             FNAME: first || "",
             LNAME: rest.join(" "),
@@ -424,6 +428,7 @@ export default function ScorecardClient() {
           </p>
 
           <form onSubmit={handleEmailSubmit} className="mt-8 space-y-4">
+            <HoneypotField value={website} onChange={setWebsite} />
             <input
               type="text"
               value={captureFields.name}

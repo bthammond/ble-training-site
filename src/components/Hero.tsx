@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
+import TrackedLink from "@/components/TrackedLink";
+
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-black text-white min-h-[85vh] flex items-center">
@@ -47,12 +49,14 @@ export default function Hero() {
               Take the Free Business Health Scorecard
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
-            <Link
+            <TrackedLink
               href="/contact"
+              event="growth_call_clicked"
+              props={{ placement: "hero" }}
               className="inline-flex items-center gap-2 border-2 border-white/30 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white hover:border-white hover:bg-white/10 transition-colors"
             >
               Schedule a 30-Minute Growth Call
-            </Link>
+            </TrackedLink>
           </div>
 
           {/* Trust bar */}

@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import HoneypotField from "@/components/HoneypotField";
+import { trackEvent } from "@/lib/track-event";
 
 /* Map each scorecard category to a recommended BLE commercial offer
    and next step, surfaced when the score is below 70%. */
@@ -257,10 +258,17 @@ export default function ScorecardClient() {
   const stage = getStage(percentage);
 
   const handleAnswer = (score: number) => {
-    setAnswers([...answers, score]);
+    const nextAnswers = [...answers, score];
+    setAnswers(nextAnswers);
     if (step < totalQuestions) {
       setStep(step + 1);
     } else {
+      // Funnel event: user finished the 10 questions. Captures the
+      // final percentage so the dashboard can see score distribution
+      // by acquisition channel.
+      const total = nextAnswers.reduce((sum, a) => sum + a, 0);
+      const pct = Math.round((total / (totalQuestions * 10)) * 100);
+      trackEvent("scorecard_completed", { percentage: pct });
       setStep(11); // email capture
     }
   };
@@ -326,7 +334,10 @@ export default function ScorecardClient() {
               what to focus on next.
             </p>
             <button
-              onClick={() => setStep(1)}
+              onClick={() => {
+                trackEvent("scorecard_started");
+                setStep(1);
+              }}
               className="mt-10 inline-flex items-center gap-2 bg-crimson px-10 py-5 text-sm font-bold uppercase tracking-wider text-white hover:bg-crimson-soft transition-colors"
             >
               Start the Assessment <ArrowRight className="h-4 w-4" />

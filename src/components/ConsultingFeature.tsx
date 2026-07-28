@@ -7,7 +7,6 @@ const SERVICES = [
   "Leadership Coaching",
   "Growth Operations",
   "Succession & Governance",
-  "Transaction Advisory",
   "Family Business Specialty",
 ];
 

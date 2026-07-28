@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, Compass, Shield, TrendingUp, Users2, Handshake, ArrowRight, BarChart3, Workflow, Settings } from "lucide-react";
+import { Heart, Compass, Shield, TrendingUp, Users2, ArrowRight, BarChart3, Workflow, Settings } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import MidPageScorecardCTA from "@/components/MidPageScorecardCTA";
@@ -57,13 +57,6 @@ const PRACTICES = [
     desc: "Hands-on operating work — not slides. We sit in the P&L with you.",
   },
   {
-    icon: Handshake,
-    title: "Transaction Advisory",
-    outcome:
-      "Guidance for owners thinking about buying, selling, or restructuring — before you're in the room.",
-    desc: "Prepare the business, the people, and the owner for the transaction itself.",
-  },
-  {
     icon: Heart,
     title: "Family Business Practice",
     outcome:
@@ -86,7 +79,7 @@ export default function ConsultingPage() {
     serviceSchema({
       name: "Business Consulting",
       description:
-        "Strategic consulting for business leaders, owners, and family-run companies. Growth strategy, leadership coaching, succession planning, transaction advisory, and operational consulting.",
+        "Strategic consulting for business leaders, owners, and family-run companies. Growth strategy, leadership coaching, succession planning, and operational consulting.",
       url: "https://www.ble.training/consulting",
       serviceType: "Business Consulting",
     }),

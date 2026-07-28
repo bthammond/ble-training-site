@@ -23,7 +23,7 @@ Founded in 2007, BLE Training is a corporate training and consulting company. We
 
 ## Three Services
 1. **Organizational Training** (/how-we-work) — Custom training programs, onboarding systems, coaching frameworks. Leadership development, compliance, skills training. On-site or virtual.
-2. **Business Consulting** (/consulting) — Growth strategy, leadership coaching, succession planning, transaction advisory. Specialty depth for family-run businesses.
+2. **Business Consulting** (/consulting) — Growth strategy, leadership coaching, succession planning. Specialty depth for family-run businesses.
 3. **Proctored Testing** (/testing) — Six centers deliver computer-based exams for Pearson VUE, Prometric, PSI, Meazure Learning, Kryterion, ETS, Scantron, Examity.
 
 ## Six Testing Center Locations (with hours)

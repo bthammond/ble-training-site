@@ -224,10 +224,12 @@ export default function Home() {
           <AnimateOnScroll delay={120} className="lg:col-span-3 space-y-6">
             <p className="text-lg text-black/80 leading-relaxed">
               Most growing businesses hit a ceiling. Revenue stalls. The team
-              isn&apos;t performing the way it should. Leadership transitions
-              complicate decisions that should be simple. And the consultants
-              they find either don&apos;t understand their business — or charge
-              like they&apos;re still billing Fortune 500 clients.
+              isn&apos;t performing the way it should. So they send people to a
+              generic, off-the-shelf workshop — polished, forgettable, and gone
+              by Monday. Leadership transitions complicate decisions that should
+              be simple. And the consultants they find either don&apos;t
+              understand their business — or charge like they&apos;re still
+              billing Fortune 500 clients.
             </p>
             <p className="text-lg text-black/80 leading-relaxed">
               BLE is different. We&apos;ve spent twenty years inside enterprise

@@ -41,6 +41,10 @@ export default function Hero() {
             BLE helps owner-led and mid-market companies train managers,
             improve team performance, and prepare for growth or succession.
           </p>
+          <p className="mt-4 text-base md:text-lg font-semibold text-white max-w-2xl leading-relaxed">
+            Not another generic workshop. Training built from scratch for your
+            business — and built to stick.
+          </p>
           <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Link
               href="/scorecard"

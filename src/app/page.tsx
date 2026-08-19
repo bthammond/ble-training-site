@@ -727,13 +727,23 @@ export default function Home() {
       <section className="bg-black text-white">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24 text-center">
           <AnimateOnScroll>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
-              Tell us what you&apos;re trying to solve.
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+              Where This Goes
+            </span>
+            <h2 className="mt-4 font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
+              A business that runs on systems,<br />
+              <span className="text-crimson">not on you.</span>
             </h2>
-            <p className="mt-6 text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
-              It starts with a 30-minute conversation. No pitch deck. No
-              pressure. Just a practical conversation about what is going on
-              and whether BLE can help.
+            <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+              Managers who actually manage. A team that performs without you in
+              every decision. A succession that holds. That is what training
+              built for your business delivers — not another generic workshop
+              your team forgets.
+            </p>
+            <p className="mt-5 text-base text-white/60 max-w-2xl mx-auto leading-relaxed">
+              It starts with a 30-minute conversation. No pitch deck, no
+              pressure — just a practical look at what is going on and whether
+              BLE can help.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link

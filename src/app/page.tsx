@@ -224,10 +224,12 @@ export default function Home() {
           <AnimateOnScroll delay={120} className="lg:col-span-3 space-y-6">
             <p className="text-lg text-black/80 leading-relaxed">
               Most growing businesses hit a ceiling. Revenue stalls. The team
-              isn&apos;t performing the way it should. Leadership transitions
-              complicate decisions that should be simple. And the consultants
-              they find either don&apos;t understand their business — or charge
-              like they&apos;re still billing Fortune 500 clients.
+              isn&apos;t performing the way it should. So they send people to a
+              generic, off-the-shelf workshop — polished, forgettable, and gone
+              by Monday. Leadership transitions complicate decisions that should
+              be simple. And the consultants they find either don&apos;t
+              understand their business — or charge like they&apos;re still
+              billing Fortune 500 clients.
             </p>
             <p className="text-lg text-black/80 leading-relaxed">
               BLE is different. We&apos;ve spent twenty years inside enterprise
@@ -725,13 +727,23 @@ export default function Home() {
       <section className="bg-black text-white">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 py-24 text-center">
           <AnimateOnScroll>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
-              Tell us what you&apos;re trying to solve.
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+              Where This Goes
+            </span>
+            <h2 className="mt-4 font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
+              A business that runs on systems,<br />
+              <span className="text-crimson">not on you.</span>
             </h2>
-            <p className="mt-6 text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
-              It starts with a 30-minute conversation. No pitch deck. No
-              pressure. Just a practical conversation about what is going on
-              and whether BLE can help.
+            <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+              Managers who actually manage. A team that performs without you in
+              every decision. A succession that holds. That is what training
+              built for your business delivers — not another generic workshop
+              your team forgets.
+            </p>
+            <p className="mt-5 text-base text-white/60 max-w-2xl mx-auto leading-relaxed">
+              It starts with a 30-minute conversation. No pitch deck, no
+              pressure — just a practical look at what is going on and whether
+              BLE can help.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link

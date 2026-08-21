@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/trim-bash-output.py\"",
+            "timeout": 10,
+            "statusMessage": "Trimming command output"
+          }
+        ]
+      }
+    ]
+  },
+  "skillOverrides": {
+    "10x-vision": "name-only",
+    "bug-triage-prioritizer": "name-only",
+    "business-problem-to-blueprint": "name-only",
+    "client-onboarding-workflow": "name-only",
+    "cold-outreach-generator": "name-only",
+    "competitor-analysis-positioning": "name-only",
+    "discovery-question-generator": "name-only",
+    "docx": "name-only",
+    "feature-prioritization-matrix": "name-only",
+    "import-memory": "name-only",
+    "maintenance-support-packages": "name-only",
+    "morning": "name-only",
+    "niche-opportunity-finder": "name-only",
+    "niche-research": "name-only",
+    "pdf": "name-only",
+    "pptx": "name-only",
+    "proposal-contract-generator": "name-only",
+    "software-demonstration-script": "name-only",
+    "software-pricing-calculator": "name-only",
+    "tech-stack-decision-maker": "name-only",
+    "time-resource-estimator": "name-only",
+    "upsell-opportunity-identifier": "name-only",
+    "xlsx": "name-only"
+  }
+}

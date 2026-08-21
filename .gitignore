@@ -41,8 +41,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Claude Code local state
-.claude/
+# Claude Code local state (ignore by default, share the checked-in config)
+.claude/*
+!.claude/launch.json
+!.claude/settings.json
+!.claude/hooks/
 
 # Build/dev utility scripts
 extract-courses.mjs

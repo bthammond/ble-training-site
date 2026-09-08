@@ -205,7 +205,7 @@ Each phase ships independently and is reversible.
 ### Phase 2 — the spine (weeks)
 
 1. Shared `locations` package; remove the hand-verified ID mapping.
-2. Confirm HQ's Supabase config is live in production (§8).
+2. ~~Confirm HQ's Supabase config is live in production.~~ Verified (§8).
 3. Finish HQ's migration — the six editable `AppContext` keys.
 4. Auth onto one Supabase project, one app at a time, behind a flag, old path
    live for one release.
@@ -236,7 +236,7 @@ offboarding and access revocation; a candidate-facing exam-day app.
 |---|---|---|
 | Domain moves | Feels irreversible | DNS. Reversible in minutes. |
 | Auth consolidation | Locking people out | Per-app, behind a flag, old path live for one release |
-| **HQ's last 6 localStorage keys → Postgres** | Losing what those six hold | See below |
+| **HQ's last 6 localStorage keys → Postgres** | Losing what those six hold | Rescue-on-read, per the pattern the other 21 hooks use |
 | Archiving repos | Losing content | Salvage (§5) merged and deployed *before* archiving |
 | Deleting Vercel projects | Not reversible | Disconnect only. Leave dormant 30 days. |
 
@@ -256,13 +256,21 @@ What is left on `localStorage` is 11 keys in `AppContext.tsx` and
 have no setter and are seed caches; `railCollapsed` is a per-browser UI
 preference that belongs where it is.
 
-**One caveat, unverified.** `isSupabaseConfigured` is
-`Boolean(VITE_SUPABASE_URL && VITE_SUPABASE_ANON_KEY)`. If those are unset on
-the production deployment, all 21 hooks silently fall back to `localStorage`
-and the original warning holds after all. This could not be checked from the
-authoring session (egress to `dashboard.ble.training` is blocked); confirm in
-DevTools that the app talks to a real `*.supabase.co` host rather than the
-`unconfigured.supabase.co` placeholder.
+**The caveat is closed (verified 2026-09-08).** `isSupabaseConfigured` is
+`Boolean(VITE_SUPABASE_URL && VITE_SUPABASE_ANON_KEY)`, so unset env vars
+would have meant all 21 hooks silently falling back to `localStorage` and the
+original warning holding after all. Session egress to `dashboard.ble.training`
+is blocked by policy, but Vite inlines `import.meta.env.*` at build time, so
+the deployed bundle settles it: `ble-hq.vercel.app`'s shipped JS carries a
+real project host and anon key, and — the stronger signal — the
+`unconfigured.supabase.co` / `unconfigured-anon-key` fallbacks are **absent
+entirely**, which only happens when Vite eliminated that branch because the
+env var was truthy at build. Supabase is configured in production.
+
+The deployed bundle also matches the source read exactly: all 11
+`usePersistentState` keys ship, and the six migrated modules' `LEGACY_KEY`
+constants ship alongside their `…:rescued` flags — the migration running in
+production, not merely planned.
 
 ---
 

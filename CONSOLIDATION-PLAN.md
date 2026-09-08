@@ -91,7 +91,7 @@ Ten repos become six.
 | `ble-timeclock` | **Keep + promote** | Becomes people/locations source of truth |
 | `ble-lms` | Keep | — |
 | `ble-onboarding` | Keep | — |
-| `ble-hq` | Keep — **after** the Postgres move | Currently persists to `localStorage` (see §7 risk) |
+| `ble-hq` | Keep | Supabase migration largely done; six `AppContext` keys remain (§8) |
 | `training-gen` | Keep — **one brand** | Retire or 301 `instructorkit.com` → `coursebldr.ai` |
 | `ble-training-site` | **Retire** after salvage (§5) | Superseded; no domain |
 | `growth-os` | **Kill** | Second CRM, scaffold stage, dormant since June |
@@ -109,20 +109,26 @@ old site has that the live site does not:
 |---|---|---|
 | `/locations`, `/locations/[city]` | Already 301'd → `/testing-centers` | None — done |
 | `/register`, `/testing` | Already 301'd | None — done |
-| `/insights/*` (5 articles) | Rewritten under new slugs | **Add 301s** old slug → new slug to preserve SEO |
-| `/catalog` | **Missing** | **Port** — see below |
-| `/careers` + proctor application | **Missing entirely** | **Port** |
-| `/resources` | **Missing** | Port or consciously drop |
-| `/why-ble`, `/register/checklist` | **Missing** | Fold into existing pages or drop |
+| `/insights/*` (5 articles) | Rewritten under new slugs, **301s already in place** | None — done |
+| `/catalog` | Was 301'd to a 4-card page | **Shipped** in ble-website#7 → `/courses/catalog` |
+| `/careers` + proctor application | Was 301'd to `/about` | **Shipped** in ble-website#7 |
+| `/resources`, `/why-ble` | Already 301'd to `/insights` and `/about` | Confirm the redirect is the intent |
+| `/register/checklist` | Covered by the `/register/*` 301 | Confirm |
 
-Two of these are functional regressions on the live site today, not just
-missing pages:
+**Correction to the route diff (2026-09-08).** The 301s listed above as work
+were already present. `ble-website/next.config.ts` already redirected all five
+old insight slugs plus `/catalog`, `/resources`, `/why-ble` and `/careers`.
+The original diff compared route directories and missed the redirect table.
+Two entries were nonetheless real regressions, because a redirect to a page
+that does not carry the content is not a fix:
 
 - **The course catalog.** `src/data/courses.ts` holds **153 courses** with
   title, overview, objectives, and category across 10 categories — 1,945 lines
   of real content, gated behind `CatalogGate` for lead capture. The live site's
   `/courses` is a marketing page with **4 hardcoded track cards**. This is the
-  single largest content asset in the estate and it is currently offline.
+  single largest content asset in the estate and it was offline. Shipped in
+  ble-website#7 as `/courses/catalog` plus a static page per course —
+  **ungated**, since the wall hid all 153 courses from search.
 
 - **Lead capture.** The old site posts to `/api/lead` and `/api/subscribe`,
   which write to **Mailchimp** with full context and then ping the inbox via
@@ -181,21 +187,26 @@ Each phase ships independently and is reversible.
 ### Phase 1 — stop the bleed (days)
 
 1. Reconnect `ble-website`'s Vercel project to GitHub. Production gets CI and
-   PR previews before anything else touches it.
-2. Port the catalog (153 courses + `CatalogGate`) to `ble-website`.
-3. Port `/careers` + the proctor application form.
-4. Restore Mailchimp lead capture on the live site.
-5. Add 301s for the 5 old insight slugs.
-6. Decide `/resources` and `/why-ble`: port or drop.
+   PR previews before anything else touches it. **Outstanding — yours.**
+2. ~~Port the catalog.~~ Shipped, ble-website#7 (ungated, per-course pages).
+3. ~~Port `/careers` + the proctor application.~~ Shipped, ble-website#7 —
+   rebuilt as a real server route; the old one only opened a `mailto:` draft.
+4. ~~Restore Mailchimp lead capture.~~ Shipped, ble-website#7. Needs
+   `MAILCHIMP_*` set to switch on — **outstanding, yours.**
+5. ~~Add 301s for the old insight slugs.~~ Already existed.
+6. `/resources` and `/why-ble` — already 301'd; confirm that is the intent.
 7. Point `ble-training-site`'s README at its successor; archive the repo.
-8. Retire `growth-os`, `brianthammond-v2`, `find-a-center-hub`.
-9. Redirect `instructorkit.com` → `coursebldr.ai`.
+   **Blocked on #7 merging.**
+8. Retire `growth-os`, `brianthammond-v2`, `find-a-center-hub`. **Yours.**
+9. Redirect `instructorkit.com` → `coursebldr.ai`. **Yours.**
+10. CI on `ble-website` — the repo had no `.github` at all. Shipped,
+    ble-website#8.
 
 ### Phase 2 — the spine (weeks)
 
 1. Shared `locations` package; remove the hand-verified ID mapping.
-2. **Export HQ's `localStorage` data before touching anything** (§8).
-3. HQ onto Postgres.
+2. Confirm HQ's Supabase config is live in production (§8).
+3. Finish HQ's migration — the six editable `AppContext` keys.
 4. Auth onto one Supabase project, one app at a time, behind a flag, old path
    live for one release.
 
@@ -225,16 +236,33 @@ offboarding and access revocation; a candidate-facing exam-day app.
 |---|---|---|
 | Domain moves | Feels irreversible | DNS. Reversible in minutes. |
 | Auth consolidation | Locking people out | Per-app, behind a flag, old path live for one release |
-| **HQ `localStorage` → Postgres** | **Silent total data loss** | See below |
+| **HQ's last 6 localStorage keys → Postgres** | Losing what those six hold | See below |
 | Archiving repos | Losing content | Salvage (§5) merged and deployed *before* archiving |
 | Deleting Vercel projects | Not reversible | Disconnect only. Leave dormant 30 days. |
 
-**The HQ data hazard deserves emphasis.** `ble-hq` persists module data via
-`usePersistentState` to `localStorage`. That data lives only in individual
-browsers — there may be no server copy of anything anyone has entered into the
-vendor directory, maintenance schedules, or points ledger. Before migrating,
-export from a browser that has it, and check whether some of it has already
-been lost to a cleared cache. Do not add another HQ module until this is done.
+**Correction (2026-09-08).** An earlier revision of this plan called HQ's
+persistence a silent-total-data-loss hazard, on the strength of the repo
+README. Reading the code instead shows the opposite: `ble-hq` has largely
+**completed** its Supabase migration — 21 Supabase-backed hooks (team,
+vendors, maintenance, testing partners, points, documents, events, posts,
+resources, shout-outs, suggestions, acknowledgments, audit log and more)
+across 52 migrations, each with a one-time, idempotent rescue that lifts
+legacy `localStorage` rows into the shared table. The README is stale, not
+the code.
+
+What is left on `localStorage` is 11 keys in `AppContext.tsx` and
+`Sidebar.tsx`, of which only six are editable (`reminders.v2`, `settings.v2`,
+`feedReactions`, `pulses.v2`, `pulseResponses.v2`, `microQuestions`). Four
+have no setter and are seed caches; `railCollapsed` is a per-browser UI
+preference that belongs where it is.
+
+**One caveat, unverified.** `isSupabaseConfigured` is
+`Boolean(VITE_SUPABASE_URL && VITE_SUPABASE_ANON_KEY)`. If those are unset on
+the production deployment, all 21 hooks silently fall back to `localStorage`
+and the original warning holds after all. This could not be checked from the
+authoring session (egress to `dashboard.ble.training` is blocked); confirm in
+DevTools that the app talks to a real `*.supabase.co` host rather than the
+`unconfigured.supabase.co` placeholder.
 
 ---
 

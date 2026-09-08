@@ -119,7 +119,7 @@ old site has that the live site does not:
 | `/locations`, `/locations/[city]` | Already 301'd → `/testing-centers` | None — done |
 | `/register`, `/testing` | Already 301'd | None — done |
 | `/insights/*` (5 articles) | Rewritten under new slugs, **301s already in place** | None — done |
-| `/catalog` | Was 301'd to a 4-card page | **Shipped** in ble-website#7 → `/courses/catalog` |
+| `/catalog` | Was 301'd to the self-paced courses page | **Shipped** in ble-website#7 → `/courses/catalog` |
 | `/careers` + proctor application | Was 301'd to `/about` | **Shipped** in ble-website#7 |
 | `/resources`, `/why-ble` | Already 301'd to `/insights` and `/about` | Confirm the redirect is the intent |
 | `/register/checklist` | Covered by the `/register/*` 301 | Confirm |

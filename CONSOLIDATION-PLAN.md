@@ -151,9 +151,20 @@ The part that does not exist today. Three rules.
 **Supabase**, already used by `ble-hq` and `ble-lms` and already paid for.
 
 Each app keeps its own database. Only authentication consolidates. One place
-to revoke access when someone leaves — which today means remembering six
-separate systems, including a single shared `ADMIN_PASSWORD` in the app that
-handles SSNs.
+to revoke access when someone leaves — which today means remembering five
+separate systems.
+
+**Correction (2026-09-08).** An earlier revision said this included "a single
+shared `ADMIN_PASSWORD` in the app that handles SSNs." That was wrong, and it
+was the most alarming claim in this document. `ble-onboarding` has real
+multi-user accounts (`lib/users.ts`, roles `super_admin` / `manager`), TOTP
+2FA, password reset, account lockout and login rate limiting. The
+`ADMIN_PASSWORD` line came from its README, which predates all of that.
+
+The case for one identity therefore rests on offboarding and operational tax
+— five systems to cut access in, five credential sets for 34 people, two
+separate Supabase projects between HQ and the LMS — not on an unguarded app.
+That is a real problem but a less urgent one than stated.
 
 ### 6.2 One owner per object
 
@@ -224,9 +235,29 @@ labour hours, producing margin per center per month. Nothing in the estate
 touches testing revenue today; FBP invoices consulting only. This is the only
 item on the list that is a new build rather than a consolidation.
 
-Remaining gaps after that, in rough priority: applicant tracking (closes
-careers → onboarding → TimeClock, of which the last link already exists);
-offboarding and access revocation; a candidate-facing exam-day app.
+**Correction (2026-09-08).** Two of the three "remaining gaps" listed here
+were already built.
+
+- **Applicant tracking exists.** `ble-onboarding` carries a 12-stage hiring
+  pipeline mapped to BLE's own process doc (job posted → applicant noted →
+  phone screen → STAR interview → application sent/returned with a 48h SLA →
+  conditional offer → paperwork → I-9 §2 → HR verified → welcome packet →
+  day one), with per-role stage ownership, candidate source tracking and a
+  funnel-by-source report, job postings, an Indeed applicant import, and
+  background-check tracking. Stages 5-12 auto-mark off real events.
+- **Offboarding is half built.** Exit interviews (standalone and
+  session-linked, with PDF output and a manager-facing area) exist. What is
+  missing is the access-revocation checklist and its audit trail.
+
+The genuine remaining gaps are that checklist, the small matter of wiring the
+new `/careers` form to create a candidate (`source: 'website'` is already a
+valid value), and a candidate-facing exam-day app.
+
+**Why this kept happening.** Three claims in this plan came from repository
+READMEs that lag their code badly — ble-hq's persistence layer, ble-onboarding's
+auth model, and ble-onboarding's scope. Every one overstated a problem. Treat
+any remaining unverified claim here as suspect until read against the code;
+`ble-lms`, `fbp-group-app` and `training-gen` have not had that pass.
 
 ---
 

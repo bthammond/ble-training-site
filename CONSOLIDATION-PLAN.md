@@ -9,9 +9,18 @@
 ## 1. Why
 
 Ten apps, one maintainer, four data stacks, five marketing properties, and two
-CRMs. The problem is not a missing app — it is duplication and the absence of a
-shared spine. This plan cuts ten repos to six, names one owner per domain
-object, and puts every app behind one identity.
+CRMs. The problem is not a missing app — it is duplication. This plan cuts ten
+repos to six, names one owner per domain object, and puts every app behind one
+identity.
+
+**Revised after the code-level verification pass (2026-09-08, §10).** An
+earlier revision said the estate had "no shared spine." That was too strong.
+Two production cross-app integrations already exist and are well built:
+Onboarding → TimeClock (auto-creates the hire), and CourseBldr → BLE Academy
+(a *paid* SCORM-hosting product with Stripe subscription gating and account
+provisioning). The accurate diagnosis is narrower: duplication in the places
+nobody integrated — two CRMs, five marketing properties, five auth systems —
+not an absence of integration discipline.
 
 It also fixes a live problem: **development effort is going into a site that
 serves no domain** (see §2).
@@ -179,11 +188,23 @@ That is a real problem but a less urgent one than stated.
 
 Readers consume a small token-authenticated JSON endpoint from the owner.
 
-**This pattern already exists and works** — `ble-website/lib/center-status.ts`
-reads TimeClock's `/api/public/center-status` with a 4-second timeout, 60-second
-revalidation, bearer token, and a fail-to-null fallback that renders no pill
-rather than a wrong one. Extend that pattern. Do not invent a new one, and do
-not let two apps share a database directly.
+**This pattern already exists twice, and works.**
+
+1. `ble-website/lib/center-status.ts` reads TimeClock's
+   `/api/public/center-status` with a 4-second timeout, 60-second
+   revalidation, bearer token, and a fail-to-null fallback that renders no
+   pill rather than a wrong one.
+2. `training-gen`'s `POST /api/lms/publish` relays a SCORM package to BLE
+   Academy's `/api/scorm/ingest` over a bearer key — behind a Stripe
+   subscription gate, an account-provisioning check, an SSRF allowlist on
+   the package URL, a 50 MB cap mirroring the LMS-side limit, and an
+   ownership check before stamping the buyer's order.
+
+The second is the better model for anything commercial: it is a paid
+integration, and it fails with specific, actionable statuses (402
+`subscription_required`, 503 `provisioning_pending`) rather than a generic
+error. Extend these. Do not invent a third shape, and do not let two apps
+share a database directly.
 
 Alongside it, a shared **`locations` package** so `Center.slug` and
 `timeclockLocationId` stop being hand-verified against production at deploy
@@ -329,3 +350,64 @@ production, not merely planned.
 - Catalog size: `grep -c '"id":' src/data/courses.ts` → 153.
 - Integration pattern: `ble-website/INTEGRATIONS.md`,
   `ble-training-site/src/lib/timeclock-status.ts`.
+
+---
+
+## 10. Verification pass (2026-09-08)
+
+Three claims in this plan were traced to stale repository READMEs, each
+overstating a problem (see §8 and §7). This section records a code-level pass
+over the four repos whose claims had *not* been checked. Read from source at
+each repo's default branch, not from documentation.
+
+### `growth-os` — kill confirmed, with stronger evidence
+
+`src/app` is a landing page plus one `dashboard` route (a 6.9 KB page and a
+`contacts` module). `src/lib` contains `app-modules`, `crm`, `env` and
+`product-roadmap` — the last of which *defines the roadmap* rather than
+implementing it. No auth layer, no billing, none of the messaging or workflow
+runtime its README lists as schemas.
+
+Meanwhile Stripe subscriptions, checkout, orders and webhooks are already
+implemented and in production in **two** other repos (`training-gen`,
+`fbp-group-app`). The original call stands: archive it.
+
+### `ble-lms` — README badly stale, app far past "Phase 1"
+
+The README states "Phase 1 (Foundation) is in place" with the course player as
+future work. In fact the learner area ships `courses`, `certificates`, `notes`,
+`badges`, `profile` and `dashboard`; there is a `(store)` route group; and
+`app/api` carries `stripe`, `mux`, `ai`, `scorm`, `certificates`, `cron`,
+`calendar`, `accounts` and `admin`.
+
+That is Phases 2 through 5 of its own six-phase plan, plus parts of 6. Anything
+in this document that assumed the LMS was early should be re-read.
+
+### `training-gen` — a commercial product, not a generator
+
+Described here as "an AI course kit generator." It is a self-serve SaaS:
+`pricing`, `checkout`, `sign-in`/`sign-up`, `settings`, `library`, `templates`,
+`generate`, `free-kit`, `compare`, `review`, `refund-policy`, a marketing site
+with `blog` / `case-studies` / `changelog` / `help`, and an `app/api` surface
+of 45 routes including `billing`, `stripe`, `orders`, `webhooks`, `voiceover`,
+`save-to-drive`, `save-to-dropbox` and `scorm`.
+
+It also sells **BLE Academy hosting as a paid add-on** (`api/lms/*`), which is
+the integration described in §6.3.
+
+### `fbp-group-app` — confirmed real, not scaffolding
+
+5,384 lines across the portal and admin page components alone, with substantial
+individual screens (client detail 796 lines, admin home 737, portal home 623).
+The earlier read of its ~50-model Prisma schema holds up against the UI built
+on top of it.
+
+### What this changes
+
+- The consolidation case rests on **duplication**, not on absent integration
+  (§1 revised).
+- There are **two** proven cross-app contract patterns to extend, not one
+  (§6.3 revised).
+- Every remaining claim in this document has now been checked against code.
+  Where a README and the code disagreed, the code was newer — without
+  exception, across five repos.

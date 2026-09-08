@@ -134,8 +134,12 @@ that does not carry the content is not a fix:
 - **The course catalog.** `src/data/courses.ts` holds **153 courses** with
   title, overview, objectives, and category across 10 categories — 1,945 lines
   of real content, gated behind `CatalogGate` for lead capture. The live site's
-  `/courses` is a marketing page with **4 hardcoded track cards**. This is the
-  single largest content asset in the estate and it was offline. Shipped in
+  `/courses` markets **six self-paced tracks (~23 courses)** that link out to
+  the Learning Hub store — a different product, not a reduced version of this
+  catalog. (An earlier revision said "4 hardcoded track cards"; verified
+  against production 2026-09-08, it is six.) So the instructor-led catalog had
+  no page at all, and `/catalog` sent anyone looking for it to a page about
+  self-paced courses. Shipped in
   ble-website#7 as `/courses/catalog` plus a static page per course —
   **ungated**, since the wall hid all 153 courses from search.
 

@@ -670,7 +670,7 @@ export default function Home() {
       </section>
 
       {/* ECOSYSTEM EXPLAINER — same three-step narrative rendered on
-          coursebldr.ai and learning.ble.training so buyers landing
+          instructorkit.com and learning.ble.training so buyers landing
           anywhere in the trio see the same map. */}
       <section className="bg-[#F7F7F7] border-t border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
@@ -687,7 +687,7 @@ export default function Home() {
                 Make it. Host it. Scale it.
               </h2>
               <p className="mt-4 text-base md:text-lg text-black/70 leading-relaxed">
-                CourseBldr makes the training. BLE Academy hosts it,
+                InstructorKit makes the training. BLE Academy hosts it,
                 tracks completion, and proves it. BLE Training scales
                 the business behind it.
               </p>
@@ -695,11 +695,11 @@ export default function Home() {
             <div className="mt-12 grid gap-5 md:grid-cols-3">
               <EcosystemStep
                 step="01"
-                eyebrow="CourseBldr"
+                eyebrow="InstructorKit"
                 title="Make the training."
-                body="AI-built training kits — student manual, instructor guide, slide deck, knowledge checks, evaluation, SCORM — branded, editable, ready in minutes."
-                cta="Try CourseBldr"
-                href="https://coursebldr.ai"
+                body="AI-built instructor kits — student manual, instructor guide, slide deck, knowledge checks, evaluation, SCORM — branded, editable, ready in minutes."
+                cta="Try InstructorKit"
+                href="https://instructorkit.com"
               />
               <EcosystemStep
                 step="02"
